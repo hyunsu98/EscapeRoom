@@ -1,9 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
     // 이동속도
     [SerializeField] float speed = 5;
+    [SerializeField] float camSpeed = 2;
 
     //카메라 위치
     [SerializeField] Transform[] camPos;
@@ -25,9 +28,8 @@ public class PlayerMove : MonoBehaviour
     CharacterController cc;
 
     //카메라 Transform
-    public Transform trCam;
-
-    bool CamMove = false;
+    Transform cam;
+    bool CamMove;
 
     void Start()
     {
@@ -35,25 +37,24 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         //시작시 카메라 위치
-        //cam = Camera.main.transform;
-        trCam.position = camPos[0].position;
+        cam = Camera.main.transform;
+        cam.position = camPos[0].position;
     }
 
     void Update()
     {
-
         Move();
 
         Down();
 
         if(CamMove == true)
         {
-            trCam.position = Vector3.Lerp(trCam.position, camPos[0].position, 2 * Time.deltaTime);
+            cam.position = Vector3.Lerp(cam.position, camPos[1].position, camSpeed * Time.deltaTime);
         }
 
         else
         {
-            trCam.position = Vector3.Lerp(trCam.position, camPos[1].position, 2 * Time.deltaTime);
+            cam.position = Vector3.Lerp(cam.position, camPos[0].position, camSpeed * Time.deltaTime);
         }
     }
 
@@ -88,14 +89,13 @@ public class PlayerMove : MonoBehaviour
             isJump = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             yVelocity = jumpPower;
 
             //*보류 : 점프 애니메이션
-
             isJump = true;
-        }
+        }*/
 
         //중력 적용
         yVelocity += gravit * Time.deltaTime;
@@ -105,7 +105,7 @@ public class PlayerMove : MonoBehaviour
         //transform.position += dir2 * speed * Time.deltaTime;
         cc.Move(dir2 * speed * Time.deltaTime);
 
-        //애니메이션에 Parameter 값 전달
+        //애니메이션에 Parameter 값 전달 -> 자연스럽게 하기 위해
         anim.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
         anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
     }
@@ -115,17 +115,18 @@ public class PlayerMove : MonoBehaviour
         //카메라 시점 변경
         if (Input.GetKeyDown(KeyCode.C))
         {
-            //현재 애니메이션 Down이라면 flase
+            //현재 애니메이션 Down이라면 flase //일어서기
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Down"))
             {
                 anim.SetBool("Down", false);
-                CamMove = true;
+                CamMove = false;
             }
 
+            //앉기
             else
             {
                 anim.SetBool("Down", true);
-                CamMove = false;
+                CamMove = true;
             }
         }
     }
