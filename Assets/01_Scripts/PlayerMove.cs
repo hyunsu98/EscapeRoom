@@ -23,7 +23,11 @@ public class PlayerMove : MonoBehaviour
 
     Animator anim;
     CharacterController cc;
-    Transform cam;
+
+    //카메라 Transform
+    public Transform trCam;
+
+    bool CamMove = false;
 
     void Start()
     {
@@ -31,15 +35,26 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         //시작시 카메라 위치
-        cam = Camera.main.transform;
-        cam.position = camPos[0].position;
+        //cam = Camera.main.transform;
+        trCam.position = camPos[0].position;
     }
 
     void Update()
     {
+
         Move();
 
         Down();
+
+        if(CamMove == true)
+        {
+            trCam.position = Vector3.Lerp(trCam.position, camPos[0].position, 2 * Time.deltaTime);
+        }
+
+        else
+        {
+            trCam.position = Vector3.Lerp(trCam.position, camPos[1].position, 2 * Time.deltaTime);
+        }
     }
 
     [Header("달리기")]
@@ -47,8 +62,8 @@ public class PlayerMove : MonoBehaviour
 
     void Move()
     {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
 
         #region 방향1 (절대 좌표 이동)
         /*Vector3 dir = new Vector3(h, 0, v);
@@ -91,8 +106,8 @@ public class PlayerMove : MonoBehaviour
         cc.Move(dir2 * speed * Time.deltaTime);
 
         //애니메이션에 Parameter 값 전달
-        anim.SetFloat("Horizontal", h);
-        anim.SetFloat("Vertical", v);
+        anim.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+        anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
     }
 
     void Down()
@@ -104,13 +119,13 @@ public class PlayerMove : MonoBehaviour
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Down"))
             {
                 anim.SetBool("Down", false);
-                cam.position = camPos[0].transform.position;
+                CamMove = true;
             }
 
             else
             {
                 anim.SetBool("Down", true);
-                cam.position = camPos[1].transform.position;
+                CamMove = false;
             }
         }
     }
