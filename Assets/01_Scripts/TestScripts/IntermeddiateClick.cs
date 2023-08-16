@@ -12,7 +12,7 @@ public class IntermeddiateClick : MonoBehaviour
         {
             if (LookForGameObjcet(out RaycastHit hit))
             {
-                PressUpGameObject(hit.collider.gameObject);
+                PressDownGameObject(hit.collider.gameObject);
             }
 
             /*Vector3 mousePosition = Input.mousePosition;
