@@ -1,9 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
     // 이동속도
     [SerializeField] float speed = 5;
+    [SerializeField] float camSpeed = 2;
 
     //카메라 위치
     [SerializeField] Transform[] camPos;
@@ -23,7 +26,10 @@ public class PlayerMove : MonoBehaviour
 
     Animator anim;
     CharacterController cc;
+
+    //카메라 Transform
     Transform cam;
+    bool CamMove;
 
     void Start()
     {
@@ -40,6 +46,16 @@ public class PlayerMove : MonoBehaviour
         Move();
 
         Down();
+
+        if(CamMove == true)
+        {
+            cam.position = Vector3.Lerp(cam.position, camPos[1].position, camSpeed * Time.deltaTime);
+        }
+
+        else
+        {
+            cam.position = Vector3.Lerp(cam.position, camPos[0].position, camSpeed * Time.deltaTime);
+        }
     }
 
     [Header("달리기")]
@@ -47,8 +63,8 @@ public class PlayerMove : MonoBehaviour
 
     void Move()
     {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
 
         #region 방향1 (절대 좌표 이동)
         /*Vector3 dir = new Vector3(h, 0, v);
@@ -73,14 +89,13 @@ public class PlayerMove : MonoBehaviour
             isJump = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             yVelocity = jumpPower;
 
             //*보류 : 점프 애니메이션
-
             isJump = true;
-        }
+        }*/
 
         //중력 적용
         yVelocity += gravit * Time.deltaTime;
@@ -90,9 +105,9 @@ public class PlayerMove : MonoBehaviour
         //transform.position += dir2 * speed * Time.deltaTime;
         cc.Move(dir2 * speed * Time.deltaTime);
 
-        //애니메이션에 Parameter 값 전달
-        anim.SetFloat("Horizontal", h);
-        anim.SetFloat("Vertical", v);
+        //애니메이션에 Parameter 값 전달 -> 자연스럽게 하기 위해
+        anim.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+        anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
     }
 
     void Down()
@@ -100,17 +115,18 @@ public class PlayerMove : MonoBehaviour
         //카메라 시점 변경
         if (Input.GetKeyDown(KeyCode.C))
         {
-            //현재 애니메이션 Down이라면 flase
+            //현재 애니메이션 Down이라면 flase //일어서기
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Down"))
             {
                 anim.SetBool("Down", false);
-                cam.position = camPos[0].transform.position;
+                CamMove = false;
             }
 
+            //앉기
             else
             {
                 anim.SetBool("Down", true);
-                cam.position = camPos[1].transform.position;
+                CamMove = true;
             }
         }
     }
