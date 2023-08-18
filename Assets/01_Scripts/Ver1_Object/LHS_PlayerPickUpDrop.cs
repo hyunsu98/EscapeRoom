@@ -46,9 +46,6 @@ public class LHS_PlayerPickUpDrop : MonoBehaviour
 
                     }
                 }
-
-                // Ray 발사
-
             }
 
             //현재 가지고 있는 거 놓기

@@ -32,7 +32,8 @@ public class LHS_ObjectGrabbable : MonoBehaviour
     }
     private void Update()
     {
-        if (objectGrabPointTransform != null)
+        //보류 ) 회전
+        /*if (objectGrabPointTransform != null)
         {
             
             if (Input.GetKeyDown(KeyCode.Z))
@@ -43,8 +44,9 @@ public class LHS_ObjectGrabbable : MonoBehaviour
             {
                 transform.Rotate(Vector3.up, -90);
             }
-        }
+        }*/
     }
+
     //이동
     private void FixedUpdate()
     {
@@ -60,16 +62,16 @@ public class LHS_ObjectGrabbable : MonoBehaviour
             Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
 
             objectRigidbody.MovePosition(newPosition);
-
-            
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    //땅에 닿았을때 내려가지 않을라면 보류
+    //벽뚫기 반대로 하기
+    /*private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Ground"))
         {
             objectRigidbody.velocity = new Vector3(objectRigidbody.velocity.x, 0, objectRigidbody.velocity.z);
         }
-    }
+    }*/
 }
