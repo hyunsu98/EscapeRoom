@@ -22,4 +22,14 @@ public class PickableObject : MonoBehaviour, IPickable
 
         return gameObject;
     }
+
+    public void Grab(Transform objectGrabPointTransform)
+    {
+        Debug.Log("잡았다");
+    }
+
+    public void Drop()
+    {
+        Debug.Log("놓쳤다");
+    }
 }

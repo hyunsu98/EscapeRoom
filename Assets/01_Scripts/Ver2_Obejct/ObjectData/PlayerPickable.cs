@@ -60,6 +60,8 @@ public class PlayerPickable : MonoBehaviour
     //책, 버튼, 힌트 등등
     private RaycastHit hit;
 
+    IPickable pickableItem;
+
     #region 키보드 Ver01
     /*private void Start()
     {
@@ -191,6 +193,11 @@ public class PlayerPickable : MonoBehaviour
         {
             inHandItem.transform.SetParent(null);
             inHandItem = null;
+
+            //지워주기
+            pickableItem.Drop();
+            pickableItem = null;
+            
             Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
             if (rb != null)
             {
@@ -212,23 +219,26 @@ public class PlayerPickable : MonoBehaviour
         // 집고 있는 상태에서 e 누르면 아무 일도 일어나지 않는다.
         if (hit.collider != null && inHandItem == null)
         {
-            //1.내 자식으로 들어와서 이동할 수 있게
-            IPickable pickableItem = hit.collider.GetComponent<IPickable>();
+           
+            pickableItem = hit.collider.GetComponent<IPickable>();
             if (pickableItem != null)
             {
                 //잡을 때 소리
                 pickUpSource.Play();
                 // 손에 든 아이템과 선택할 수 있는 아이템을 동일하게 할당
                 inHandItem = pickableItem.PickUp();
+
+                //1.내 자식으로 들어와서 이동할 수 있게
                 //bool 값으로 넘겨주기
                 //true 아이템의 월드 위치 유지. 그렇지 않으면 아이템의 로컬 위치 설정
-                inHandItem.transform.SetParent(pickUpParent.transform, pickableItem.KeepWorldPosition);
+                //inHandItem.transform.SetParent(pickUpParent.transform, pickableItem.KeepWorldPosition);
+
+                //2.오브젝트 자체에서 이동할 수 있게
+                //카메라 자식 위치 넘겨주기 -> 가능?
+                //닿은 지점 넘겨주면?
+                //닿은 지점 거리만큼 위치
+                pickableItem.Grab(objectGrabPointTransform);
             }
-
-            //2.오브젝트 자체에서 이동할 수 있게
-            //카메라 자식 위치 넘겨주기
-            //objectGrabbable.Grab(objectGrabPointTransform);
-
             #region 방법1 -> 유지 보수에 좋지 않음. -> IUsable 생성
             /*Debug.Log(hit.collider.name);
             Rigidbody rb = hit.collider.GetComponent<Rigidbody>();

@@ -11,4 +11,7 @@ public interface IPickable
     //픽업 방법
     GameObject PickUp();
 
+    void Grab(Transform objectGrabPointTransform);
+
+    void Drop();
 }
