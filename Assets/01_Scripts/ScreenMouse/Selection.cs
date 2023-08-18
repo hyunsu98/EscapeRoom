@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+//마우스 포인트로 색 변경하기 
 public class Selection : MonoBehaviour
 {
     public Material highlightMaterial;
@@ -13,18 +14,6 @@ public class Selection : MonoBehaviour
     private Transform selection;
 
     private RaycastHit raycastHit;
-
-    private void Start()
-    {
-        //Locked : 마우스의 커서를 윈도우 정중앙에 고정시킨 후 보이지 않게
-        Cursor.lockState = CursorLockMode.Locked;
-        #region CursorLockMode : Locked, Confined, None
-        //Confined : 마우스의 커서가 게임 윈도우 밖으로 벗어나지 않게 
-        //Cursor.lockState = CursorLockMode.Confined;
-        //Locked 또는 Confined 되었던 커서를 원래대로 돌려줌
-        //Cursor.lockState = CursourLockMode.None;
-        #endregion
-    }
 
     void Update()
     {
@@ -47,7 +36,7 @@ public class Selection : MonoBehaviour
             //태그 / 선택된 물체와 닿은 물체가 같지 않으면
             if (highlight.CompareTag("Selectable") && highlight != selection)
             {
-                //닿았을 때의 색이 아니라면
+                //닿았을 때의 색이 아니라
                 if (highlight.GetComponent<MeshRenderer>().material != highlightMaterial)
                 {
                     //원래색 넣고

@@ -6,7 +6,8 @@ public class PlayerMove : MonoBehaviour
 {
     // 이동속도
     [SerializeField] float speed = 5;
-    [SerializeField] float camSpeed = 2;
+    [SerializeField]
+    float camSpeed = 2;
 
     //카메라 위치
     [SerializeField] Transform[] camPos;

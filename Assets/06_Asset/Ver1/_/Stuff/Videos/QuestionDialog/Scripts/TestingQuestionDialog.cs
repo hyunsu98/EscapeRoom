@@ -11,7 +11,7 @@ public class TestingQuestionDialog : MonoBehaviour {
             QuestionDialogUI.Instance.ShowQuestion("Are you sure you want to quit the game?", () => {
                 QuestionDialogUI.Instance.ShowQuestion("Are you really sure?", () => {
                     Application.Quit();
-                    EditorApplication.ExitPlaymode();
+                    //EditorApplication.ExitPlaymode();
                 }, () => {
                      // Do nothing
                 });

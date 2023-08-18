@@ -11,7 +11,7 @@ public class LHS_ObjectGrabbable : MonoBehaviour
 
     private void Awake()
     {
-        objectRigidbody = GetComponent<Rigidbody>();
+        objectRigidbody = GetComponentInParent<Rigidbody>();
     }
 
     //플레이어에서 호출할 수 있도록
@@ -30,7 +30,21 @@ public class LHS_ObjectGrabbable : MonoBehaviour
         this.objectGrabPointTransform = null;
         objectRigidbody.useGravity = true;
     }
-
+    private void Update()
+    {
+        if (objectGrabPointTransform != null)
+        {
+            
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                transform.Rotate(Vector3.up, 90);
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                transform.Rotate(Vector3.up, -90);
+            }
+        }
+    }
     //이동
     private void FixedUpdate()
     {
@@ -39,9 +53,15 @@ public class LHS_ObjectGrabbable : MonoBehaviour
         {
             float lerpSpeed = 10f;
             //Lerp이동
+            // 1. 카메라~앞방향으로 Ray를 쏴서 부딪힌 지점과의 거리
+            // 2. 카메라~objectGrabPointTransform.position와의 거리
+            // 1과 2중 짧은 거리에 해당하는 위치
+
             Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
 
             objectRigidbody.MovePosition(newPosition);
+
+            
         }
     }
 
@@ -49,7 +69,6 @@ public class LHS_ObjectGrabbable : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("닿앗따");
             objectRigidbody.velocity = new Vector3(objectRigidbody.velocity.x, 0, objectRigidbody.velocity.z);
         }
     }
