@@ -31,11 +31,6 @@ public class ObjectMove : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
-    {
-        
-    }
-
     //잡았을 때 중력 적용 되지 않게
     //나의 위치를 알려주기
     public GameObject PickUp()
@@ -49,6 +44,7 @@ public class ObjectMove : MonoBehaviour
         {
             transform.position = Vector3.zero;
             transform.rotation = Quaternion.identity;
+            Debug.Log("제로 왜 안됨?");
         }
 
         return this.gameObject;
@@ -78,7 +74,7 @@ public class ObjectMove : MonoBehaviour
     private void FixedUpdate()
     {
         //먹을 수 있는 아이템이 아닐 시
-        if(!isEatItem)
+        if (!isEatItem)
         {
             //이동할 위치가 있다면
             if (objectGrabPointTransform != null)

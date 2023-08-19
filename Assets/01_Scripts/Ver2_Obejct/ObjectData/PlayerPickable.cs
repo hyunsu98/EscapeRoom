@@ -206,7 +206,7 @@ public class PlayerPickable : MonoBehaviour
 
                 //1.내 자식으로 들어와서 이동할 수 있게 (bool 값으로 넘겨주기)
                 //true 아이템의 월드 위치 유지. 그렇지 않으면 아이템의 로컬 위치 설정
-                inHandItem.transform.SetParent(pickUpParent.transform, false);
+                inHandItem.transform.SetParent(pickUpParent.transform, pickableItem.isKeepWorldPosition);
 
                 //2.오브젝트 자체에서 이동할 수 있게 (카메라 자식 위치 넘겨주기)
                 //pickableItem.Grab(objectGrabPointTransform);
