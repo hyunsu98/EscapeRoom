@@ -6,61 +6,43 @@ using UnityEngine.InputSystem;
 
 public class PlayerPickable : MonoBehaviour
 {
-    //선택 가능한 레이어 마스크 설정
-    //충돌체 감지
-    [SerializeField]
-    private LayerMask pickableLayerMask;
+    //선택 가능한 레이어 마스크 설정 -> 충돌체 감지
+    [Header("충돌가능오브젝트")]
+    [SerializeField] private LayerMask pickableLayerMask;
 
-    //카메라 위치
-    //플레이어가 바라보고 있는 방향으로 해야함.
-    [SerializeField]
-    private Transform playerCameraTransform;
+    //카메라 위치 -> 플레이어가 바라보고 있는 방향으로 해야함.
+    [Header("카메라위치")]
+    [SerializeField] private Transform playerCameraTransform;
 
-    //마우스 UI
-    //현재 닿으면 E키를 누르세요라고 나옴 -> 마우스를 드래그 하는 동안해 할 것임.
+    //마우스 UI (현재 닿으면 E키를 누르세요라고 나옴 -> 마우스를 드래그 하는 동안해 할 것임)
     //※ 가져올때 / 이동할때 / 아무것도 안될때 UI 다르게 변경
-    [SerializeField]
-    private GameObject pickUpUI;
+    [Header("마우스UI")]
+    [SerializeField] private GameObject pickUpUI;
 
-    //먹으면 증가함 알려주기
-    internal void AddHealth(int healthBoost)
-    {
-        Debug.Log($"먹음 {healthBoost}");
-    }
+    //float 또는 int 변수를 특정 최소값으로 제한하는 데 사용되는 특성 (1 이하는 될 수 없게)
+    [Header("Ray길이")]
+    [SerializeField][Min(1)] private float hitRange = 3;
 
-    [SerializeField]
-    //float 또는 int 변수를 특정 최소값으로 제한하는 데 사용되는 특성
-    //1 이하는 될 수 없게
-    [Min(1)]
-    private float hitRange = 3;
+    //잡았을 때 위치 (손에 넣을 수 있는) -> isMain 화면 옆에 , 아니면 애니메이션 앞에
+    [Header("EatItemPos")]
+    [SerializeField] private Transform pickUpParent;
 
-    [SerializeField]
-    //잡았을 때 위치 (손에 넣을 수 있는) 
-    //isMain 화면 옆에 , 아니면 애니메이션 앞에
-    private Transform pickUpParent;
+    [Header("잡은물체")]
+    [SerializeField] private GameObject inHandItem;
 
-    //손에 있는 물체 
-    [SerializeField]
-    private GameObject inHandItem;
-
-    //잡을 때 소리 발생
-    [SerializeField]
-    private AudioSource pickUpSource;
-
-    //카메라 자식
+    [Header("잡았을 때 위치")] //Ray길이랑 같게
     [SerializeField] Transform objectGrabPointTransform;
 
-    //InputSystem을 사용한 키 입력!
-    //using UnityEngine.LnputSystem; 필요
-    /*[SerializeField]
-    private InputActionReference interactionInput, dropInput, useInput;*/
+    [Header("Sound")] //사운드매니저로 관리
+    [SerializeField] private AudioSource pickUpSource;
 
-    //닿은 물체 저장
-    //닿은 물체에 따라서 다르게 지정하면 -> 상호작용 가능
-    //책, 버튼, 힌트 등등
+    //InputSystem을 사용한 키 입력 (using UnityEngine.LnputSystem; 필요)
+    //[SerializeField] private InputActionReference interactionInput, dropInput, useInput;
+
+    //닿은 물체 저장 (닿은 물체에 따라서 다르게 지정하면 -> 상호작용 가능) 책, 버튼, 힌트 등등
     private RaycastHit hit;
 
-    IPickable pickableItem;
+    ObjectMove pickableItem;
 
     #region 키보드 Ver01
     /*private void Start()
@@ -169,7 +151,8 @@ public class PlayerPickable : MonoBehaviour
     #endregion
 
     #region 키보드 Ver02
-    //매개변수는 사용하지 않을 것임.
+
+    //이벤트 효과
     private void Use()
     {
         if (inHandItem != null)
@@ -194,15 +177,8 @@ public class PlayerPickable : MonoBehaviour
             inHandItem.transform.SetParent(null);
             inHandItem = null;
 
-            //지워주기
             pickableItem.Drop();
             pickableItem = null;
-            
-            Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.isKinematic = false;
-            }
         }
     }
 
@@ -220,7 +196,7 @@ public class PlayerPickable : MonoBehaviour
         if (hit.collider != null && inHandItem == null)
         {
            
-            pickableItem = hit.collider.GetComponent<IPickable>();
+            pickableItem = hit.collider.GetComponent<ObjectMove>();
             if (pickableItem != null)
             {
                 //잡을 때 소리
@@ -228,19 +204,15 @@ public class PlayerPickable : MonoBehaviour
                 // 손에 든 아이템과 선택할 수 있는 아이템을 동일하게 할당
                 inHandItem = pickableItem.PickUp();
 
-
-                //1.내 자식으로 들어와서 이동할 수 있게
-                //bool 값으로 넘겨주기
+                //1.내 자식으로 들어와서 이동할 수 있게 (bool 값으로 넘겨주기)
                 //true 아이템의 월드 위치 유지. 그렇지 않으면 아이템의 로컬 위치 설정
-                //inHandItem.transform.SetParent(pickUpParent.transform, pickableItem.KeepWorldPosition);
+                inHandItem.transform.SetParent(pickUpParent.transform, false);
 
-                //2.오브젝트 자체에서 이동할 수 있게
-                //카메라 자식 위치 넘겨주기 -> 가능?
-                //닿은 지점 넘겨주면?
-                //닿은 지점 거리만큼 위치
-                pickableItem.Grab(objectGrabPointTransform);
+                //2.오브젝트 자체에서 이동할 수 있게 (카메라 자식 위치 넘겨주기)
+                //pickableItem.Grab(objectGrabPointTransform);
             }
-            #region 방법1 -> 유지 보수에 좋지 않음. -> IUsable 생성
+
+            #region 방법1 -> 유지 보수에 좋지 않음. -> IPickable 생성
             /*Debug.Log(hit.collider.name);
             Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
 
@@ -335,5 +307,11 @@ public class PlayerPickable : MonoBehaviour
             pickUpUI.SetActive(true);
             //이제 집을 수 있는 상태임!!!!
         }
+    }
+
+    //먹으면 증가함 알려주기
+    public void AddHealth(int healthBoost)
+    {
+        Debug.Log($"먹음 {healthBoost}");
     }
 }
