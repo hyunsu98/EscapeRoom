@@ -8,6 +8,7 @@ TagManager:
   - DropArea
   - CinemachineTarget
   - Ground
+  - HiddenObject
   layers:
   - Default
   - TransparentFX

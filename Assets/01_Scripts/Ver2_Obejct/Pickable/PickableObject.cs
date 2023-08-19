@@ -8,6 +8,7 @@ public class PickableObject : MonoBehaviour, IPickable
     [field: SerializeField]
     public bool KeepWorldPosition { get; private set; } = true;
 
+
     Rigidbody rb;
 
     private void Awake()

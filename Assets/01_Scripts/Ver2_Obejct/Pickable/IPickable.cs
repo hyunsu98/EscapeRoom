@@ -6,7 +6,8 @@ using UnityEngine;
 public interface IPickable
 {
     //위치 얻기
-    bool KeepWorldPosition { get; }
+    bool KeepWorldPosition { get;}
+
 
     //픽업 방법
     GameObject PickUp();

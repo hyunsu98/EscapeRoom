@@ -228,6 +228,7 @@ public class PlayerPickable : MonoBehaviour
                 // 손에 든 아이템과 선택할 수 있는 아이템을 동일하게 할당
                 inHandItem = pickableItem.PickUp();
 
+
                 //1.내 자식으로 들어와서 이동할 수 있게
                 //bool 값으로 넘겨주기
                 //true 아이템의 월드 위치 유지. 그렇지 않으면 아이템의 로컬 위치 설정
