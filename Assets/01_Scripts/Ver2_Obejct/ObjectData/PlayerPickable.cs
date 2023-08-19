@@ -232,13 +232,13 @@ public class PlayerPickable : MonoBehaviour
                 //1.내 자식으로 들어와서 이동할 수 있게
                 //bool 값으로 넘겨주기
                 //true 아이템의 월드 위치 유지. 그렇지 않으면 아이템의 로컬 위치 설정
-                //inHandItem.transform.SetParent(pickUpParent.transform, pickableItem.KeepWorldPosition);
+                inHandItem.transform.SetParent(pickUpParent.transform, pickableItem.KeepWorldPosition);
 
                 //2.오브젝트 자체에서 이동할 수 있게
                 //카메라 자식 위치 넘겨주기 -> 가능?
                 //닿은 지점 넘겨주면?
                 //닿은 지점 거리만큼 위치
-                pickableItem.Grab(objectGrabPointTransform);
+                //pickableItem.Grab(objectGrabPointTransform);
             }
             #region 방법1 -> 유지 보수에 좋지 않음. -> IUsable 생성
             /*Debug.Log(hit.collider.name);
