@@ -955,6 +955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputNickName: {fileID: 557824593}
+  inputPassword: {fileID: 1947001367}
   btnConnect: {fileID: 486385199}
 --- !u!1 &1144001576
 GameObject:

@@ -1,4 +1,6 @@
 using Photon.Pun;
+using Photon.Realtime;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,13 +9,17 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
     //NickName InputField
     public InputField inputNickName;
 
+    //NickName InputField
+    public InputField inputPassword;
+
     //Connect Button
     public Button btnConnect;
 
     void Start()
     {
+
         //액션 델리게이트 함수를 담을 수 있는 변수 자료형 //무명함수 //람다식을 이용하여 사용할 수 있음
-        inputNickName.onValueChanged.AddListener((string s) => { btnConnect.interactable = s.Length > 0; });
+        inputPassword.onValueChanged.AddListener((string s) => { btnConnect.interactable = s.Length > 0 && inputNickName.text.Length > 0; });
 
         //inputNickName 에서 엔터 쳤을 때 호출되는 함수 등록
         inputNickName.onSubmit.AddListener(
