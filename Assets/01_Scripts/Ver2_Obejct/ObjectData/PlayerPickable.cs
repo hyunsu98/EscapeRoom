@@ -27,6 +27,8 @@ public class PlayerPickable : MonoBehaviour
 
     [Header("잡은물체")]
     [SerializeField] private GameObject inHandItem;
+    [Header("잡은물체")]
+    [SerializeField] private GameObject KeyItem;
 
     [Header("잡았을 때 위치")] //Ray길이랑 같게
     [SerializeField] Transform objectGrabPointTransform;
@@ -49,6 +51,9 @@ public class PlayerPickable : MonoBehaviour
 
     private Vector3 initialLocalScale;
     private Vector3 initialGlobalScale;
+
+    //키를 얻고 있을때 bool 처리하기 위해 
+    bool isFindKey = false;
 
     #region 키보드 Ver01
     /*private void Start()
@@ -188,7 +193,6 @@ public class PlayerPickable : MonoBehaviour
                 pickableItem.Drop();
                 pickableItem = null;
             }
-
         }
     }
     //놓기
@@ -210,8 +214,32 @@ public class PlayerPickable : MonoBehaviour
                 grabObject.Drop();
                 grabObject = null;
             }
-
         }
+
+        //잡고 있는 물체가 없지만
+        //키도 놓게 하고 싶음...
+        //어떻게 해야할까?
+        /*else
+        {
+            if(KeyItem != null)
+            {
+                Debug.Log("잡고 있는 물체는 없지만 ");
+                if (KeyItem.GetComponent<GrabObject>())
+                {
+                    Debug.Log("키가 있다면 놓을 수 있음");
+                    // 부모에서 분리할 때 전역 스케일을 유지
+                    Vector3 localScale = DivideVector3(KeyItem.transform.lossyScale, KeyItem.transform.parent.lossyScale);
+
+                    KeyItem.transform.SetParent(null, true);
+
+                    KeyItem.transform.localScale = localScale;
+                    KeyItem = null;
+
+                    grabObject.Drop();
+                    grabObject = null;
+                }
+            }
+        }*/
     }
 
 
@@ -298,7 +326,6 @@ public class PlayerPickable : MonoBehaviour
         // 집고 있는 상태에서 e 누르면 아무 일도 일어나지 않는다.
         if (hit.collider != null && inHandItem == null)
         {
-
             if (hit.collider.GetComponent<GrabObject>())
             {
                 grabObject = hit.collider.GetComponent<GrabObject>();
@@ -319,6 +346,15 @@ public class PlayerPickable : MonoBehaviour
                     inHandItem.transform.SetParent(pickUpParent.transform, grabObject.isKeepWorldPosition);
 
                     inHandItem.transform.localScale = DivideVector3(inHandItem.transform.lossyScale, pickUpParent.lossyScale);
+
+                    if(hit.collider.CompareTag("Key"))
+                    {
+                        KeyItem = inHandItem;
+                        inHandItem = null;
+                        isFindKey = true;
+                        GameManager.instance.KeyEat(true);
+                        Debug.Log("얻은 것이 키라면 inHandltem null로");
+                    }
                 }
             }
 
@@ -334,31 +370,32 @@ public class PlayerPickable : MonoBehaviour
                     openDrawer.isOpen = !openDrawer.isOpen;
                 }
             }
-        }
-
-        else if(hit.collider != null && inHandItem == true)
-        {
-            Debug.Log("들어오긴하나");
 
             if (hit.collider.GetComponent<OpenDoor>())
             {
+                Debug.Log("들어오긴하나2");
+
                 openDoor = hit.collider.GetComponent<OpenDoor>();
 
-                if (openDoor != null && inHandItem.name == "inHandItem.name")
+                if (openDoor != null)
                 {
-                    Debug.Log("들어오긴하나2");
-                    //문여는 곳이 닿았는데 내가 Key를 가지고 있고, 키를 들고 있다면 문 열리자
-                    if (GameManager.instance.Mission1 == true)
+                    if (isFindKey)
                     {
-                        //잡을 때 소리
-                        pickUpSource.Play();
-                        Debug.Log("미션1풀어보자");
-                        openDoor.isOpen = !openDoor.isOpen;
-                    }
-                    else
-                    {
-                        Debug.Log("미션1못품");
-                        openDoor.isOpen = !openDoor.isOpen;
+                        Debug.Log("들어오긴하나2");
+
+                        //문여는 곳이 닿았는데 내가 Key를 가지고 있고, 키를 들고 있다면 문 열리자
+                        if (GameManager.instance.Mission1 == true)
+                        {
+                            //잡을 때 소리
+                            pickUpSource.Play();
+                            Debug.Log("미션1풀어보자");
+                            openDoor.isOpen = !openDoor.isOpen;
+                            Destroy(KeyItem);
+                        }
+                        else
+                        {
+                            Debug.Log("미션1못품");
+                        }
                     }
                 }
             }
@@ -431,8 +468,6 @@ public class PlayerPickable : MonoBehaviour
             hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
             //문열게 한다
             hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(false);
-            //문 열게 한다 2
-            //hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(false);
             //UI 숨기기
             pickUpUI.SetActive(false);
         }
@@ -463,13 +498,6 @@ public class PlayerPickable : MonoBehaviour
             hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(true);
             pickUpUI.SetActive(true);
         }
-
-        /*else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit,
-            hitRange, openKeyLayerMask))
-        {
-            hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(true);
-            pickUpUI.SetActive(true);
-        }*/
     }
 
     //먹으면 증가함 알려주기

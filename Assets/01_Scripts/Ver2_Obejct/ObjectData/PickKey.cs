@@ -11,7 +11,7 @@ public class PickKey : MonoBehaviour, IUsable
     public void Use(GameObject actor)
     {
         //미션1 클리어
-        GameManager.instance.KeyEat(true);
+        //GameManager.instance.KeyEat(true);
 
         //이름 없이 간편하게 호출될 수 있는 함수
         //이벤트에 할당된 메소드가 있는 경우 이 메소드를 호출.
