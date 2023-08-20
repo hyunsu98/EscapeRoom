@@ -4,7 +4,30 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
+    public int token;
+    public int maxToken;
+
+    public bool Mission1 = false;
+
+
     private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+
+        //그렇지 않으면
+        else
+        {
+            //나를 파괴하자 -> 새로만들어진애는 파괴 
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
     {
         //Locked : 마우스의 커서를 윈도우 정중앙에 고정시킨 후 보이지 않게
         Cursor.lockState = CursorLockMode.Locked;
@@ -15,13 +38,24 @@ public class GameManager : MonoBehaviour
         //Cursor.lockState = CursourLockMode.None;
         #endregion
     }
-    void Start()
+
+    //토큰 얻기
+    public void UpdateToken(int num)
     {
-        
+        token += num;
+        Debug.Log($"토큰 찾음{token}");
+
+        if (token == maxToken)
+        {
+            //토큰 다 찾은 것
+            //찾을 때마다 UI발생
+        }
     }
 
-    void Update()
+    //미션 1단계 성공
+    public void KeyEat(bool isFindKey)
     {
-        
+        Mission1 = isFindKey;
+        Debug.Log($"1단계 성공");
     }
 }

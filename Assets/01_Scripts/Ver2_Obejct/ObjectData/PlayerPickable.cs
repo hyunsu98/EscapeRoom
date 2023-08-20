@@ -1,66 +1,61 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerPickable : MonoBehaviour
 {
-    //선택 가능한 레이어 마스크 설정
-    //충돌체 감지
-    [SerializeField]
-    private LayerMask pickableLayerMask;
+    //선택 가능한 레이어 마스크 설정 -> 충돌체 감지
+    [Header("충돌가능오브젝트")]
+    [SerializeField] private LayerMask pickableLayerMask;
+    [SerializeField] private LayerMask openLayerMask;
+    [SerializeField] private LayerMask openKeyLayerMask;
 
-    //카메라 위치
-    //플레이어가 바라보고 있는 방향으로 해야함.
-    [SerializeField]
-    private Transform playerCameraTransform;
+    //카메라 위치 -> 플레이어가 바라보고 있는 방향으로 해야함.
+    [Header("카메라위치")]
+    [SerializeField] private Transform playerCameraTransform;
 
-    //마우스 UI
-    //현재 닿으면 E키를 누르세요라고 나옴 -> 마우스를 드래그 하는 동안해 할 것임.
+    //마우스 UI (현재 닿으면 E키를 누르세요라고 나옴 -> 마우스를 드래그 하는 동안해 할 것임)
     //※ 가져올때 / 이동할때 / 아무것도 안될때 UI 다르게 변경
-    [SerializeField]
-    private GameObject pickUpUI;
+    [Header("마우스UI")]
+    [SerializeField] private GameObject pickUpUI;
+    [SerializeField] private GameObject dragUI;
+    [SerializeField] private GameObject opneUI;
 
-    //먹으면 증가함 알려주기
-    internal void AddHealth(int healthBoost)
-    {
-        Debug.Log($"먹음 {healthBoost}");
-    }
+    //float 또는 int 변수를 특정 최소값으로 제한하는 데 사용되는 특성 (1 이하는 될 수 없게)
+    [Header("Ray길이")]
+    [SerializeField] [Min(1)] private float hitRange = 3;
 
-    [SerializeField]
-    //float 또는 int 변수를 특정 최소값으로 제한하는 데 사용되는 특성
-    //1 이하는 될 수 없게
-    [Min(1)]
-    private float hitRange = 3;
+    //잡았을 때 위치 (손에 넣을 수 있는) -> isMain 화면 옆에 , 아니면 애니메이션 앞에
+    [Header("EatItemPos")]
+    [SerializeField] private Transform pickUpParent;
 
-    [SerializeField]
-    //잡았을 때 위치 (손에 넣을 수 있는) 
-    //isMain 화면 옆에 , 아니면 애니메이션 앞에
-    private Transform pickUpParent;
+    [Header("잡은물체")]
+    [SerializeField] private GameObject inHandItem;
+    [Header("잡은물체")]
+    [SerializeField] private GameObject KeyItem;
 
-    //손에 있는 물체 
-    [SerializeField]
-    private GameObject inHandItem;
-
-    //잡을 때 소리 발생
-    [SerializeField]
-    private AudioSource pickUpSource;
-
-    //카메라 자식
+    [Header("잡았을 때 위치")] //Ray길이랑 같게
     [SerializeField] Transform objectGrabPointTransform;
 
-    //InputSystem을 사용한 키 입력!
-    //using UnityEngine.LnputSystem; 필요
-    /*[SerializeField]
-    private InputActionReference interactionInput, dropInput, useInput;*/
+    [Header("Sound")] //사운드매니저로 관리
+    [SerializeField] private AudioSource pickUpSource;
 
-    //닿은 물체 저장
-    //닿은 물체에 따라서 다르게 지정하면 -> 상호작용 가능
-    //책, 버튼, 힌트 등등
+    //InputSystem을 사용한 키 입력 (using UnityEngine.LnputSystem; 필요)
+    //[SerializeField] private InputActionReference interactionInput, dropInput, useInput;
+
+    //닿은 물체 저장 (닿은 물체에 따라서 다르게 지정하면 -> 상호작용 가능) 책, 버튼, 힌트 등등
     private RaycastHit hit;
 
-    IPickable pickableItem;
+    //상속받아서 쓸 수 있게 만들기
+    ObjectMove pickableItem;
+    GrabObject grabObject;
+    OpenDrawer openDrawer;
+    OpenDoor openDoor;
+
+
+    private Vector3 initialLocalScale;
+    private Vector3 initialGlobalScale;
+
+    //키를 얻고 있을때 bool 처리하기 위해 
+    bool isFindKey = false;
 
     #region 키보드 Ver01
     /*private void Start()
@@ -169,7 +164,8 @@ public class PlayerPickable : MonoBehaviour
     #endregion
 
     #region 키보드 Ver02
-    //매개변수는 사용하지 않을 것임.
+
+    //이벤트 효과
     private void Use()
     {
         if (inHandItem != null)
@@ -191,20 +187,63 @@ public class PlayerPickable : MonoBehaviour
         // 잡고 있는 물체가 있다면
         if (inHandItem != null)
         {
-            inHandItem.transform.SetParent(null);
-            inHandItem = null;
-
-            //지워주기
-            pickableItem.Drop();
-            pickableItem = null;
-            
-            Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
-            if (rb != null)
+            if (hit.collider.GetComponent<ObjectMove>())
             {
-                rb.isKinematic = false;
+                inHandItem.transform.SetParent(null);
+                inHandItem = null;
+
+                pickableItem.Drop();
+                pickableItem = null;
             }
         }
     }
+    //놓기
+    private void Drop2()
+    {
+        // 잡고 있는 물체가 있다면
+        if (inHandItem != null)
+        {
+            if (hit.collider.GetComponent<GrabObject>())
+            {
+                // 부모에서 분리할 때 전역 스케일을 유지
+                Vector3 localScale = DivideVector3(inHandItem.transform.lossyScale, inHandItem.transform.parent.lossyScale);
+
+                inHandItem.transform.SetParent(null, true);
+
+                inHandItem.transform.localScale = localScale;
+                inHandItem = null;
+
+                grabObject.Drop();
+                grabObject = null;
+            }
+        }
+
+        //잡고 있는 물체가 없지만
+        //키도 놓게 하고 싶음...
+        //어떻게 해야할까?
+        /*else
+        {
+            if(KeyItem != null)
+            {
+                Debug.Log("잡고 있는 물체는 없지만 ");
+                if (KeyItem.GetComponent<GrabObject>())
+                {
+                    Debug.Log("키가 있다면 놓을 수 있음");
+                    // 부모에서 분리할 때 전역 스케일을 유지
+                    Vector3 localScale = DivideVector3(KeyItem.transform.lossyScale, KeyItem.transform.parent.lossyScale);
+
+                    KeyItem.transform.SetParent(null, true);
+
+                    KeyItem.transform.localScale = localScale;
+                    KeyItem = null;
+
+                    grabObject.Drop();
+                    grabObject = null;
+                }
+            }
+        }*/
+    }
+
 
     //잡았을때 내 위치의 정보 넘겨주고
     //이동할 수 있게
@@ -219,28 +258,28 @@ public class PlayerPickable : MonoBehaviour
         // 집고 있는 상태에서 e 누르면 아무 일도 일어나지 않는다.
         if (hit.collider != null && inHandItem == null)
         {
-           
-            pickableItem = hit.collider.GetComponent<IPickable>();
-            if (pickableItem != null)
+            if (hit.collider.GetComponent<ObjectMove>())
             {
-                //잡을 때 소리
-                pickUpSource.Play();
-                // 손에 든 아이템과 선택할 수 있는 아이템을 동일하게 할당
-                inHandItem = pickableItem.PickUp();
+                pickableItem = hit.collider.GetComponent<ObjectMove>();
 
+                if (pickableItem != null)
+                {
+                    //잡을 때 소리
+                    pickUpSource.Play();
 
-                //1.내 자식으로 들어와서 이동할 수 있게
-                //bool 값으로 넘겨주기
-                //true 아이템의 월드 위치 유지. 그렇지 않으면 아이템의 로컬 위치 설정
-                //inHandItem.transform.SetParent(pickUpParent.transform, pickableItem.KeepWorldPosition);
+                    // 손에 든 아이템과 선택할 수 있는 아이템을 동일하게 할당
+                    inHandItem = pickableItem.PickUp();
 
-                //2.오브젝트 자체에서 이동할 수 있게
-                //카메라 자식 위치 넘겨주기 -> 가능?
-                //닿은 지점 넘겨주면?
-                //닿은 지점 거리만큼 위치
-                pickableItem.Grab(objectGrabPointTransform);
+                    if (isMouse)
+                    {
+                        //2.오브젝트 자체에서 이동할 수 있게 (카메라 자식 위치 넘겨주기)
+                        pickableItem.Grab(objectGrabPointTransform);
+                    }
+                }
             }
-            #region 방법1 -> 유지 보수에 좋지 않음. -> IUsable 생성
+
+
+            #region 방법1 -> 유지 보수에 좋지 않음. -> IPickable 생성
             /*Debug.Log(hit.collider.name);
             Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
 
@@ -277,6 +316,101 @@ public class PlayerPickable : MonoBehaviour
             #endregion
         }
     }
+
+    private void PickUp2()
+    {
+        if (hit.collider != null)
+        {
+            Debug.Log($"닿은물체 {hit.collider.name}");
+        }
+
+        // 닿은 물체가 있고 손에 든 것이 없으면
+        // 집고 있는 상태에서 e 누르면 아무 일도 일어나지 않는다.
+        if (hit.collider != null && inHandItem == null)
+        {
+            if (hit.collider.GetComponent<GrabObject>())
+            {
+                grabObject = hit.collider.GetComponent<GrabObject>();
+
+                if (grabObject != null)
+                {
+                    //잡을 때 소리
+                    pickUpSource.Play();
+
+                    // 손에 든 아이템과 선택할 수 있는 아이템을 동일하게 할당
+                    inHandItem = grabObject.PickUp();
+
+                    // 시작할 때 초기 로컬 스케일과 전역 스케일을 기록
+                    initialLocalScale = inHandItem.transform.localScale;
+                    initialGlobalScale = inHandItem.transform.lossyScale;
+
+                    // 새로운 부모로 이동할 때 전역 스케일을 유지
+                    inHandItem.transform.SetParent(pickUpParent.transform, grabObject.isKeepWorldPosition);
+
+                    inHandItem.transform.localScale = DivideVector3(inHandItem.transform.lossyScale, pickUpParent.lossyScale);
+
+                    if(hit.collider.CompareTag("Key"))
+                    {
+                        KeyItem = inHandItem;
+                        inHandItem = null;
+                        isFindKey = true;
+                        GameManager.instance.KeyEat(true);
+                        Debug.Log("얻은 것이 키라면 inHandltem null로");
+                    }
+                }
+            }
+
+            if (hit.collider.GetComponent<OpenDrawer>())
+            {
+                openDrawer = hit.collider.GetComponent<OpenDrawer>();
+
+                if (openDrawer != null)
+                {
+                    //잡을 때 소리
+                    pickUpSource.Play();
+
+                    openDrawer.isOpen = !openDrawer.isOpen;
+                }
+            }
+
+            if (hit.collider.GetComponent<OpenDoor>())
+            {
+                Debug.Log("들어오긴하나2");
+
+                openDoor = hit.collider.GetComponent<OpenDoor>();
+
+                if (openDoor != null)
+                {
+                    if (isFindKey)
+                    {
+                        Debug.Log("들어오긴하나2");
+
+                        //문여는 곳이 닿았는데 내가 Key를 가지고 있고, 키를 들고 있다면 문 열리자
+                        if (GameManager.instance.Mission1 == true)
+                        {
+                            //잡을 때 소리
+                            pickUpSource.Play();
+                            Debug.Log("미션1풀어보자");
+                            openDoor.isOpen = !openDoor.isOpen;
+                            Destroy(KeyItem);
+                        }
+                        else
+                        {
+                            Debug.Log("미션1못품");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //전역 스케일은 부모의 스케일과 자식의 로컬 스케일이 곱해진 값입니다.이를 올바르게 관리하여 크기를 유지
+    private Vector3 DivideVector3(Vector3 a, Vector3 b)
+    {
+        return new Vector3(a.x / b.x, a.y / b.y, a.z / b.z);
+    }
+
+
     #endregion
     //레이캐스트를 발사하여 물체 인지
     private void Update()
@@ -285,25 +419,45 @@ public class PlayerPickable : MonoBehaviour
         RayCheck();
     }
 
+    bool isMouse;
+    bool isEat;
+
     private void KeyCheck()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+
+        if (Input.GetMouseButton(0))
         {
+            isMouse = true;
             PickUp();
         }
-
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetMouseButtonUp(0))
         {
+            isMouse = false;
             Drop();
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PickUp2();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Drop2();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            //PickUp2();
+        }
+
+        if (Input.GetMouseButtonDown(1))
         {
             Use();
         }
     }
 
-
+    //레이어 마스크 체크 어떻게 하는 게 좋을지 생각하기
     private void RayCheck()
     {
         Debug.DrawRay(playerCameraTransform.position, playerCameraTransform.forward * hitRange, Color.red);
@@ -314,8 +468,12 @@ public class PlayerPickable : MonoBehaviour
         {
             //?. null이 아닌지 여부 확인 / null이 아니라면 ToggleHighlight(false)로 실행(강조표시)
             hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
+            //문열게 한다
+            hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(false);
             //UI 숨기기
             pickUpUI.SetActive(false);
+            dragUI.SetActive(false);
+            opneUI.SetActive(false);
         }
 
         //손에 아이템이 있다면
@@ -332,8 +490,32 @@ public class PlayerPickable : MonoBehaviour
         {
             //true 라면
             hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
-            pickUpUI.SetActive(true);
-            //이제 집을 수 있는 상태임!!!!
+
+            if(hit.collider.GetComponent<ObjectMove>())
+            {
+                pickUpUI.SetActive(true);
+                //이제 집을 수 있는 상태임!!!!
+            }
+
+            else if(hit.collider.GetComponent<GrabObject>())
+            {
+                dragUI.SetActive(true);
+            }
         }
+
+        //문 열리게 하는
+        else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit,
+            hitRange, openLayerMask))
+        {
+            //문열게 한다
+            hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(true);
+            opneUI.SetActive(true);
+        }
+    }
+
+    //먹으면 증가함 알려주기
+    public void AddHealth(int healthBoost)
+    {
+        Debug.Log($"먹음 {healthBoost}");
     }
 }

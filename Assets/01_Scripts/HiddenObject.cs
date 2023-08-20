@@ -8,7 +8,6 @@ public class HiddenObject : MonoBehaviour
     {
         //Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         //자식오브젝트로 넣기
-        Debug.Log("닿았다");
         
     }
 

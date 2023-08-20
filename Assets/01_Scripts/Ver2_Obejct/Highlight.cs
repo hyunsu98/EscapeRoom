@@ -20,6 +20,7 @@ public class Highlight : MonoBehaviour
     private void Awake()
     {
         materials = new List<Material>();
+
         foreach (var renderer in renderers)
         {
             //Randerer -> Materials(하위에 여러개 있을 수 있음)

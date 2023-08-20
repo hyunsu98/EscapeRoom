@@ -9,6 +9,7 @@ TagManager:
   - CinemachineTarget
   - Ground
   - HiddenObject
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - 
   - Pickable
   - 
-  - 
-  - 
+  - FixObject
+  - OpneObject
   - 
   - 
   - 
