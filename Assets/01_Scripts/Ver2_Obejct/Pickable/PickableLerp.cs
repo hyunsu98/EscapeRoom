@@ -70,7 +70,6 @@ public class PickableLerp : MonoBehaviour, IPickable
             if (hiddenObject)
             {
                 transform.position = contactPlatform.transform.position - distance;
-                Debug.Log("이동해야함");
             }
         }
     }
@@ -87,8 +86,7 @@ public class PickableLerp : MonoBehaviour, IPickable
         //충돌 했는데 그 오브젝트가 서랍같은 거면
         if (other.gameObject.CompareTag("HiddenObject"))
         {
-            //충돌한 오브젝트의 위치와 내 위치와 같게 해라.
-            Debug.Log("닿앗다");
+            //충돌한 오브젝트의 위치와 내 위치와 같게 해라
             contactPlatform = other.gameObject;
 
             platformPosition = contactPlatform.transform.position;

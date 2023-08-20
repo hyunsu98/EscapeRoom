@@ -17,7 +17,7 @@ public class PlayerMove : MonoBehaviour
     //y속력
     float yVelocity = 0;
     //점프 힘
-    float jumpPower = 5;
+    //float jumpPower = 5;
     //점프 상태
     bool isJump = false;
 
