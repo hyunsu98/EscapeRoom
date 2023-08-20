@@ -14,10 +14,10 @@ public class PlayerPickable : MonoBehaviour
 
     //마우스 UI (현재 닿으면 E키를 누르세요라고 나옴 -> 마우스를 드래그 하는 동안해 할 것임)
     //※ 가져올때 / 이동할때 / 아무것도 안될때 UI 다르게 변경
-    [Header("마우스UI")]
+    /*[Header("마우스UI")]
     [SerializeField] private GameObject pickUpUI;
     [SerializeField] private GameObject dragUI;
-    [SerializeField] private GameObject opneUI;
+    [SerializeField] private GameObject opneUI;*/
 
     //float 또는 int 변수를 특정 최소값으로 제한하는 데 사용되는 특성 (1 이하는 될 수 없게)
     [Header("Ray길이")]
@@ -471,9 +471,9 @@ public class PlayerPickable : MonoBehaviour
             //문열게 한다
             hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(false);
             //UI 숨기기
-            pickUpUI.SetActive(false);
-            dragUI.SetActive(false);
-            opneUI.SetActive(false);
+            UIManager.instance.pickUpUI.SetActive(false);
+            UIManager.instance.dragUI.SetActive(false);
+            UIManager.instance.opneUI.SetActive(false);
         }
 
         //손에 아이템이 있다면
@@ -493,13 +493,13 @@ public class PlayerPickable : MonoBehaviour
 
             if(hit.collider.GetComponent<ObjectMove>())
             {
-                pickUpUI.SetActive(true);
+                UIManager.instance.pickUpUI.SetActive(true);
                 //이제 집을 수 있는 상태임!!!!
             }
 
             else if(hit.collider.GetComponent<GrabObject>())
             {
-                dragUI.SetActive(true);
+                UIManager.instance.dragUI.SetActive(true);
             }
         }
 
@@ -509,7 +509,7 @@ public class PlayerPickable : MonoBehaviour
         {
             //문열게 한다
             hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(true);
-            opneUI.SetActive(true);
+            UIManager.instance.opneUI.SetActive(true);
         }
     }
 
