@@ -393,6 +393,11 @@ public class PlayerPickable : MonoBehaviour
                             Debug.Log("미션1풀어보자");
                             openDoor.isOpen = !openDoor.isOpen;
                             Destroy(KeyItem);
+
+                            if(openDoor.isOpen == true)
+                            {
+                                GameManager.instance.Mission2 = true;
+                            }
                         }
                         else
                         {

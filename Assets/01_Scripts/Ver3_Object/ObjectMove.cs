@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class ObjectMove : MonoBehaviour
+public class ObjectMove : MonoBehaviourPun //IPunObservable
 {
     [Header("월드위치유지")]
     public bool isKeepWorldPosition;
@@ -27,6 +28,20 @@ public class ObjectMove : MonoBehaviour
 
     //리지드 바디 필요
     public Rigidbody rb;
+
+    /// <summary>
+    /// ---------------------------------------
+    /// </summary>
+    //서버에서 넘어오는 위치값
+    Vector3 receivePos;
+    //서버에서 넘어오는 회전값
+    Quaternion receiveRot = Quaternion.identity;
+    //보정하는 속력
+    float endSpeed = 50;
+
+    //방향
+    float h;
+    float v;
 
     public void Awake()
     {
@@ -94,16 +109,17 @@ public class ObjectMove : MonoBehaviour
     //리지드 바디 이동
     private void FixedUpdate()
     {
+        /*if(photonView.IsMine)
+        {
 
+        }*/
         //이동할 위치가 있다면
         if (objectGrabPointTransform != null)
         {
             //Lerp이동 [벽뚫기 반대로 적용]
             // 1. 카메라~앞방향으로 Ray를 쏴서 부딪힌 지점과의 거리
             // 2. 카메라~objectGrabPointTransform.position와의 거리
-            // 1과 2중 짧은 거리에 해당하는 위치
-
-            //좌표값으로 이동.
+            // 1과 2중 짧은 거리에 해당하는 //이동을
 
             Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
 
@@ -120,6 +136,11 @@ public class ObjectMove : MonoBehaviour
                 transform.position = contactPlatform.transform.position - distance;
             }
         }
+    }
+
+    private void Update()
+    {
+
     }
 
     //상자 안에 있을 시 
@@ -144,5 +165,36 @@ public class ObjectMove : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         ishiddenObject = false;
+    }
+
+    //[PunRPC]
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //내 Player 라면
+        if (stream.IsWriting)
+        {
+            //나의 위치값을 보낸다.
+            stream.SendNext(transform.position);
+            //나의 회전값을 보낸다.
+            stream.SendNext(transform.rotation);
+            //h 값 보낸다.
+            //stream.SendNext(h);
+            //v 값 보낸다.
+            //stream.SendNext(v);
+        }
+
+        //내 Player 아니라면
+        else
+        {
+            //위치값을 받자.
+            receivePos = (Vector3)stream.ReceiveNext();
+            //회전값을 받자.
+            receiveRot = (Quaternion)stream.ReceiveNext();
+            //h 값 받자.
+            //h = (float)stream.ReceiveNext();
+            //v 값 받자.
+            //v = (float)stream.ReceiveNext();
+        }
     }
 }

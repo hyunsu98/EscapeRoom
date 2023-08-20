@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public static Timer instance;
+    //public static Timer instance;
 
     /*private void Awake()
     {
@@ -61,5 +61,6 @@ public class Timer : MonoBehaviour
     private void onEnd()
     {
         print("End");
+        GameManager.instance.isTimeOver = true;
     }
 }

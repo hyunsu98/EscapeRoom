@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int token;
     public int maxToken;
 
+    public bool isTimeOver;
+
     public bool Mission1 = false;
+    public bool Mission2 = false;
 
 
     //spawnPosGroup Transform
@@ -23,6 +26,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
     public GameObject Timer;
+    public GameObject door;
+
+    OpenDoor opendoor;
 
     private void Awake()
     {
@@ -136,5 +142,32 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         Mission1 = isFindKey;
         Debug.Log($"1단계 성공");
+    }
+
+    private void Update()
+    {
+        if(isTimeOver)
+        {
+            Debug.Log("제발1");
+            if (Mission2)
+            {
+                //문열리고
+                opendoor = door.GetComponent<OpenDoor>();
+                opendoor.isOpen = true;
+
+                //문열림
+                PhotonNetwork.LoadLevel("EndingScene");
+            }
+
+            else
+            {
+                Debug.Log("제발2");
+            }
+        }
+    }
+
+    void Ending()
+    {
+        PhotonNetwork.LoadLevel("EndingScene");
     }
 }
