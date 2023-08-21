@@ -85,13 +85,13 @@ public class PlayerMove : MonoBehaviourPun//, IPunObservable
             anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
         }
 
-        else
-        {
-            //위치 보정
-            transform.position = Vector3.Lerp(transform.position, receivePos, lerpSpeed * Time.deltaTime);
-            //회전 보정
-            transform.rotation = Quaternion.Lerp(transform.rotation, receiveRot, lerpSpeed * Time.deltaTime);
-        }
+        //else
+        //{
+        //    //위치 보정
+        //    transform.position = Vector3.Lerp(transform.position, receivePos, lerpSpeed * Time.deltaTime);
+        //    //회전 보정
+        //    transform.rotation = Quaternion.Lerp(transform.rotation, receiveRot, lerpSpeed * Time.deltaTime);
+        //}
 
         if (CamMove == true)
         {

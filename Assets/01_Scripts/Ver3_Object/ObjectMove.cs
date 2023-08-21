@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class ObjectMove : MonoBehaviourPun //IPunObservable
 {
@@ -48,15 +49,27 @@ public class ObjectMove : MonoBehaviourPun //IPunObservable
         rb = GetComponent<Rigidbody>();
     }
 
-    //잡았을 때 중력 적용 되지 않게
-    //나의 위치를 알려주기
-    public GameObject PickUp()
+    [PunRPC]
+    public void OnOfff(bool on)
     {
         if (rb != null)
         {
-            rb.isKinematic = true;
+            rb.isKinematic = on;
         }
+    }
 
+    //잡았을 때 중력 적용 되지 않게
+    //나의 위치를 알려주기
+    //using Photon.Realtime; -> Player 사용하려면 필요(다른 스크립트 이름 있으면 안됨)
+    public GameObject PickUp(Player owner)
+    {
+        //객체의 주인을 매개변수값으로 바꾼다.
+        photonView.TransferOwnership(owner);
+        /* if (rb != null)
+         {
+             rb.isKinematic = true;
+         }*/
+        photonView.RPC(nameof(OnOfff), RpcTarget.All, true);
         /*if (isEatItem)
         {
             transform.position = Vector3.zero;
@@ -96,14 +109,17 @@ public class ObjectMove : MonoBehaviourPun //IPunObservable
     }
 
     //놓았을 때 -> 이동할 위치 없애기
+  
     public void Drop()
     {
         this.objectGrabPointTransform = null;
 
-        if (rb != null)
+        /*if (rb != null)
         {
             rb.isKinematic = false;
-        }
+        }*/
+        photonView.RPC(nameof(OnOfff), RpcTarget.All, false);
+
     }
 
     //리지드 바디 이동

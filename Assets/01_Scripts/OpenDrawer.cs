@@ -1,8 +1,9 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenDrawer : MonoBehaviour
+public class OpenDrawer : MonoBehaviourPun
 {
     //문 열리는 동작
 
@@ -15,9 +16,12 @@ public class OpenDrawer : MonoBehaviour
 
     private Vector3 savePos;
 
+
+
     private void Awake()
     {
         savePos = transform.localPosition;
+
     }
 
     //함수 실행하게 해도 되겠다.
@@ -33,5 +37,11 @@ public class OpenDrawer : MonoBehaviour
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, savePos, speed * Time.deltaTime);
         }
+    }
+    
+    [PunRPC]
+    public void DoorAction(int a)
+    {
+        isOpen = !isOpen;
     }
 }

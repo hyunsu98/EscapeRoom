@@ -1,8 +1,10 @@
+using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabObject : MonoBehaviour
+public class GrabObject : MonoBehaviourPun
 {
     [Header("월드위치유지")]
     public bool isKeepWorldPosition;
@@ -18,15 +20,27 @@ public class GrabObject : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    public GameObject PickUp()
+    [PunRPC]
+    public void OnOfff(bool on)
     {
         if (rb != null)
         {
-            rb.isKinematic = true;
+            rb.isKinematic = on;
         }
+    }
+
+    public GameObject PickUp(Player owner)
+    {
+        /*if (rb != null)
+        {
+            rb.isKinematic = true;
+        }*/
+        photonView.TransferOwnership(owner);
+
+        photonView.RPC(nameof(OnOfff), RpcTarget.All, true);
 
         //키 조건문 -> 병안에 있는 키가 옮겨질때 크기를 일정하게 유지하기 위해
-        if(isKey)
+        if (isKey)
         {
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;
@@ -54,10 +68,13 @@ public class GrabObject : MonoBehaviour
     //놓았을 때 -> 이동할 위치 없애기
     public void Drop()
     {
-        if (rb != null)
+        /*if (rb != null)
         {
             rb.isKinematic = false;
-        }
+        }*/
+
+        photonView.RPC(nameof(OnOfff), RpcTarget.All, false);
+
     }
 
     //리지드 바디 이동s

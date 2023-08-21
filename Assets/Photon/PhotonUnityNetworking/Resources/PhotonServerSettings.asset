@@ -42,6 +42,13 @@ MonoBehaviour:
   - MoveMainScene
   - SetTriggerRpc
   - OnPhotonSerializeView
+  - OnOfff
+  - Break
+  - OnOff
+  - Add
+  - Check
+  - Mission1Chek
+  - DoorAction
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

@@ -1,12 +1,14 @@
+using Photon.Pun;
 using UnityEngine;
 
-public class PlayerPickable : MonoBehaviour
+public class PlayerPickable : MonoBehaviourPun
 {
     //선택 가능한 레이어 마스크 설정 -> 충돌체 감지
     [Header("충돌가능오브젝트")]
     [SerializeField] private LayerMask pickableLayerMask;
     [SerializeField] private LayerMask openLayerMask;
     [SerializeField] private LayerMask openKeyLayerMask;
+    [SerializeField] private LayerMask openDoorLayerMask;
 
     //카메라 위치 -> 플레이어가 바라보고 있는 방향으로 해야함.
     [Header("카메라위치")]
@@ -268,7 +270,7 @@ public class PlayerPickable : MonoBehaviour
                     pickUpSource.Play();
 
                     // 손에 든 아이템과 선택할 수 있는 아이템을 동일하게 할당
-                    inHandItem = pickableItem.PickUp();
+                    inHandItem = pickableItem.PickUp(photonView.Owner);
 
                     if (isMouse)
                     {
@@ -338,7 +340,7 @@ public class PlayerPickable : MonoBehaviour
                     pickUpSource.Play();
 
                     // 손에 든 아이템과 선택할 수 있는 아이템을 동일하게 할당
-                    inHandItem = grabObject.PickUp();
+                    inHandItem = grabObject.PickUp(photonView.Owner);
 
                     // 시작할 때 초기 로컬 스케일과 전역 스케일을 기록
                     initialLocalScale = inHandItem.transform.localScale;
@@ -349,7 +351,7 @@ public class PlayerPickable : MonoBehaviour
 
                     inHandItem.transform.localScale = DivideVector3(inHandItem.transform.lossyScale, pickUpParent.lossyScale);
 
-                    if(hit.collider.CompareTag("Key"))
+                    if (hit.collider.CompareTag("Key"))
                     {
                         KeyItem = inHandItem;
                         inHandItem = null;
@@ -369,7 +371,17 @@ public class PlayerPickable : MonoBehaviour
                     //잡을 때 소리
                     pickUpSource.Play();
 
-                    openDrawer.isOpen = !openDrawer.isOpen;
+                    //모두한테 붙여줘야함.?
+                    //openDrawer.isOpen = !openDrawer.isOpen;
+                    var pv = hit.collider.GetComponent<PhotonView>();
+                    if (pv != null)
+                    {
+                        pv.RPC("DoorAction", RpcTarget.All, 1);
+                    }
+                    else
+                    {
+                        print("포톤뷰가 없어요.");
+                    }
                 }
             }
 
@@ -394,9 +406,10 @@ public class PlayerPickable : MonoBehaviour
                             openDoor.isOpen = !openDoor.isOpen;
                             Destroy(KeyItem);
 
-                            if(openDoor.isOpen == true)
+                            if (openDoor.isOpen == true)
                             {
-                                GameManager.instance.Mission2 = true;
+                                //GameManager.instance.Mission2 = true;
+                                photonView.RPC(nameof(Check), RpcTarget.All, 1);
                             }
                         }
                         else
@@ -407,6 +420,12 @@ public class PlayerPickable : MonoBehaviour
                 }
             }
         }
+    }
+
+    [PunRPC]
+    public void Check(bool isCk)
+    {
+        GameManager.instance.Mission2 = true;
     }
 
     //전역 스케일은 부모의 스케일과 자식의 로컬 스케일이 곱해진 값입니다.이를 올바르게 관리하여 크기를 유지
@@ -420,8 +439,11 @@ public class PlayerPickable : MonoBehaviour
     //레이캐스트를 발사하여 물체 인지
     private void Update()
     {
-        KeyCheck();
-        RayCheck();
+        if (photonView.IsMine)
+        {
+            KeyCheck();
+            RayCheck();
+        }
     }
 
     bool isMouse;
@@ -444,6 +466,11 @@ public class PlayerPickable : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             PickUp2();
+
+            if (isEnding)
+            {
+                GameManager.instance.Ending();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -496,13 +523,13 @@ public class PlayerPickable : MonoBehaviour
             //true 라면
             hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
 
-            if(hit.collider.GetComponent<ObjectMove>())
+            if (hit.collider.GetComponent<ObjectMove>())
             {
                 UIManager.instance.pickUpUI.SetActive(true);
                 //이제 집을 수 있는 상태임!!!!
             }
 
-            else if(hit.collider.GetComponent<GrabObject>())
+            else if (hit.collider.GetComponent<GrabObject>())
             {
                 UIManager.instance.dragUI.SetActive(true);
             }
@@ -516,7 +543,27 @@ public class PlayerPickable : MonoBehaviour
             hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(true);
             UIManager.instance.opneUI.SetActive(true);
         }
+
+        //문 열리게 하는
+        /*else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit,
+            hitRange, openDoorLayerMask))
+        {
+            if(GameManager.instance.MissionClear == true)
+            {
+                Debug.Log("끝남");
+
+                //문열게 한다
+                hit.collider.GetComponent<OpenDoor>()?.OpenDoorChek(true);
+                hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(true);
+
+                UIManager.instance.opneUI.SetActive(true);
+
+                isEnding = true;
+            }
+        }*/
     }
+
+    public bool isEnding;
 
     //먹으면 증가함 알려주기
     public void AddHealth(int healthBoost)

@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public bool Mission1 = false;
     public bool Mission2 = false;
-
+    public bool Mission3 = false;
+    public bool MissionClear = false;
 
     //spawnPosGroup Transform
     public Transform trSpawnPosGroup;
@@ -134,19 +135,27 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             //토큰 다 찾은 것
             //찾을 때마다 UI발생
+            Mission3 = true;
         }
     }
 
     //미션 1단계 성공
     public void KeyEat(bool isFindKey)
     {
+        //Debug.Log($"모두 1단계 성공");
         Mission1 = isFindKey;
-        Debug.Log($"1단계 성공");
+        //photonView.RPC(nameof(Mission1Chek), RpcTarget.All, isFindKey);
+    }
+
+    [PunRPC]
+    public void Mission1Chek(bool isOk)
+    {
+        Mission1 = isOk;
     }
 
     private void Update()
     {
-        if(isTimeOver)
+       /* if (isTimeOver)
         {
             Debug.Log("제발1");
             if (Mission2)
@@ -163,10 +172,26 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 Debug.Log("제발2");
             }
+        }*/
+
+        //토큰 다 찾고 열쇠찾고 문 열리면
+        if(Mission1 && Mission3)
+        {
+            //문열리고
+            opendoor = door.GetComponent<OpenDoor>();
+            opendoor.isOpen = true;
+
+            MissionClear = true;
+
+            if(Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                //문열림
+                PhotonNetwork.LoadLevel("EndingScene");
+            }
         }
     }
 
-    void Ending()
+    public void Ending()
     {
         PhotonNetwork.LoadLevel("EndingScene");
     }

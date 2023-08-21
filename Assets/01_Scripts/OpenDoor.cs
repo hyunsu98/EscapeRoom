@@ -32,4 +32,24 @@ public class OpenDoor : MonoBehaviour
             transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation2, speed * Time.deltaTime);
         }
     }
+
+    public void OpenDoorChek(bool val)
+    {
+        // 켜지기
+        if (val)
+        {
+            //Y축 회전
+            Quaternion targetRotation = Quaternion.Euler(0, doorOpenAngle, 0);
+
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, speed * Time.deltaTime);
+        }
+
+        //꺼지기
+        else
+        {
+            Quaternion targetRotation2 = Quaternion.Euler(0, doorCloseAngle, 0);
+
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation2, speed * Time.deltaTime);
+        }
+    }
 }
