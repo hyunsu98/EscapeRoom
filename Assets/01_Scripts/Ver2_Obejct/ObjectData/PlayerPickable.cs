@@ -3,13 +3,6 @@ using UnityEngine;
 
 public class PlayerPickable : MonoBehaviourPun
 {
-    //선택 가능한 레이어 마스크 설정 -> 충돌체 감지
-    [Header("충돌가능오브젝트")]
-    [SerializeField] private LayerMask pickableLayerMask;
-    [SerializeField] private LayerMask openLayerMask;
-    [SerializeField] private LayerMask openKeyLayerMask;
-    [SerializeField] private LayerMask openDoorLayerMask;
-
     //카메라 위치 -> 플레이어가 바라보고 있는 방향으로 해야함.
     [Header("카메라위치")]
     [SerializeField] private Transform playerCameraTransform;

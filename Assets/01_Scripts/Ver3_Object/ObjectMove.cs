@@ -7,12 +7,9 @@ using Photon.Realtime;
 //EX 사과
 //놓여질 공간을 설정하고 자체를 움직일 것이다.
 //꼭 필요한 특정 컴포넌트 자동 추가 -> 리지드 바디 필요, Highlight
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody), typeof(Highlight))]
 public class ObjectMove : MonoBehaviourPun
 {
-    [Header("월드위치유지")]
-    public bool isKeepWorldPosition;
-
     [Header("이동속도")]
     public float lerpSpeed = 10;
 
