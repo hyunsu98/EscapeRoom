@@ -14,6 +14,6 @@ public class GamePlay : MonoBehaviourPun
     [PunRPC]
     void MoveMainScene()
     {
-        PhotonNetwork.LoadLevel("GameScene");
+        PhotonNetwork.LoadLevel("GameSceneMain");
     }
 }

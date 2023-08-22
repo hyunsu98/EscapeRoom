@@ -2163,9 +2163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isKeepWorldPosition: 1
-  isEatItem: 0
   lerpSpeed: 10
-  rb: {fileID: 0}
 --- !u!114 &329819153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3486,6 +3484,7 @@ MonoBehaviour:
   pickUpUI: {fileID: 938633377}
   dragUI: {fileID: 112987451}
   opneUI: {fileID: 623490505}
+  baseUI: {fileID: 1269814604}
   tokenText: {fileID: 128350651}
 --- !u!1 &586682618
 GameObject:
@@ -4882,9 +4881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isKeepWorldPosition: 1
-  isEatItem: 0
   lerpSpeed: 10
-  rb: {fileID: 0}
 --- !u!114 &865684289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10035,9 +10032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isKeepWorldPosition: 1
-  isEatItem: 0
   lerpSpeed: 10
-  rb: {fileID: 0}
 --- !u!114 &1710466561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11014,9 +11009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isKeepWorldPosition: 1
-  isEatItem: 0
   lerpSpeed: 10
-  rb: {fileID: 0}
 --- !u!114 &1775500739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13230,9 +13223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isKeepWorldPosition: 0
-  isEatItem: 1
   lerpSpeed: 10
-  rb: {fileID: 0}
 --- !u!1 &2071989261
 GameObject:
   m_ObjectHideFlags: 0
@@ -13775,9 +13766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isKeepWorldPosition: 0
-  isEatItem: 0
   lerpSpeed: 10
-  rb: {fileID: 0}
 --- !u!65 &2120155844
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38880,9 +38869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isKeepWorldPosition: 0
-  isEatItem: 0
   lerpSpeed: 10
-  rb: {fileID: 0}
 --- !u!65 &8790729312306992473
 BoxCollider:
   m_ObjectHideFlags: 0

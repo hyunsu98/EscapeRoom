@@ -11,6 +11,8 @@ TagManager:
   - HiddenObject
   - Key
   - Door
+  - PickUpObj
+  - DragObj
   layers:
   - Default
   - TransparentFX

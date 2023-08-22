@@ -4,53 +4,43 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class ObjectMove : MonoBehaviourPun //IPunObservable
+//EX 사과
+//놓여질 공간을 설정하고 자체를 움직일 것이다.
+//꼭 필요한 특정 컴포넌트 자동 추가 -> 리지드 바디 필요, Highlight
+[RequireComponent(typeof(Rigidbody))]
+public class ObjectMove : MonoBehaviourPun
 {
     [Header("월드위치유지")]
     public bool isKeepWorldPosition;
 
-    [Header("획득아이템")]
-    public bool isEatItem;
-
     [Header("이동속도")]
     public float lerpSpeed = 10;
-
-    //이동할위치"
-    Transform objectGrabPointTransform;
 
     //서랍과 같이 이동하기 위한
     [Header("서랍이동")]
     private GameObject contactPlatform;
     private Vector3 platformPosition;
     private Vector3 distance;
-
     //서랍 안인지 밖인지
     bool ishiddenObject = false;
 
+    [Header("키오브젝트")]
+    public bool key;
+
+    //이동할위치
+    Transform objectGrabPointTransform;
+
     //리지드 바디 필요
-    public Rigidbody rb;
-
-    /// <summary>
-    /// ---------------------------------------
-    /// </summary>
-    //서버에서 넘어오는 위치값
-    Vector3 receivePos;
-    //서버에서 넘어오는 회전값
-    Quaternion receiveRot = Quaternion.identity;
-    //보정하는 속력
-    float endSpeed = 50;
-
-    //방향
-    float h;
-    float v;
+    Rigidbody rb;
 
     public void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
+    //RPC로 내가 A객체를 잡았을 때 모든 사람한테 A객체 중력 보내기
     [PunRPC]
-    public void OnOfff(bool on)
+    public void OnOff(bool on)
     {
         if (rb != null)
         {
@@ -58,47 +48,36 @@ public class ObjectMove : MonoBehaviourPun //IPunObservable
         }
     }
 
+    #region 플레이어에서 나를 잡았을 때 나 넘기기 (포톤 소유권은 받기)
     //잡았을 때 중력 적용 되지 않게
-    //나의 위치를 알려주기
+    //내 위치 자체를
     //using Photon.Realtime; -> Player 사용하려면 필요(다른 스크립트 이름 있으면 안됨)
     public GameObject PickUp(Player owner)
     {
         //객체의 주인을 매개변수값으로 바꾼다.
-        photonView.TransferOwnership(owner);
-        /* if (rb != null)
-         {
-             rb.isKinematic = true;
-         }*/
-        photonView.RPC(nameof(OnOfff), RpcTarget.All, true);
-        /*if (isEatItem)
+        //포톤 소유권 제어하기 (Takeover)
+        //photonView.TransferOwnership(owner);
+
+        //중력 제어 모든 사람에게 알려줘야 함.
+        photonView.RPC(nameof(OnOff), RpcTarget.All, true);
+
+        if(gameObject.CompareTag("PickUpObj"))
         {
-            transform.position = Vector3.zero;
+            //가져오는 객체이기 때문에
             transform.rotation = Quaternion.identity;
-            Debug.Log("제로 왜 안됨?");
-        }*/
+
+            if(key)
+            {
+                GameManager.instance.KeyEat(true);
+                Debug.Log("키를 획득");
+            }
+        }
 
         return this.gameObject;
     }
-
-    #region 마우스 포인트 받기
-    /*Vector3 mousePosition;
-    
-    private Vector3 GetMousePos()
-    {
-        return Camera.main.WorldToScreenPoint(transform.position);
-    }
-
-    private void OnMouseDown()
-    {
-        mousePosition = Input.mousePosition - GetMousePos();
-    }
-
-    private void OnMouseDrag()
-    {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
-    }*/
     #endregion
 
+    #region 잡기 / 놓기 했을 때 설정 값
     //이동할 위치 받기
     public void Grab(Transform objectGrabPointTransform)
     {
@@ -109,26 +88,19 @@ public class ObjectMove : MonoBehaviourPun //IPunObservable
     }
 
     //놓았을 때 -> 이동할 위치 없애기
-  
     public void Drop()
     {
         this.objectGrabPointTransform = null;
 
-        /*if (rb != null)
-        {
-            rb.isKinematic = false;
-        }*/
-        photonView.RPC(nameof(OnOfff), RpcTarget.All, false);
-
+        //중력 제어 모든 사람에게 알려줘야 함.
+        photonView.RPC(nameof(OnOff), RpcTarget.All, false);
     }
+    #endregion
 
+    #region 이동 방법
     //리지드 바디 이동
     private void FixedUpdate()
     {
-        /*if(photonView.IsMine)
-        {
-
-        }*/
         //이동할 위치가 있다면
         if (objectGrabPointTransform != null)
         {
@@ -140,6 +112,7 @@ public class ObjectMove : MonoBehaviourPun //IPunObservable
             Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
 
             // MovePosition은 리지드바디 보간(rigidbody interpolation)이 활성화 돼 있으면, 매 프레임 렌더링 사이에서도 자연스러운 이동을 가질 수 있음
+            // 오류 생김) 값을 zero로 했을때 자꾸 움직임 
             rb.MovePosition(newPosition);
         }
 
@@ -153,12 +126,9 @@ public class ObjectMove : MonoBehaviourPun //IPunObservable
             }
         }
     }
+    #endregion
 
-    private void Update()
-    {
-
-    }
-
+    #region 서랍안에 들어갔을 때 이동
     //상자 안에 있을 시 
     //닿은 지점을 알려주고 이동할 수 있게
     private void OnTriggerEnter(Collider other)
@@ -167,7 +137,7 @@ public class ObjectMove : MonoBehaviourPun //IPunObservable
         if (other.gameObject.CompareTag("HiddenObject"))
         {
             //충돌한 오브젝트의 위치와 내 위치와 같게 해라.
-            Debug.Log($"숨겨진 오브젝트 {other.gameObject}");
+            Debug.Log($"서랍 안에 있는 오브젝트 {other.gameObject}");
             contactPlatform = other.gameObject;
 
             platformPosition = contactPlatform.transform.position;
@@ -182,35 +152,5 @@ public class ObjectMove : MonoBehaviourPun //IPunObservable
     {
         ishiddenObject = false;
     }
-
-    //[PunRPC]
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        //내 Player 라면
-        if (stream.IsWriting)
-        {
-            //나의 위치값을 보낸다.
-            stream.SendNext(transform.position);
-            //나의 회전값을 보낸다.
-            stream.SendNext(transform.rotation);
-            //h 값 보낸다.
-            //stream.SendNext(h);
-            //v 값 보낸다.
-            //stream.SendNext(v);
-        }
-
-        //내 Player 아니라면
-        else
-        {
-            //위치값을 받자.
-            receivePos = (Vector3)stream.ReceiveNext();
-            //회전값을 받자.
-            receiveRot = (Quaternion)stream.ReceiveNext();
-            //h 값 받자.
-            //h = (float)stream.ReceiveNext();
-            //v 값 받자.
-            //v = (float)stream.ReceiveNext();
-        }
-    }
+    #endregion 
 }

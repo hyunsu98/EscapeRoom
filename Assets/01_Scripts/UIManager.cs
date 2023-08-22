@@ -24,16 +24,31 @@ public class UIManager : MonoBehaviour
     public GameObject pickUpUI;
     public GameObject dragUI;
     public GameObject opneUI;
+    public GameObject baseUI;
 
     //토큰 텍스트
     [SerializeField] Text tokenText;
-    void Start()
-    {
 
-    }
-    // Update is called once per frame
     void Update()
     {
         tokenText.text = GameManager.instance.token.ToString() + " / " + GameManager.instance.maxToken.ToString();
+    }
+
+    //UI 초기화 함수
+    public void ResetUI()
+    {
+        baseUI.SetActive(false);
+        pickUpUI.SetActive(false);
+        dragUI.SetActive(false);
+        opneUI.SetActive(false);
+    }
+
+    //UI 기본 설정
+    public void BaseUI()
+    {
+        baseUI.SetActive(true);
+        pickUpUI.SetActive(false);
+        dragUI.SetActive(false);
+        opneUI.SetActive(false);
     }
 }

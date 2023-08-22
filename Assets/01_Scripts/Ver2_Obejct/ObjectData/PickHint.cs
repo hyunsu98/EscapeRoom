@@ -32,6 +32,7 @@ public class PickHint : MonoBehaviourPun, IUsable //인터페이스 구현
     [PunRPC]
     public void Add(int i)
     {
+        //점수 추가
         GameManager.instance.UpdateToken(i);
         Onuse?.Invoke();
         Destroy(gameObject);

@@ -573,8 +573,7 @@ MonoBehaviour:
   inHandItem: {fileID: 0}
   KeyItem: {fileID: 0}
   objectGrabPointTransform: {fileID: 5666385887479607016}
-  pickUpSource: {fileID: 5666385886860845018}
-  isEnding: 0
+  picUpslot: {fileID: 5666385886187424064}
 --- !u!82 &5666385886860845018
 AudioSource:
   m_ObjectHideFlags: 0
@@ -753,7 +752,7 @@ GameObject:
   m_Layer: 0
   m_Name: ObjectGrabPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

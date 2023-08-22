@@ -6,7 +6,6 @@ using UnityEngine;
 public class OpenDrawer : MonoBehaviourPun
 {
     //문 열리는 동작
-
     public bool isOpen;
 
     [SerializeField] Vector3 endPos;
@@ -16,15 +15,10 @@ public class OpenDrawer : MonoBehaviourPun
 
     private Vector3 savePos;
 
-
-
     private void Awake()
     {
         savePos = transform.localPosition;
-
     }
-
-    //함수 실행하게 해도 되겠다.
 
     private void Update()
     {
@@ -39,6 +33,7 @@ public class OpenDrawer : MonoBehaviourPun
         }
     }
     
+    //이벤트 한번만 호출하면 됨
     [PunRPC]
     public void DoorAction(int a)
     {

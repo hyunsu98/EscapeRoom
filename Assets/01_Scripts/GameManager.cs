@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         //토큰 다 찾고 열쇠찾고 문 열리면
         if(Mission1 && Mission3)
         {
-            //문열리고
+            //문을 설정해 둠!
             opendoor = door.GetComponent<OpenDoor>();
             opendoor.isOpen = true;
 
