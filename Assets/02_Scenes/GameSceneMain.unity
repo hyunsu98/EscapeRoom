@@ -389,6 +389,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 779804090729879752, guid: 4f1841f5ba526bd4ba02b9c61954ca82, type: 3}
+      propertyPath: m_TagString
+      value: DragObj
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f1841f5ba526bd4ba02b9c61954ca82, type: 3}
 --- !u!1 &95513937
@@ -1126,6 +1130,10 @@ PrefabInstance:
     - target: {fileID: 970986253575333152, guid: 9de0dbc1e58cf4f42b0e95fdf55121ee, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 970986253575333152, guid: 9de0dbc1e58cf4f42b0e95fdf55121ee, type: 3}
+      propertyPath: m_TagString
+      value: PickUpObj
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9de0dbc1e58cf4f42b0e95fdf55121ee, type: 3}
@@ -2106,6 +2114,10 @@ PrefabInstance:
     - target: {fileID: 5288109641408423486, guid: ceca05cb11ec2364a91b50afcd302fbe, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288109641408423486, guid: ceca05cb11ec2364a91b50afcd302fbe, type: 3}
+      propertyPath: m_TagString
+      value: DragObj
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceca05cb11ec2364a91b50afcd302fbe, type: 3}
@@ -5502,6 +5514,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1249544220280876249, guid: f894e4fc82fe8f5429a0d8229ee1f512, type: 3}
+      propertyPath: m_TagString
+      value: DragObj
+      objectReference: {fileID: 0}
     - target: {fileID: 1881543076465063523, guid: f894e4fc82fe8f5429a0d8229ee1f512, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -6447,9 +6463,12 @@ GameObject:
   - component: {fileID: 1943660573}
   - component: {fileID: 1943660575}
   - component: {fileID: 1943660574}
+  - component: {fileID: 1943660578}
+  - component: {fileID: 1943660577}
+  - component: {fileID: 1943660576}
   m_Layer: 0
   m_Name: SM_painting_01 (1) 1
-  m_TagString: Untagged
+  m_TagString: DragObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6520,6 +6539,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943660572}
   m_Mesh: {fileID: 3705246358981395248, guid: d89773737c14ded4f840ee466c6831e1, type: 3}
+--- !u!114 &1943660576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943660572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0bae637de2dd8843a3888d48050f3f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpSpeed: 10
+  key: 0
+--- !u!114 &1943660577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943660572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65e387da490d2f4f8b1779241026712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers: []
+  color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!54 &1943660578
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943660572}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1944058783
 GameObject:
   m_ObjectHideFlags: 0
@@ -33398,8 +33461,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents:
-  - {fileID: 9072737376687767845}
+  ObservedComponents: []
   sceneViewId: 20
   InstantiationId: 0
   isRuntimeInstantiated: 0
