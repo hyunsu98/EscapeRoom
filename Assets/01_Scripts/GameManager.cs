@@ -90,14 +90,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         for (int i = 0; i < spawPos.Length; i++)
         {
             trSpawnPosGroup.Rotate(0, angle, 0);
+
             //이 위치를 기준으로 360 돌려서 생성
             //360도로 들어온 수만큼 배치 될 수 있게
             spawPos[i] = trSpawnPosGroup.position + trSpawnPosGroup.forward * 2; //거리
-
-            //프리팹으로 안만들어도 제공
-            /*GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-
-            go.transform.position = spawPos[i];*/
         }
     }
 
@@ -111,8 +107,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             //Turn 을 시작하자
             //시간이 갈 수 있게!
+            Debug.Log("다 들어왔습니다.");
             Timer.SetActive(true);
-            Debug.Log("게임 시작1");
 
             //Timer.instance.Being();
         }
@@ -133,18 +129,16 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (token == maxToken)
         {
-            //토큰 다 찾은 것
-            //찾을 때마다 UI발생
-            Mission3 = true;
+            //토큰 다 찾은 것 찾을 때마다 UI발생
+            Mission3= true;
         }
     }
 
-    //미션 1단계 성공
+    //키를 획득한 상태
+    //키가 어떤 객체와 닿으면 문 열릴 수 있게
     public void KeyEat(bool isFindKey)
     {
-        //Debug.Log($"모두 1단계 성공");
         Mission1 = isFindKey;
-        //photonView.RPC(nameof(Mission1Chek), RpcTarget.All, isFindKey);
     }
 
     [PunRPC]
@@ -155,24 +149,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-       /* if (isTimeOver)
-        {
-            Debug.Log("제발1");
-            if (Mission2)
-            {
-                //문열리고
-                opendoor = door.GetComponent<OpenDoor>();
-                opendoor.isOpen = true;
-
-                //문열림
-                PhotonNetwork.LoadLevel("EndingScene");
-            }
-
-            else
-            {
-                Debug.Log("제발2");
-            }
-        }*/
 
         //토큰 다 찾고 열쇠찾고 문 열리면
         if(Mission1 && Mission3)

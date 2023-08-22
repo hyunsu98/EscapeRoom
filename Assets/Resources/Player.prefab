@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5666385886596632188
 Transform:
   m_ObjectHideFlags: 0
@@ -400,7 +400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5666385886860844996
 Transform:
   m_ObjectHideFlags: 0
@@ -555,23 +555,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c980a372974a342a1a0e4733f21e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickableLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  openLayerMask:
-    serializedVersion: 2
-    m_Bits: 6144
-  openKeyLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  openDoorLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
   playerCameraTransform: {fileID: 5666385886596632188}
   hitRange: 3
-  pickUpParent: {fileID: 5666385886187424064}
   inHandItem: {fileID: 0}
-  KeyItem: {fileID: 0}
   objectGrabPointTransform: {fileID: 5666385887479607016}
   picUpslot: {fileID: 5666385886187424064}
 --- !u!82 &5666385886860845018
@@ -752,7 +738,7 @@ GameObject:
   m_Layer: 0
   m_Name: ObjectGrabPoint
   m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
