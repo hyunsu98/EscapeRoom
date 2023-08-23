@@ -2162,8 +2162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bae637de2dd8843a3888d48050f3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isKeepWorldPosition: 1
   lerpSpeed: 10
+  key: 0
 --- !u!114 &329819153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4880,8 +4880,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bae637de2dd8843a3888d48050f3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isKeepWorldPosition: 1
   lerpSpeed: 10
+  key: 0
 --- !u!114 &865684289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10031,8 +10031,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bae637de2dd8843a3888d48050f3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isKeepWorldPosition: 1
   lerpSpeed: 10
+  key: 0
 --- !u!114 &1710466561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11008,8 +11008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bae637de2dd8843a3888d48050f3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isKeepWorldPosition: 1
   lerpSpeed: 10
+  key: 0
 --- !u!114 &1775500739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13222,8 +13222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bae637de2dd8843a3888d48050f3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isKeepWorldPosition: 0
   lerpSpeed: 10
+  key: 0
 --- !u!1 &2071989261
 GameObject:
   m_ObjectHideFlags: 0
@@ -13765,8 +13765,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bae637de2dd8843a3888d48050f3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isKeepWorldPosition: 0
   lerpSpeed: 10
+  key: 0
 --- !u!65 &2120155844
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14653,6 +14653,10 @@ PrefabInstance:
     - target: {fileID: 3731988085964844600, guid: 5f1f471de97749046a2294e26130465c, type: 3}
       propertyPath: m_Name
       value: Star
+      objectReference: {fileID: 0}
+    - target: {fileID: 7966071377949876529, guid: 5f1f471de97749046a2294e26130465c, type: 3}
+      propertyPath: sceneViewId
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f1f471de97749046a2294e26130465c, type: 3}
@@ -38868,8 +38872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bae637de2dd8843a3888d48050f3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isKeepWorldPosition: 0
   lerpSpeed: 10
+  key: 0
 --- !u!65 &8790729312306992473
 BoxCollider:
   m_ObjectHideFlags: 0

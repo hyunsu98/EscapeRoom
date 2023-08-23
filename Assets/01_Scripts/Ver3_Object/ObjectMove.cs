@@ -53,7 +53,7 @@ public class ObjectMove : MonoBehaviourPun
     {
         //객체의 주인을 매개변수값으로 바꾼다.
         //포톤 소유권 제어하기 (Takeover)
-        //photonView.TransferOwnership(owner);
+        photonView.TransferOwnership(owner);
 
         //중력 제어 모든 사람에게 알려줘야 함.
         photonView.RPC(nameof(OnOff), RpcTarget.All, true);

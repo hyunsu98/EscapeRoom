@@ -1,15 +1,15 @@
 using Photon.Pun;
 using UnityEngine;
 
-public class PickObject : MonoBehaviourPunCallbacks
+public class PickObject : MonoBehaviourPun
 {
     [Header("깰 오브젝트")]
     //키
-    [SerializeField] GameObject destroyedVersion = null;
+    [SerializeField] GameObject bottleKey = null;
     //토큰
-    [SerializeField] GameObject destroyedVersion2 = null;
+    [SerializeField] GameObject bottleToken = null;
     //아무것도 아님
-    [SerializeField] GameObject destroyedVersion3 = null;
+    [SerializeField] GameObject bottleCracked = null;
 
     public float speedThreshold = 5.0f; // 일정 속도 임계값
 
@@ -18,28 +18,25 @@ public class PickObject : MonoBehaviourPunCallbacks
     private bool isGrounded = false; // 바닥에 닿았는지 여부를 나타내는 변수
     public LayerMask groundLayer;    // 바닥을 나타내는 레이어
 
-
     public bool isKey;
     public bool isToken;
+
+    int num;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-    }
 
-    // 나일때만 값을 알려주고 깨질 수 있게 하기
-    [PunRPC]
-    public void Break(bool on)
-    {
-        if (rb != null)
+        //내가 만든 Player 가 아닐때
+        if (photonView.IsMine == false)
         {
-            rb.isKinematic = on;
+            //PlayerFire 컴포넌트를 비활성화
+            this.enabled = false;
         }
     }
-
     private void Update()
     {
-        if(photonView.IsMine)
+        if (photonView.IsMine)
         {
             //힘 가하는 게 다 다르기 때문에 내가 true가 되면 상대한테도 알려줘야함.
 
@@ -58,32 +55,62 @@ public class PickObject : MonoBehaviourPunCallbacks
 
                 if (isGrounded)
                 {
-                    Debug.Log("바닥에 닿았습니다!");
-                    // 여기에 원하는 처리를 추가하세요.
 
-                    //나 삭제
                     if (isKey)
                     {
-                        //포톤으로 생성되야할듯
-                        PhotonNetwork.Instantiate("BottleKey", transform.position, Quaternion.identity);
-                        //Instantiate(destroyedVersion, transform.position, Quaternion.identity);
+                        num = 1;
                     }
 
                     else if (isToken)
                     {
-                        //Instantiate(destroyedVersion2, transform.position, Quaternion.identity);
-                        PhotonNetwork.Instantiate("BottleToken", transform.position, Quaternion.identity);
+                        num = 2;
                     }
 
                     else
                     {
-                        //Instantiate(destroyedVersion3, transform.position, Quaternion.identity);
-                        PhotonNetwork.Instantiate("BottleCracked", transform.position, Quaternion.identity);
+                        num = 3;
+                        Debug.Log("3번이라구");
                     }
 
-                    Destroy(gameObject);
+                    photonView.RPC(nameof(BreakBottle), RpcTarget.All, transform.position, transform.rotation, num);
+
+                    Debug.Log("바닥에 닿았습니다!");
                 }
             }
         }
     }
+
+    [PunRPC]
+    void BreakBottle(Vector3 breakPos, Quaternion breakRot, int check)
+    {
+        //나 삭제
+        if (check == 1)
+        {
+            //포톤으로 생성되야할듯
+            //PhotonNetwork.Instantiate("BottleKey", transform.position, Quaternion.identity);
+            GameObject bottle = Instantiate(bottleKey);
+            bottle.transform.position = breakPos;
+            bottle.transform.rotation = breakRot;
+            Debug.Log("키삭제");
+        }
+
+        else if (check == 2)
+        {
+            GameObject bottle = Instantiate(bottleToken);
+            bottle.transform.position = breakPos;
+            bottle.transform.rotation = breakRot;
+            Debug.Log("토큰");
+        }
+
+        else if(check == 3)
+        {
+            GameObject bottle = Instantiate(bottleCracked);
+            bottle.transform.position = breakPos;
+            bottle.transform.rotation = breakRot;
+            Debug.Log("구냥");
+        }
+
+        Destroy(this.gameObject);
+    }
 }
+
