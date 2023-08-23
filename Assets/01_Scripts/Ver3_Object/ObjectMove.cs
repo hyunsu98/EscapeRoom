@@ -53,11 +53,14 @@ public class ObjectMove : MonoBehaviourPun
     {
         //객체의 주인을 매개변수값으로 바꾼다.
         //포톤 소유권 제어하기 (Takeover)
-        photonView.TransferOwnership(owner);
+        if(photonView != null)
+        {
+            photonView.TransferOwnership(owner);
 
-        //중력 제어 모든 사람에게 알려줘야 함.
-        photonView.RPC(nameof(OnOff), RpcTarget.All, true);
-
+            //중력 제어 모든 사람에게 알려줘야 함.
+            photonView.RPC(nameof(OnOff), RpcTarget.All, true);
+        }
+       
         if(gameObject.CompareTag("PickUpObj"))
         {
             //가져오는 객체이기 때문에
@@ -89,8 +92,11 @@ public class ObjectMove : MonoBehaviourPun
     {
         this.objectGrabPointTransform = null;
 
-        //중력 제어 모든 사람에게 알려줘야 함.
-        photonView.RPC(nameof(OnOff), RpcTarget.All, false);
+        if (photonView != null)
+        {
+            //중력 제어 모든 사람에게 알려줘야 함.
+            photonView.RPC(nameof(OnOff), RpcTarget.All, false);
+        }
     }
     #endregion
 
@@ -125,6 +131,7 @@ public class ObjectMove : MonoBehaviourPun
     }
     #endregion
 
+
     #region 서랍안에 들어갔을 때 이동
     //상자 안에 있을 시 
     //닿은 지점을 알려주고 이동할 수 있게
@@ -135,12 +142,16 @@ public class ObjectMove : MonoBehaviourPun
         {
             //충돌한 오브젝트의 위치와 내 위치와 같게 해라.
             Debug.Log($"서랍 안에 있는 오브젝트 {other.gameObject}");
-            contactPlatform = other.gameObject;
+            GameObject contactPlatform = other.gameObject;
 
-            platformPosition = contactPlatform.transform.position;
-            distance = platformPosition - transform.position;
+            Vector3 platformPosition = contactPlatform.transform.position;
+            Vector3 distance = platformPosition - transform.position;
+
+            transform.position = contactPlatform.transform.position - distance;
 
             ishiddenObject = true;
+
+            //photonView.RPC(nameof(HiddenCheck), RpcTarget.All, true);
         }
     }
 
@@ -148,6 +159,15 @@ public class ObjectMove : MonoBehaviourPun
     private void OnTriggerExit(Collider other)
     {
         ishiddenObject = false;
+        
+        //photonView.RPC(nameof(HiddenCheck), RpcTarget.All, false);
     }
+
+    //나갔는지 상대에게도 알려줘야함
+    /*[PunRPC]
+    public void HiddenCheck(bool isHidden)
+    {
+        ishiddenObject = isHidden;
+    }*/
     #endregion 
 }

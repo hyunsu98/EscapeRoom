@@ -58,29 +58,34 @@ public class PickObject : MonoBehaviourPun
 
                     if (isKey)
                     {
-                        num = 1;
+                        PhotonNetwork.Instantiate("BottleKey", transform.position, transform.rotation);
                     }
 
                     else if (isToken)
                     {
-                        num = 2;
+                        PhotonNetwork.Instantiate("BottleToken", transform.position, transform.rotation);
                     }
 
                     else
                     {
-                        num = 3;
-                        Debug.Log("3번이라구");
+                        PhotonNetwork.Instantiate("BottleCracked", transform.position, transform.rotation);
                     }
 
-                    photonView.RPC(nameof(BreakBottle), RpcTarget.All, transform.position, transform.rotation, num);
-
-                    Debug.Log("바닥에 닿았습니다!");
+                    photonView.RPC(nameof(DestroyPun), RpcTarget.All);
                 }
             }
         }
     }
 
     [PunRPC]
+    void DestroyPun()
+    {
+        Destroy(this.gameObject);
+        Debug.Log("모두 삭제");
+    }
+
+
+    /*[PunRPC]
     void BreakBottle(Vector3 breakPos, Quaternion breakRot, int check)
     {
         //나 삭제
@@ -111,6 +116,6 @@ public class PickObject : MonoBehaviourPun
         }
 
         Destroy(this.gameObject);
-    }
+    }*/
 }
 

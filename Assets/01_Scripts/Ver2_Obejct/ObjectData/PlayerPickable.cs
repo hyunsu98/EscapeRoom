@@ -73,7 +73,7 @@ public class PlayerPickable : MonoBehaviourPun
             if (hit.collider.GetComponent<ObjectMove>())
             {
                 //둘 다 부모 설정을 안해줄 것임.
-                inHandItem.transform.SetParent(null);
+                //inHandItem.transform.SetParent(null); -> 부모를 나올 필요 없음.
                 inHandItem = null;
 
                 pickableItem.Drop();

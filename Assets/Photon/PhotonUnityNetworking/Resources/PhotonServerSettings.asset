@@ -50,6 +50,8 @@ MonoBehaviour:
   - Mission1Chek
   - DoorAction
   - BreakBottle
+  - DestroyPun
+  - HiddenCheck
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
