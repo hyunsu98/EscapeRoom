@@ -101,4 +101,9 @@ public class PickableLerp : MonoBehaviour, IPickable
     {
         hiddenObject = false;
     }
+
+    public void TEST()
+    {
+        Debug.Log("2");
+    }
 }

@@ -39,4 +39,9 @@ public class PickableItem : MonoBehaviour, IPickable
     {
         Debug.Log("≥ı√∆¥Ÿ");
     }
+
+    public void TEST()
+    {
+        Debug.Log("2");
+    }
 }
