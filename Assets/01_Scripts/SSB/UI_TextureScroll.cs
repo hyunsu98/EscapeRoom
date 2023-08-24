@@ -16,6 +16,7 @@ public class UI_TextureScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         Vector2 offset = new Vector2(-Time.time * scrollSpeed, 0);
         rawImage.material.SetTextureOffset("_MainTex", offset);  // RawImage의 Material의 텍스처 오프셋을 변경
     }
