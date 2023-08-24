@@ -23,28 +23,36 @@ public class PlayerPickable : MonoBehaviourPun
 
     //상속받아서 쓸 수 있게 만들기
     //잡은 객체를 꺼야하기 때문에
-    ObjectMove pickableItem;
+    //ObjectMove pickableItem;
+    ObjectData objectdata;
 
     private void KeyCheck()
     {
         if (Input.GetMouseButtonDown(0))
         {
-
+            print("누름");
         }
 
-        else if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
-            PickUp();
+            //PickUp();
+            print("누르는 중");
         }
 
-        else
+        if (Input.GetMouseButtonUp(0))
         {
             Drop();
+            print("뗌");
         }
 
         if (Input.GetMouseButtonDown(1))
         {
             Use();
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            PickUp();
         }
     }
 
@@ -70,15 +78,12 @@ public class PlayerPickable : MonoBehaviourPun
         // 잡고 있는 물체가 있다면
         if (inHandItem != null)
         {
-            if (hit.collider.GetComponent<ObjectMove>())
-            {
-                //둘 다 부모 설정을 안해줄 것임.
-                //inHandItem.transform.SetParent(null); -> 부모를 나올 필요 없음.
-                inHandItem = null;
+            //둘 다 부모 설정을 안해줄 것임.
+            //inHandItem.transform.SetParent(null); -> 부모를 나올 필요 없음.
+            inHandItem = null;
 
-                pickableItem.Drop();
-                pickableItem = null;
-            }
+            objectdata.Drop();
+            //objectdata = null;
         }
     }
 
@@ -94,38 +99,25 @@ public class PlayerPickable : MonoBehaviourPun
         // 닿은 객체 있는데 잡고 있는 객체가 없다면
         if (hit.collider != null && inHandItem == null)
         {
-            // 닿은 객체가 DragObject라면
-            if (hit.collider.GetComponent<ObjectMove>())
+            objectdata = hit.collider.GetComponent<ObjectData>();
+
+            if (objectdata != null)
             {
                 Debug.Log($"드래그 오브젝트 {hit.collider.name}");
 
-                pickableItem = hit.collider.GetComponent<ObjectMove>();
+                // ※ 잡을 때 소리 나게
 
-                if (pickableItem != null)
-                {
-                    // ※ 잡을 때 소리 나게
+                // 손에 든 객체를 설정 (포톤뷰의 주인을 보낸다)
+                // 잡을 때 소유권을 넘겨준다. (그렇지 않으면 방장만 true로 되기 때문에 동기화 오류가 됨)
+                inHandItem = objectdata.PickUp(photonView.Owner);
 
-                    // 손에 든 객체를 설정 (포톤뷰의 주인을 보낸다)
-                    // 잡을 때 소유권을 넘겨준다. (그렇지 않으면 방장만 true로 되기 때문에 동기화 오류가 됨)
-                    inHandItem = pickableItem.PickUp(photonView.Owner);
-
-                    if (pickableItem.CompareTag("DragObj"))
-                    {
-                        //오브젝트 자체에서 이동할 수 있게 (카메라 자식 위치 넘겨주기)
-                        //객체마다 다른 카메라의 위치를 넘겨준다면?
-                        pickableItem.Grab(objectGrabPointTransform);
-                    }
-
-                    else if (pickableItem.CompareTag("PickUpObj"))
-                    {
-                        pickableItem.Grab(picUpslot);
-
-                        // 키 자체에서 설정할 예정
-                        // 잡았을때 bool 값이 true 라면 -> 키인 것임
-                        // 그럼 게임 오브젝트에 키를 찾았다고 알려주고
-                        // 키 오브젝트가 다른 해당 오브젝트와 닿으면 문이 열리게 할 예정
-                    }
-                }
+                //오브젝트 자체에서 이동할 수 있게 (카메라 자식 위치 넘겨주기)
+                //객체마다 다른 카메라의 위치를 넘겨준다면?
+                objectdata.Grab(objectGrabPointTransform);
+                // 키 자체에서 설정할 예정
+                // 잡았을때 bool 값이 true 라면 -> 키인 것임
+                // 그럼 게임 오브젝트에 키를 찾았다고 알려주고
+                // 키 오브젝트가 다른 해당 오브젝트와 닿으면 문이 열리게 할 예정
             }
 
             //X축 이동 서랍
@@ -163,7 +155,21 @@ public class PlayerPickable : MonoBehaviourPun
 
                 if (openDoor != null)
                 {
-                    //게임 오브젝트에서 미션이 풀렸으면 열릴 수 있게 할 것임.
+                    var pv = hit.collider.GetComponent<PhotonView>();
+
+                    //포톤뷰가 있다면
+                    if (pv != null)
+                    {
+                        //포톤뷰의 DoorAction을 실행시킨다.
+                        //매개변수 값이 들어가야 할 것임.
+                        pv.RPC("OpenDoorAction", RpcTarget.All, 1);
+                    }
+                    else
+                    {
+                        print("포톤뷰가 없어요");
+                    }
+
+                    /*//게임 오브젝트에서 미션이 풀렸으면 열릴 수 있게 할 것임.
                     //문여는 곳이 닿았는데 내가 Key를 가지고 있고, 키를 들고 있다면 문 열리자
                     //문여는 곳에 닿았음 내가 키가 있다면 
                     if (GameManager.instance.Mission1 == true)
@@ -182,7 +188,7 @@ public class PlayerPickable : MonoBehaviourPun
                     else
                     {
                         Debug.Log("미션1못품");
-                    }
+                    }*/
                 }
             }
         }

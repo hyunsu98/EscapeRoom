@@ -4,11 +4,11 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-//EX 사과
-//놓여질 공간을 설정하고 자체를 움직일 것이다.
-//꼭 필요한 특정 컴포넌트 자동 추가 -> 리지드 바디 필요, Highlight
-[RequireComponent(typeof(Rigidbody), typeof(Highlight))]
-public class ObjectMove : MonoBehaviourPun
+//드래그 가능한 오브젝트
+//거리 계산 후 놓을 수 있음
+//인벤토리 저장은 할 수 없음
+//서랍이동은 가능
+public class DragObject : MonoBehaviourPun, ObjectData
 {
     [Header("이동속도")]
     public float lerpSpeed = 10;
@@ -20,9 +20,6 @@ public class ObjectMove : MonoBehaviourPun
     private Vector3 distance;
     //서랍 안인지 밖인지
     bool ishiddenObject = false;
-
-    [Header("키오브젝트")]
-    public bool key;
 
     //이동할위치
     Transform objectGrabPointTransform;
@@ -53,32 +50,19 @@ public class ObjectMove : MonoBehaviourPun
     {
         //객체의 주인을 매개변수값으로 바꾼다.
         //포톤 소유권 제어하기 (Takeover)
-        if(photonView != null)
+        if (photonView != null)
         {
             photonView.TransferOwnership(owner);
 
             //중력 제어 모든 사람에게 알려줘야 함.
             photonView.RPC(nameof(OnOff), RpcTarget.All, true);
         }
-       
-        if(gameObject.CompareTag("PickUpObj"))
-        {
-            //가져오는 객체이기 때문에
-            transform.rotation = Quaternion.identity;
-
-            if(key)
-            {
-                GameManager.instance.KeyEat(true);
-                Debug.Log("키를 획득");
-            }
-        }
-
+        //내 정보 넘겨주기
         return this.gameObject;
     }
     #endregion
 
     #region 잡기 / 놓기 했을 때 설정 값
-    //이동할 위치 받기
     public void Grab(Transform objectGrabPointTransform)
     {
         //서랍장 따라다니기 꺼주기
@@ -87,7 +71,6 @@ public class ObjectMove : MonoBehaviourPun
         this.objectGrabPointTransform = objectGrabPointTransform;
     }
 
-    //놓았을 때 -> 이동할 위치 없애기
     public void Drop()
     {
         this.objectGrabPointTransform = null;
@@ -131,14 +114,11 @@ public class ObjectMove : MonoBehaviourPun
     }
     #endregion
 
-
     #region 서랍안에 들어갔을 때 이동
-    //상자 안에 있을 시 
-    //닿은 지점을 알려주고 이동할 수 있게
+    //상자 안에 있을 시 닿은 지점을 알려주고 이동할 수 있게
     private void OnTriggerEnter(Collider other)
     {
         //충돌 했는데 그 오브젝트가 서랍같은 거면
-        //other.gameObject.layer == LayerMask.NameToLayer("OpneObject")
         if (other.gameObject.CompareTag("HiddenObject"))
         {
             //충돌한 오브젝트의 위치와 내 위치와 같게 해라.
@@ -150,8 +130,6 @@ public class ObjectMove : MonoBehaviourPun
             distance = platformPosition - transform.position;
 
             ishiddenObject = true;
-
-            //photonView.RPC(nameof(HiddenCheck), RpcTarget.All, true);
         }
     }
 
@@ -159,15 +137,7 @@ public class ObjectMove : MonoBehaviourPun
     private void OnTriggerExit(Collider other)
     {
         ishiddenObject = false;
-        
-        //photonView.RPC(nameof(HiddenCheck), RpcTarget.All, false);
     }
 
-    //나갔는지 상대에게도 알려줘야함
-    /*[PunRPC]
-    public void HiddenCheck(bool isHidden)
-    {
-        ishiddenObject = isHidden;
-    }*/
     #endregion 
 }
