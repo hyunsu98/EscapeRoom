@@ -42,6 +42,13 @@ public class DragObject : MonoBehaviourPun, ObjectData
         }
     }
 
+    [PunRPC]
+    //상대 유저한테도 나갔다고 알려줘야 함.
+    public void OnExit(bool exit)
+    {
+        ishiddenObject = exit;
+    }
+
     #region 플레이어에서 나를 잡았을 때 나 넘기기 (포톤 소유권은 받기)
     //잡았을 때 중력 적용 되지 않게
     //내 위치 자체를
@@ -66,7 +73,8 @@ public class DragObject : MonoBehaviourPun, ObjectData
     public void Grab(Transform objectGrabPointTransform)
     {
         //서랍장 따라다니기 꺼주기
-        ishiddenObject = false;
+        //ishiddenObject = false;
+        
         //객체 잡기 지점을 저장
         this.objectGrabPointTransform = objectGrabPointTransform;
     }
@@ -121,6 +129,14 @@ public class DragObject : MonoBehaviourPun, ObjectData
         //충돌 했는데 그 오브젝트가 서랍같은 거면
         if (other.gameObject.CompareTag("HiddenObject"))
         {
+            if (photonView != null)
+            {
+                //중력 제어 모든 사람에게 알려줘야 함.
+
+                Debug.Log("중력제거");
+                photonView.RPC(nameof(OnOff), RpcTarget.All, true);
+            }
+
             //충돌한 오브젝트의 위치와 내 위치와 같게 해라.
             Debug.Log($"서랍 안에 있는 오브젝트 {other.gameObject}");
             contactPlatform = other.gameObject;
@@ -130,14 +146,17 @@ public class DragObject : MonoBehaviourPun, ObjectData
             distance = platformPosition - transform.position;
 
             ishiddenObject = true;
+            //중력 끄기
         }
     }
 
     //나가면 따라다니지 않게
     private void OnTriggerExit(Collider other)
     {
-        ishiddenObject = false;
+        photonView.RPC(nameof(OnExit), RpcTarget.All, false);
+        //ishiddenObject = false;
     }
+
 
     #endregion 
 }

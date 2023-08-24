@@ -47,6 +47,13 @@ public class PickUpObject : MonoBehaviourPun, ObjectData
         }
     }
 
+    [PunRPC]
+    //상대 유저한테도 나갔다고 알려줘야 함.
+    public void OnExit(bool exit)
+    {
+        ishiddenObject = exit;
+    }
+
     public GameObject PickUp(Player owner)
     {
         //객체의 주인을 매개변수값으로 바꾼다.
@@ -58,16 +65,16 @@ public class PickUpObject : MonoBehaviourPun, ObjectData
             //중력 제어 모든 사람에게 알려줘야 함.
             photonView.RPC(nameof(OnOff), RpcTarget.All, true);
         }
-
+        
         //※여기서 조절 해야함!
         //가져오는 객체이기 때문에
-        transform.rotation = Quaternion.identity;
+        //transform.rotation = Quaternion.identity;
 
-        if (key)
+        /*if (key)
         {
             GameManager.instance.KeyEat(true);
             Debug.Log("키를 획득");
-        }
+        }*/
 
         return this.gameObject;
     }
@@ -75,7 +82,7 @@ public class PickUpObject : MonoBehaviourPun, ObjectData
     public void Grab(Transform objectGrabPointTransform)
     {
         //서랍장 따라다니기 꺼주기
-        ishiddenObject = false;
+        //ishiddenObject = false;
         //객체 잡기 지점을 저장
         this.objectGrabPointTransform = objectGrabPointTransform;
     }
@@ -130,6 +137,14 @@ public class PickUpObject : MonoBehaviourPun, ObjectData
         //충돌 했는데 그 오브젝트가 서랍같은 거면
         if (other.gameObject.CompareTag("HiddenObject"))
         {
+            if (photonView != null)
+            {
+                //중력 제어 모든 사람에게 알려줘야 함.
+
+                Debug.Log("중력제거");
+                photonView.RPC(nameof(OnOff), RpcTarget.All, true);
+            }
+
             //충돌한 오브젝트의 위치와 내 위치와 같게 해라.
             Debug.Log($"서랍 안에 있는 오브젝트 {other.gameObject}");
             contactPlatform = other.gameObject;
@@ -145,7 +160,8 @@ public class PickUpObject : MonoBehaviourPun, ObjectData
     //나가면 따라다니지 않게
     private void OnTriggerExit(Collider other)
     {
-        ishiddenObject = false;
+        photonView.RPC(nameof(OnExit), RpcTarget.All, false);
+        //ishiddenObject = false;
     }
     #endregion 
 
