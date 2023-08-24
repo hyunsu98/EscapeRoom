@@ -142,12 +142,11 @@ public class ObjectMove : MonoBehaviourPun
         {
             //충돌한 오브젝트의 위치와 내 위치와 같게 해라.
             Debug.Log($"서랍 안에 있는 오브젝트 {other.gameObject}");
-            GameObject contactPlatform = other.gameObject;
+            contactPlatform = other.gameObject;
 
-            Vector3 platformPosition = contactPlatform.transform.position;
-            Vector3 distance = platformPosition - transform.position;
-
-            transform.position = contactPlatform.transform.position - distance;
+            //내가 이해가 안가는 거 같음.
+            platformPosition = contactPlatform.transform.position;
+            distance = platformPosition - transform.position;
 
             ishiddenObject = true;
 

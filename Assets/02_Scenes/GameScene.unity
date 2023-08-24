@@ -168,9 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2604fdf817381b046a8b6599270f634b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyedVersion: {fileID: 0}
-  destroyedVersion2: {fileID: 0}
-  destroyedVersion3: {fileID: 0}
+  bottleKey: {fileID: 0}
+  bottleToken: {fileID: 0}
+  bottleCracked: {fileID: 0}
   speedThreshold: 5
   groundLayer:
     serializedVersion: 2
@@ -936,9 +936,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2604fdf817381b046a8b6599270f634b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyedVersion: {fileID: 0}
-  destroyedVersion2: {fileID: 0}
-  destroyedVersion3: {fileID: 0}
+  bottleKey: {fileID: 0}
+  bottleToken: {fileID: 0}
+  bottleCracked: {fileID: 0}
   speedThreshold: 5
   groundLayer:
     serializedVersion: 2
@@ -4188,7 +4188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -6561,9 +6561,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2604fdf817381b046a8b6599270f634b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyedVersion: {fileID: 0}
-  destroyedVersion2: {fileID: 0}
-  destroyedVersion3: {fileID: 0}
+  bottleKey: {fileID: 0}
+  bottleToken: {fileID: 0}
+  bottleCracked: {fileID: 0}
   speedThreshold: 5
   groundLayer:
     serializedVersion: 2
