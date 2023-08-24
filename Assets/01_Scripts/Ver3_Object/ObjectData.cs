@@ -4,13 +4,14 @@ using UnityEngine;
 
 public interface ObjectData
 {
-    void Start()
-    {
-        
-    }
+    //bool
 
-    void Update()
-    {
-        
-    }
+    //잡는 방법
+    GameObject PickUp();
+
+    //잡기
+    void Grab(Transform objectGrabPointTransform);
+
+    //놓기
+    void Drop();
 }
