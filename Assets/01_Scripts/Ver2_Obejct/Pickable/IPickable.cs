@@ -8,11 +8,15 @@ public interface IPickable
     //위치 얻기
     bool KeepWorldPosition { get;}
 
-
     //픽업 방법
     GameObject PickUp();
 
     void Grab(Transform objectGrabPointTransform);
 
     void Drop();
+
+    void TEST()
+    {
+        Debug.Log("1");
+    }
 }
