@@ -18,6 +18,10 @@ public class PlayerPickable : MonoBehaviourPun
     [SerializeField] Transform objectGrabPointTransform;
     [SerializeField] Transform picUpslot;
 
+    //처음 저장 포인트
+    //최대 길이 // 최소길이
+    
+
     //닿은 물체 저장 (닿은 물체에 따라서 다르게 지정하면 -> 상호작용 가능) 책, 버튼, 힌트 등등
     private RaycastHit hit;
 
@@ -83,6 +87,8 @@ public class PlayerPickable : MonoBehaviourPun
             inHandItem = null;
 
             objectdata.Drop();
+
+            UIManager.instance.ResetUI();
             //objectdata = null;
         }
     }
@@ -236,7 +242,6 @@ public class PlayerPickable : MonoBehaviourPun
             return;
         }
 
-        // 닿은 오브젝트가 있을 시
         if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit,
             hitRange))
         {

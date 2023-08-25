@@ -15,6 +15,8 @@ public class PickUpObject : MonoBehaviourPun, IObjectData
     [Header("키오브젝트")]
     public bool key;
 
+    public bool mission;
+
     [Header("이동속도")]
     public float lerpSpeed = 10;
 
