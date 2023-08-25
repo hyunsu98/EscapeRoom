@@ -2925,6 +2925,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_brush_painting_02
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729312267137783, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
+      propertyPath: sceneViewId
+      value: 38
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
 --- !u!4 &453175315 stripped
@@ -5856,6 +5860,10 @@ PrefabInstance:
     - target: {fileID: 4340232582369772575, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
       propertyPath: m_Name
       value: SM_brush_painting_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729312267137783, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
+      propertyPath: sceneViewId
+      value: 37
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
@@ -18901,6 +18909,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_brush_painting_02 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729312267137783, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
+      propertyPath: sceneViewId
+      value: 36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
 --- !u!4 &8271582133208709311 stripped
@@ -25883,6 +25895,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_brush_painting_02 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729312267137783, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
+      propertyPath: sceneViewId
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
 --- !u!4 &8271582134499657586 stripped
@@ -30060,6 +30076,10 @@ PrefabInstance:
     - target: {fileID: 4340232582369772575, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
       propertyPath: m_Name
       value: SM_brush_painting_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729312267137783, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
+      propertyPath: sceneViewId
+      value: 34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
@@ -38586,6 +38606,10 @@ PrefabInstance:
     - target: {fileID: 4340232582369772575, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
       propertyPath: m_Name
       value: SM_brush_painting_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729312267137783, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
+      propertyPath: sceneViewId
+      value: 33
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff84c87734c2cb488bf2ee2abbf4d3d, type: 3}
