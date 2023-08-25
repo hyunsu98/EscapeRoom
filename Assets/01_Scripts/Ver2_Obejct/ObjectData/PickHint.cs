@@ -21,20 +21,21 @@ public class PickHint : MonoBehaviourPun, IUsable //인터페이스 구현
 
         //모두
         //GameManager.instance.UpdateToken(1);
-        photonView.RPC(nameof(Add), RpcTarget.All, 1);
+        //photonView.RPC(nameof(Add), RpcTarget.All, 1);
 
         //이름 없이 간편하게 호출될 수 있는 함수
         //이벤트에 할당된 메소드가 있는 경우 이 메소드를 호출.
         //먹는 소리 재생
         //먹으면 삭제해야함.
+        Debug.Log("인벤토리 저장");
     }
 
     [PunRPC]
     public void Add(int i)
     {
         //점수 추가
-        GameManager.instance.UpdateToken(i);
+        /*GameManager.instance.UpdateToken(i);
         Onuse?.Invoke();
-        Destroy(gameObject);
+        Destroy(gameObject);*/
     }
 }

@@ -69,11 +69,12 @@ public class PickUpObject : MonoBehaviourPun, ObjectData
         //※여기서 조절 해야함!
         //가져오는 객체이기 때문에
         transform.rotation = Quaternion.identity;
+        Debug.Log("아이템 획득");
 
         if (key)
         {
             GameManager.instance.KeyEat(true);
-            Debug.Log("키를 획득");
+            Debug.Log("키를 획득함");
         }
 
         return this.gameObject;
