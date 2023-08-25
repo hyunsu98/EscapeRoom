@@ -191,6 +191,14 @@ public class PlayerPickable : MonoBehaviourPun
                     }*/
                 }
             }
+
+            if (hit.collider.GetComponent<TokenObject>())
+            {
+                TokenObject token = hit.collider.GetComponent<TokenObject>();
+
+                token.Sorce();
+            }
+
         }
     }
 

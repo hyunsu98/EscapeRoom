@@ -130,7 +130,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (token == maxToken)
         {
             //토큰 다 찾은 것 찾을 때마다 UI발생
-            Mission3= true;
+            //Mission3= true;
+            Debug.Log($"토큰 다 찾았다");
         }
     }
 
