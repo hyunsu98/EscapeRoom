@@ -14,12 +14,13 @@ GameObject:
   - component: {fileID: 6326574383518882720}
   - component: {fileID: 6335082982883138704}
   - component: {fileID: 1198179367}
-  - component: {fileID: 1198179368}
   - component: {fileID: 8550755585656338217}
   - component: {fileID: 3285922056022579752}
+  - component: {fileID: 2281844795134829656}
+  - component: {fileID: 7378355176478078006}
   m_Layer: 9
   m_Name: Bottle_Cracked_Half_01
-  m_TagString: DragObj
+  m_TagString: PickUpObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,20 +135,6 @@ MonoBehaviour:
   renderers:
   - {fileID: 6303715205733895542}
   color: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &1198179368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6281706416574325220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0bae637de2dd8843a3888d48050f3f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lerpSpeed: 10
-  key: 0
 --- !u!114 &8550755585656338217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +174,35 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &2281844795134829656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6281706416574325220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf831d7fa96115a48b66e77d7aca606a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 0
+  lerpSpeed: 10
+--- !u!114 &7378355176478078006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6281706416574325220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d352b614a299713458304407357df431, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Onuse>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6281793169717259862
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,12 +217,13 @@ GameObject:
   - component: {fileID: 6326797900802964320}
   - component: {fileID: 6335308351411329740}
   - component: {fileID: 1198179366}
-  - component: {fileID: 1198179365}
   - component: {fileID: 5273542169322229653}
   - component: {fileID: 3919072085241631849}
+  - component: {fileID: 8740925604340442422}
+  - component: {fileID: 4024507990941610807}
   m_Layer: 9
   m_Name: Bottle_Cracked_Half_02
-  m_TagString: DragObj
+  m_TagString: PickUpObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,20 +338,6 @@ MonoBehaviour:
   renderers:
   - {fileID: 6304390403182353814}
   color: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &1198179365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6281793169717259862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0bae637de2dd8843a3888d48050f3f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lerpSpeed: 10
-  key: 0
 --- !u!114 &5273542169322229653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +377,35 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &8740925604340442422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6281793169717259862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf831d7fa96115a48b66e77d7aca606a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 0
+  lerpSpeed: 10
+--- !u!114 &4024507990941610807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6281793169717259862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d352b614a299713458304407357df431, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Onuse>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6281986844817735280
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +459,7 @@ GameObject:
   - component: {fileID: 6564853017952805560}
   - component: {fileID: 4347449031569561598}
   - component: {fileID: 6904802828755977277}
-  - component: {fileID: 8044054696338936183}
+  - component: {fileID: 629691951126413850}
   m_Layer: 9
   m_Name: KeyGold
   m_TagString: PickUpObj
@@ -711,7 +743,7 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!114 &8044054696338936183
+--- !u!114 &629691951126413850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -720,8 +752,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6282143299240483798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0bae637de2dd8843a3888d48050f3f5, type: 3}
+  m_Script: {fileID: 11500000, guid: cf831d7fa96115a48b66e77d7aca606a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpSpeed: 10
   key: 1
+  lerpSpeed: 10

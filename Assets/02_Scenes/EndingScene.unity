@@ -422,26 +422,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c980a372974a342a1a0e4733f21e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickableLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  openLayerMask:
-    serializedVersion: 2
-    m_Bits: 6144
-  openKeyLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  openDoorLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
   playerCameraTransform: {fileID: 404355654}
   hitRange: 3
-  pickUpParent: {fileID: 679817765}
   inHandItem: {fileID: 0}
-  KeyItem: {fileID: 0}
   objectGrabPointTransform: {fileID: 981985096}
-  pickUpSource: {fileID: 321155332}
-  isEnding: 0
+  picUpslot: {fileID: 0}
 --- !u!114 &321155334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5365,26 +5350,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c980a372974a342a1a0e4733f21e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickableLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  openLayerMask:
-    serializedVersion: 2
-    m_Bits: 6144
-  openKeyLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  openDoorLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
   playerCameraTransform: {fileID: 4053749374724376090}
   hitRange: 3
-  pickUpParent: {fileID: 4053749374582554918}
   inHandItem: {fileID: 0}
-  KeyItem: {fileID: 0}
   objectGrabPointTransform: {fileID: 4053749375607481998}
-  pickUpSource: {fileID: 4053749374988654524}
-  isEnding: 0
+  picUpslot: {fileID: 0}
 --- !u!4 &4053749375607481998
 Transform:
   m_ObjectHideFlags: 0
@@ -6112,6 +6082,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 6.16
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729310377629899, guid: 23ed9c80eae39ba4aa82b8d09f80cc4e, type: 3}
+      propertyPath: sceneViewId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729310517461005, guid: 23ed9c80eae39ba4aa82b8d09f80cc4e, type: 3}
+      propertyPath: sceneViewId
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729310632608175, guid: 23ed9c80eae39ba4aa82b8d09f80cc4e, type: 3}
+      propertyPath: sceneViewId
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8790729310656547933, guid: 23ed9c80eae39ba4aa82b8d09f80cc4e, type: 3}
       propertyPath: m_Name
       value: ModelScene
@@ -6160,6 +6142,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729311025674794, guid: 23ed9c80eae39ba4aa82b8d09f80cc4e, type: 3}
+      propertyPath: sceneViewId
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8790729311095139057, guid: 23ed9c80eae39ba4aa82b8d09f80cc4e, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -6179,6 +6165,14 @@ PrefabInstance:
     - target: {fileID: 8790729311095139059, guid: 23ed9c80eae39ba4aa82b8d09f80cc4e, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729311503044675, guid: 23ed9c80eae39ba4aa82b8d09f80cc4e, type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729312419830552, guid: 23ed9c80eae39ba4aa82b8d09f80cc4e, type: 3}
+      propertyPath: sceneViewId
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23ed9c80eae39ba4aa82b8d09f80cc4e, type: 3}

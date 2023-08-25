@@ -12,7 +12,7 @@ public class PickHint : MonoBehaviourPun, IUsable //인터페이스 구현
     //public UnityEvent Onuse => throw new System.NotImplementedException();
 
     //음식을 먹으면 아이템 증가 //토큰
-    private int healthBoost = 1;
+    //private int healthBoost = 1;
 
     public void Use(GameObject actor)
     {
