@@ -25,8 +25,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     //Spans 위치를 담아놓을 변수
     public Vector3[] spawPos;
 
-
+    //게임 시작할 때
     public GameObject Timer;
+    public GameObject Rain;
+
     public GameObject door;
 
     OpenDoor opendoor;
@@ -105,12 +107,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         //지금은 > 모든 플레이어가 참여했다면 Turn을 시작하자
         if (listPlayer.Count == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
-            //Turn 을 시작하자
-            //시간이 갈 수 있게!
             Debug.Log("다 들어왔습니다.");
+            
+            //시간, 비 내릴 수 있게 셋팅
             Timer.SetActive(true);
-
-            //Timer.instance.Being();
+            Rain.SetActive(true);
         }
     }
 
@@ -132,27 +133,31 @@ public class GameManager : MonoBehaviourPunCallbacks
             //토큰 다 찾은 것 찾을 때마다 UI발생
             //Mission3= true;
             Debug.Log($"토큰 다 찾았다");
+
+            //토큰 다 찾으면 엔딩씬으로
+            PhotonNetwork.LoadLevel("EndingScene");
         }
     }
 
     //키를 획득한 상태
     //키가 어떤 객체와 닿으면 문 열릴 수 있게
+    //인벤토리로
     public void KeyEat(bool isFindKey)
     {
-        Mission1 = isFindKey;
+        //Mission1 = isFindKey;
     }
 
     [PunRPC]
     public void Mission1Chek(bool isOk)
     {
-        Mission1 = isOk;
+        //Mission1 = isOk;
     }
 
     private void Update()
     {
 
         //토큰 다 찾고 열쇠찾고 문 열리면
-        if(Mission1 && Mission3)
+        /*if(Mission1 && Mission3)
         {
             //문을 설정해 둠!
             opendoor = door.GetComponent<OpenDoor>();
@@ -165,11 +170,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                 //문열림
                 PhotonNetwork.LoadLevel("EndingScene");
             }
-        }
-    }
-
-    public void Ending()
-    {
-        PhotonNetwork.LoadLevel("EndingScene");
+        }*/
     }
 }

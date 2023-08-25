@@ -73,7 +73,7 @@ public class PickUpObject : MonoBehaviourPun, ObjectData
 
         if (key)
         {
-            GameManager.instance.KeyEat(true);
+            //GameManager.instance.KeyEat(true);
             Debug.Log("≈∞∏¶ »πµÊ«‘");
         }
 

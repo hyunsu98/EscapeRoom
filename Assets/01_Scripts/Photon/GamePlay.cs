@@ -11,6 +11,7 @@ public class GamePlay : MonoBehaviourPun
     {
         photonView.RPC("MoveMainScene", RpcTarget.All);
     }
+
     [PunRPC]
     void MoveMainScene()
     {
