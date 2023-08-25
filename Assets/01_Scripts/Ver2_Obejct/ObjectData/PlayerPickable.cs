@@ -24,7 +24,7 @@ public class PlayerPickable : MonoBehaviourPun
     //상속받아서 쓸 수 있게 만들기
     //잡은 객체를 꺼야하기 때문에
     //ObjectMove pickableItem;
-    ObjectData objectdata;
+    IObjectData objectdata;
 
     private void KeyCheck()
     {
@@ -99,7 +99,7 @@ public class PlayerPickable : MonoBehaviourPun
         // 닿은 객체 있는데 잡고 있는 객체가 없다면
         if (hit.collider != null && inHandItem == null)
         {
-            objectdata = hit.collider.GetComponent<ObjectData>();
+            objectdata = hit.collider.GetComponent<IObjectData>();
 
             if (objectdata != null)
             {

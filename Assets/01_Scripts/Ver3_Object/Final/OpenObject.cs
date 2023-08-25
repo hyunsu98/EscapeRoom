@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenObject : MonoBehaviour, ObjectData
+public class OpenObject : MonoBehaviour, IObjectData
 {
     public bool isOpen;
 
