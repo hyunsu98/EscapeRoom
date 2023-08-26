@@ -5460,14 +5460,11 @@ MonoBehaviour:
   token: 0
   maxToken: 5
   isTimeOver: 0
-  Mission1: 0
-  Mission2: 0
-  Mission3: 0
-  MissionClear: 0
   trSpawnPosGroup: {fileID: 1823161773}
   spawPos: []
   Timer: {fileID: 665092902}
   Rain: {fileID: 0}
+  TokenUI: {fileID: 0}
   door: {fileID: 1746359156}
   listPlayer: []
 --- !u!1 &1017904950
@@ -32916,6 +32913,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8790729310915089342}
     m_Modifications:
+    - target: {fileID: 565266140010086630, guid: 609bffc08907a78488c7efad0faa3b58, type: 3}
+      propertyPath: sceneViewId
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562420929694456485, guid: 609bffc08907a78488c7efad0faa3b58, type: 3}
+      propertyPath: sceneViewId
+      value: 42
+      objectReference: {fileID: 0}
     - target: {fileID: 3961190741536670933, guid: 609bffc08907a78488c7efad0faa3b58, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -32979,6 +32984,14 @@ PrefabInstance:
     - target: {fileID: 4445942686732279407, guid: 609bffc08907a78488c7efad0faa3b58, type: 3}
       propertyPath: m_Name
       value: FreeCabinet01 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594102686119590735, guid: 609bffc08907a78488c7efad0faa3b58, type: 3}
+      propertyPath: sceneViewId
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6717367231894531542, guid: 609bffc08907a78488c7efad0faa3b58, type: 3}
+      propertyPath: sceneViewId
+      value: 41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 609bffc08907a78488c7efad0faa3b58, type: 3}
