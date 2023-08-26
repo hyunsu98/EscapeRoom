@@ -66,7 +66,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         //내가 위치해야 하는 idx 구하자
         int idx = PhotonNetwork.CurrentRoom.PlayerCount - 1;
         //나의 Player 생성
-        PhotonNetwork.Instantiate("Player", spawPos[idx], Quaternion.identity);        
+        //PhotonNetwork.Instantiate("Player", spawPos[idx], Quaternion.identity);
+        PhotonNetwork.Instantiate("Player", trSpawnPosGroup.position, Quaternion.identity);
+
     }
 
 

@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 2470413513346993454}
   - component: {fileID: 408802037645425124}
   - component: {fileID: 2767322565750896954}
+  - component: {fileID: 1590395206}
+  - component: {fileID: 1590395207}
+  - component: {fileID: 7093592694495899166}
   m_Layer: 0
   m_Name: FreeCabinet01_DoorLeft
   m_TagString: Untagged
@@ -97,3 +100,57 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5029207, y: 0.52621853, z: 0.06996923}
   m_Center: {x: -0.2514604, y: 0.000000029802322, z: 0.034984615}
+--- !u!114 &1590395206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2210325383539071025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eaf3fdd33115c344be09a9ddc4563d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 408802037645425124}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  num: 0
+--- !u!114 &1590395207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2210325383539071025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &7093592694495899166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2210325383539071025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a66edbe92b6e3449cc52c22a65636e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  doorOpenAngle: 90
+  doorCloseAngle: 0
+  speed: 0
