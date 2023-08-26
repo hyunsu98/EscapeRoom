@@ -70,3 +70,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Package04_Free_Kitchen/FreeKitchen/SRP UpgradePackage/Built-in_Material.unitypackage.meta
+Assets/Package04_Free_Kitchen/FreeKitchen/SRP UpgradePackage/URP_Material.unitypackage.meta
