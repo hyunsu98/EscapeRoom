@@ -153,4 +153,4 @@ MonoBehaviour:
   isOpen: 0
   doorOpenAngle: 90
   doorCloseAngle: 0
-  speed: 0
+  speed: 1
