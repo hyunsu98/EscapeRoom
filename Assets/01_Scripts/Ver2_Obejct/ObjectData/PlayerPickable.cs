@@ -18,6 +18,8 @@ public class PlayerPickable : MonoBehaviourPun
     [SerializeField] Transform objectGrabPointTransform;
     [SerializeField] Transform picUpslot;
 
+    Transform TestGrabPoint;
+
     //처음 저장 포인트
     //최대 길이 // 최소길이
     

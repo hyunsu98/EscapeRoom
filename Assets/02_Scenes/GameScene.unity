@@ -501,6 +501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_chair_office_02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729311109497256, guid: d9546457dc26d3b4d88e6e2e475a5f4f, type: 3}
+      propertyPath: sceneViewId
+      value: 63
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9546457dc26d3b4d88e6e2e475a5f4f, type: 3}
 --- !u!4 &119441026 stripped
@@ -2370,6 +2374,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_book_02 (55)
       objectReference: {fileID: 0}
+    - target: {fileID: 4040636838223467906, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
+      propertyPath: sceneViewId
+      value: 62
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
 --- !u!4 &361530905 stripped
@@ -3645,6 +3653,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_flower_room (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3272650276351195308, guid: 7a3f4dcde0449cd439c39dfc5bdaf317, type: 3}
+      propertyPath: sceneViewId
+      value: 61
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a3f4dcde0449cd439c39dfc5bdaf317, type: 3}
 --- !u!4 &588254567 stripped
@@ -4025,11 +4037,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 867151111772316391, guid: f8f78a7a53752cc4e8961e52776a2ed3, type: 3}
   m_PrefabInstance: {fileID: 635795345}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &665092902 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5345861103116042500, guid: 8b133109db6bcdd48933eddf4992bad3, type: 3}
-  m_PrefabInstance: {fileID: 5345861103596061218}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &669608591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4133,6 +4140,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 820600595}
     m_Modifications:
+    - target: {fileID: 3442846769809929855, guid: 2db97c9a251a7f54da1c8cf521fcc1c0, type: 3}
+      propertyPath: sceneViewId
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 8370705717341769669, guid: 2db97c9a251a7f54da1c8cf521fcc1c0, type: 3}
       propertyPath: m_RootOrder
       value: 73
@@ -5457,16 +5468,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d325867ef1d7ae4ca11445d77b0827a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameInfo:
+    name: 
+    map: 0
+    token: 0
+    missionClear: 0
   token: 0
   maxToken: 5
   isTimeOver: 0
-  trSpawnPosGroup: {fileID: 1823161773}
-  spawPos: []
-  Timer: {fileID: 665092902}
-  Rain: {fileID: 0}
-  TokenUI: {fileID: 0}
-  door: {fileID: 1746359156}
-  listPlayer: []
+  MissionClear: 0
 --- !u!1 &1017904950
 GameObject:
   m_ObjectHideFlags: 0
@@ -8687,6 +8697,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_book_02 (61)
       objectReference: {fileID: 0}
+    - target: {fileID: 4040636838223467906, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
+      propertyPath: sceneViewId
+      value: 59
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
 --- !u!4 &1509586268 stripped
@@ -8834,6 +8848,10 @@ PrefabInstance:
     - target: {fileID: 2882678281704736169, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
       propertyPath: m_Name
       value: SM_book_02 (60)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040636838223467906, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
+      propertyPath: sceneViewId
+      value: 58
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
@@ -17162,6 +17180,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_chair_office_02 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729311109497256, guid: d9546457dc26d3b4d88e6e2e475a5f4f, type: 3}
+      propertyPath: sceneViewId
+      value: 57
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9546457dc26d3b4d88e6e2e475a5f4f, type: 3}
 --- !u!4 &8271582132775477416 stripped
@@ -21597,6 +21619,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_book_02 (136)
       objectReference: {fileID: 0}
+    - target: {fileID: 4040636838223467906, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
+      propertyPath: sceneViewId
+      value: 56
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
 --- !u!4 &8271582133623284514 stripped
@@ -23514,6 +23540,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_book_02 (143)
       objectReference: {fileID: 0}
+    - target: {fileID: 4040636838223467906, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
+      propertyPath: sceneViewId
+      value: 55
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
 --- !u!4 &8271582134026079884 stripped
@@ -23618,6 +23648,10 @@ PrefabInstance:
     - target: {fileID: 2882678281704736169, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
       propertyPath: m_Name
       value: SM_book_02 (149)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040636838223467906, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
+      propertyPath: sceneViewId
+      value: 54
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
@@ -24548,6 +24582,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_book_02 (126)
       objectReference: {fileID: 0}
+    - target: {fileID: 4040636838223467906, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
+      propertyPath: sceneViewId
+      value: 53
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
 --- !u!4 &8271582134228707596 stripped
@@ -25091,6 +25129,10 @@ PrefabInstance:
     - target: {fileID: 2882678281704736169, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
       propertyPath: m_Name
       value: SM_book_02 (131)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040636838223467906, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
+      propertyPath: sceneViewId
+      value: 52
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
@@ -26708,6 +26750,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_book_02 (153)
       objectReference: {fileID: 0}
+    - target: {fileID: 4040636838223467906, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
+      propertyPath: sceneViewId
+      value: 51
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
 --- !u!4 &8271582134673965342 stripped
@@ -27243,6 +27289,10 @@ PrefabInstance:
     - target: {fileID: 2882678281704736169, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
       propertyPath: m_Name
       value: SM_book_02 (120)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040636838223467906, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
+      propertyPath: sceneViewId
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
@@ -28775,6 +28825,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_flower_room (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3272650276351195308, guid: 7a3f4dcde0449cd439c39dfc5bdaf317, type: 3}
+      propertyPath: sceneViewId
+      value: 49
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a3f4dcde0449cd439c39dfc5bdaf317, type: 3}
 --- !u!4 &8790729310639311427 stripped
@@ -29154,6 +29208,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8790729310395439159}
     m_Modifications:
+    - target: {fileID: 3442846769809929855, guid: 2db97c9a251a7f54da1c8cf521fcc1c0, type: 3}
+      propertyPath: sceneViewId
+      value: 48
+      objectReference: {fileID: 0}
     - target: {fileID: 8370705717341769669, guid: 2db97c9a251a7f54da1c8cf521fcc1c0, type: 3}
       propertyPath: m_RootOrder
       value: 65
@@ -29349,6 +29407,10 @@ PrefabInstance:
     - target: {fileID: 2882678281704736169, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
       propertyPath: m_Name
       value: SM_book_02 (55)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040636838223467906, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
+      propertyPath: sceneViewId
+      value: 47
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
@@ -30248,6 +30310,10 @@ PrefabInstance:
     - target: {fileID: 4488109437118023255, guid: d9546457dc26d3b4d88e6e2e475a5f4f, type: 3}
       propertyPath: m_Name
       value: SM_chair_office_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729311109497256, guid: d9546457dc26d3b4d88e6e2e475a5f4f, type: 3}
+      propertyPath: sceneViewId
+      value: 46
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9546457dc26d3b4d88e6e2e475a5f4f, type: 3}
@@ -32618,6 +32684,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_mug_03 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6853595298495735276, guid: 8b3f48fd7bb978847a2f48d70351b50c, type: 3}
+      propertyPath: sceneViewId
+      value: 45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b3f48fd7bb978847a2f48d70351b50c, type: 3}
 --- !u!4 &8790729312022804066 stripped
@@ -33067,6 +33137,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_book_02 (60)
       objectReference: {fileID: 0}
+    - target: {fileID: 4040636838223467906, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
+      propertyPath: sceneViewId
+      value: 44
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
 --- !u!4 &8790729312126259485 stripped
@@ -33219,6 +33293,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a96e4f887637b8d429bf87a206706b7d, type: 2}
+    - target: {fileID: 4040636838223467906, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
+      propertyPath: sceneViewId
+      value: 43
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b84181f76b8e260438ef6ca6040430d4, type: 3}
 --- !u!4 &8790729312156201600 stripped
