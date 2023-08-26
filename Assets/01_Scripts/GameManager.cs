@@ -14,10 +14,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public bool isTimeOver;
 
-    public bool Mission1 = false;
+    /*public bool Mission1 = false;
     public bool Mission2 = false;
     public bool Mission3 = false;
-    public bool MissionClear = false;
+    public bool MissionClear = false;*/
 
     //spawnPosGroup Transform
     public Transform trSpawnPosGroup;
@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     //게임 시작할 때
     public GameObject Timer;
     public GameObject Rain;
+    public GameObject TokenUI;
 
     public GameObject door;
 
@@ -65,17 +66,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         //내가 위치해야 하는 idx 구하자
         int idx = PhotonNetwork.CurrentRoom.PlayerCount - 1;
         //나의 Player 생성
-        PhotonNetwork.Instantiate("Player", spawPos[idx], Quaternion.identity);
-
-
-        //Locked : 마우스의 커서를 윈도우 정중앙에 고정시킨 후 보이지 않게
-        Cursor.lockState = CursorLockMode.Locked;
-        #region CursorLockMode : Locked, Confined, None
-        //Confined : 마우스의 커서가 게임 윈도우 밖으로 벗어나지 않게 
-        //Cursor.lockState = CursorLockMode.Confined;
-        //Locked 또는 Confined 되었던 커서를 원래대로 돌려줌
-        //Cursor.lockState = CursourLockMode.None;
-        #endregion
+        PhotonNetwork.Instantiate("Player", spawPos[idx], Quaternion.identity);        
     }
 
 
@@ -126,6 +117,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void UpdateToken(int num)
     {
         token += num;
+
+        SoundManager.instance.PlaySFX(SoundManager.ESfx.SFX_TOKEN);
+        Animator anim = TokenUI.GetComponent<Animator>();
+        anim.SetTrigger("IsAction");
+
         Debug.Log($"토큰 찾음{token}");
 
         if (token == maxToken)

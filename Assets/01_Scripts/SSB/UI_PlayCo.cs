@@ -18,6 +18,7 @@ public class UI_PlayCo : MonoBehaviour
 
     public void OpenLobby()
     {
+        SoundManager.instance.PlaySFX(SoundManager.ESfx.SFX_BUTTON);
         gameObject.SetActive(true);
     }
 }

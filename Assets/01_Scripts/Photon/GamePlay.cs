@@ -9,6 +9,7 @@ public class GamePlay : MonoBehaviourPun
 {
     public void MainSceneChange()
     {
+        SoundManager.instance.PlaySFX(SoundManager.ESfx.SFX_BUTTON);
         photonView.RPC("MoveMainScene", RpcTarget.All);
     }
 

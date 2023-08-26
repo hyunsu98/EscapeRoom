@@ -27,17 +27,18 @@ public class PickObject : MonoBehaviourPun
     {
         rb = GetComponent<Rigidbody>();
 
-        //내가 만든 Player 가 아닐때
-        if (photonView.IsMine == false)
+        //내가 만든 Player 가 아닐때 -> 필요 없음!
+        /*if (photonView.IsMine == false)
         {
             //PlayerFire 컴포넌트를 비활성화
             this.enabled = false;
-        }
+        }*/
     }
     private void Update()
     {
         if (photonView.IsMine)
         {
+            
             //힘 가하는 게 다 다르기 때문에 내가 true가 되면 상대한테도 알려줘야함.
 
             // Rigidbody의 현재 속도를 계산합니다.
@@ -50,7 +51,7 @@ public class PickObject : MonoBehaviourPun
                 // 여기에 원하는 처리를 추가하세요.
 
                 // 바닥에 닿았는지 여부를 체크합니다.
-                //GetComponent<Collider>().bounds.extents.y -> 콜라이더의 높이의 절바을 나타냄, 바닥으로부터 캐릭터 중심까지의 거리를 구할때 사용
+                //GetComponent<Collider>().bounds.extents.y -> 콜라이더의 높이의 절반을 나타냄, 바닥으로부터 캐릭터 중심까지의 거리를 구할때 사용
                 isGrounded = Physics.Raycast(transform.position, Vector3.down, GetComponent<Collider>().bounds.extents.y + 0.1f, groundLayer);
 
                 if (isGrounded)
@@ -80,10 +81,10 @@ public class PickObject : MonoBehaviourPun
     [PunRPC]
     void DestroyPun()
     {
+        SoundManager.instance.PlaySFX(SoundManager.ESfx.SFX_BOTTLE);
         Destroy(this.gameObject);
         Debug.Log("모두 삭제");
     }
-
 
     /*[PunRPC]
     void BreakBottle(Vector3 breakPos, Quaternion breakRot, int check)

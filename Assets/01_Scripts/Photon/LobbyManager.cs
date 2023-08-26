@@ -6,8 +6,14 @@ using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
+    private void Start()
+    {
+        SoundManager.instance.PlayBGM(SoundManager.EBgm.BGM_TITLE);
+    }
+
     public void JoinRoom()
     {
+        SoundManager.instance.PlaySFX(SoundManager.ESfx.SFX_BUTTON);
         //号 持失 or 凧食
         RoomOptions roomOptioin = new RoomOptions();
 

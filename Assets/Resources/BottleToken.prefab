@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 0
+  mission: 0
   lerpSpeed: 10
 --- !u!1 &6281793169717259862
 GameObject:
@@ -373,6 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 0
+  mission: 0
   lerpSpeed: 10
 --- !u!1 &6281986844817735280
 GameObject:

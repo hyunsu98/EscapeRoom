@@ -17,7 +17,6 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-
         //액션 델리게이트 함수를 담을 수 있는 변수 자료형 //무명함수 //람다식을 이용하여 사용할 수 있음
         inputPassword.onValueChanged.AddListener((string s) => { btnConnect.interactable = s.Length > 0 && inputNickName.text.Length > 0; });
 
@@ -46,6 +45,8 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
     //버튼 클릭시 연결 요청할 수 있도록
     public void OnClickConnect()
     {
+        SoundManager.instance.PlaySFX(SoundManager.ESfx.SFX_BUTTON);
+
         //서버 접속 요청
         PhotonNetwork.ConnectUsingSettings();
     }

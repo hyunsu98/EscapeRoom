@@ -270,9 +270,9 @@ public class PlayerPickable : MonoBehaviourPun
     }
 
     //얘 설정 다시 해야 함
-    [PunRPC]
+    /*[PunRPC]
     public void Check(bool isCk)
     {
         GameManager.instance.Mission2 = true;
-    }
+    }*/
 }

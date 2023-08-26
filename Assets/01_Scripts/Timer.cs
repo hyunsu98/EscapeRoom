@@ -1,10 +1,12 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Timer : MonoBehaviour
+//시간 동기화 시켜야 함.
+public class Timer : MonoBehaviourPun
 {
     //public static Timer instance;
 
@@ -33,7 +35,7 @@ public class Timer : MonoBehaviour
         Being(Duration);
         //remainingDuration = Duration;
     }
-
+    
     void Being(int Second)
     {
         remainingDuration = Second;

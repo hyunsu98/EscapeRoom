@@ -9,14 +9,15 @@ public class SoundManager : MonoBehaviour
     public enum EBgm
     {
         BGM_TITLE,
-        BGM_LOBBY,
-        BGM_GAME
+        BGM_GAME,
     }
 
     public enum ESfx
     {
         SFX_BUTTON,
-        SFX_ITEM
+        SFX_ENDING,
+        SFX_TOKEN,
+        SFX_BOTTLE,
     }
 
     [SerializeField] AudioClip[] bgms;
