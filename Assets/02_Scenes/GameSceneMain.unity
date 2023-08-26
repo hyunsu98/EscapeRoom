@@ -1156,6 +1156,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1193180181}
     m_Modifications:
+    - target: {fileID: 1590395207, guid: 38350be02830a4ac4be81d68c399fac8, type: 3}
+      propertyPath: sceneViewId
+      value: 39
+      objectReference: {fileID: 0}
     - target: {fileID: 1578361676809388683, guid: 38350be02830a4ac4be81d68c399fac8, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2443,6 +2447,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1193180181}
     m_Modifications:
+    - target: {fileID: 1590395207, guid: 38350be02830a4ac4be81d68c399fac8, type: 3}
+      propertyPath: sceneViewId
+      value: 38
+      objectReference: {fileID: 0}
     - target: {fileID: 1578361676809388683, guid: 38350be02830a4ac4be81d68c399fac8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2674,6 +2682,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1193180181}
     m_Modifications:
+    - target: {fileID: 1216061768, guid: fb99711c181754fd9b52ac203b135dd9, type: 3}
+      propertyPath: sceneViewId
+      value: 37
+      objectReference: {fileID: 0}
     - target: {fileID: 6981704778235185362, guid: fb99711c181754fd9b52ac203b135dd9, type: 3}
       propertyPath: m_Name
       value: FreeCabinet01_DoorRight
@@ -5880,6 +5892,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1193180181}
     m_Modifications:
+    - target: {fileID: 1216061768, guid: fb99711c181754fd9b52ac203b135dd9, type: 3}
+      propertyPath: sceneViewId
+      value: 33
+      objectReference: {fileID: 0}
     - target: {fileID: 6981704778235185362, guid: fb99711c181754fd9b52ac203b135dd9, type: 3}
       propertyPath: m_Name
       value: FreeCabinet01_DoorRight
@@ -11997,6 +12013,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5694247875896703015}
     m_Modifications:
+    - target: {fileID: 1216061768, guid: fb99711c181754fd9b52ac203b135dd9, type: 3}
+      propertyPath: sceneViewId
+      value: 31
+      objectReference: {fileID: 0}
     - target: {fileID: 6981704778235185362, guid: fb99711c181754fd9b52ac203b135dd9, type: 3}
       propertyPath: m_Name
       value: FreeCabinet01_DoorRight
@@ -15793,6 +15813,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5694247875896703015}
     m_Modifications:
+    - target: {fileID: 1590395207, guid: 38350be02830a4ac4be81d68c399fac8, type: 3}
+      propertyPath: sceneViewId
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1578361676809388683, guid: 38350be02830a4ac4be81d68c399fac8, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -17688,6 +17712,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5694247875896703015}
     m_Modifications:
+    - target: {fileID: 1590395207, guid: 38350be02830a4ac4be81d68c399fac8, type: 3}
+      propertyPath: sceneViewId
+      value: 23
+      objectReference: {fileID: 0}
     - target: {fileID: 1578361676809388683, guid: 38350be02830a4ac4be81d68c399fac8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -41983,6 +42011,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5694247875896703015}
     m_Modifications:
+    - target: {fileID: 1216061768, guid: fb99711c181754fd9b52ac203b135dd9, type: 3}
+      propertyPath: sceneViewId
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 6981704778235185362, guid: fb99711c181754fd9b52ac203b135dd9, type: 3}
       propertyPath: m_Name
       value: FreeCabinet01_DoorRight
