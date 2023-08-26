@@ -63,7 +63,7 @@ public class PlayerMove : MonoBehaviourPun//, IPunObservable
         }
 
         //나의 PhotonView GameManager에 알려주자
-        GameManager.instance.AddPlayer(photonView);
+        GameSetting.instance.AddPlayer(photonView);
 
         //시작시 카메라 위치
         cam.position = camPos[0].position;
