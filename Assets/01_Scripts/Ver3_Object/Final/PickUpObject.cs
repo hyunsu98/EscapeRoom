@@ -10,6 +10,7 @@ using Photon.Realtime;
 //오른쪽 마우스 클릭 시 인벤토리 저장
 //서랍이동 가능
 //인벤토리 저장 시 UI 생성
+[RequireComponent(typeof(Rigidbody), typeof(Highlight))]
 public class PickUpObject : MonoBehaviourPun, IObjectData
 {
     [Header("키오브젝트")]

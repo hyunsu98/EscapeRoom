@@ -4,6 +4,8 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using System.IO;
+using System.Text;
 
 public class GameLobbyManager : MonoBehaviourPunCallbacks
 {
@@ -52,5 +54,3 @@ public class GameLobbyManager : MonoBehaviourPunCallbacks
 
     }
 }
-
-

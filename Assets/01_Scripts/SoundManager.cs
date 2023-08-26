@@ -18,6 +18,7 @@ public class SoundManager : MonoBehaviour
         SFX_ENDING,
         SFX_TOKEN,
         SFX_BOTTLE,
+        SFX_OPENDOOR
     }
 
     [SerializeField] AudioClip[] bgms;

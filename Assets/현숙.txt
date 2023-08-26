@@ -1,0 +1,6 @@
+{
+    "name": "현숙",
+    "map": 1,
+    "token": 4,
+    "missionClear": true
+}

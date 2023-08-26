@@ -8,6 +8,7 @@ using Photon.Realtime;
 //거리 계산 후 놓을 수 있음
 //인벤토리 저장은 할 수 없음
 //서랍이동은 가능
+[RequireComponent(typeof(Rigidbody), typeof(Highlight))]
 public class DragObject : MonoBehaviourPun, IObjectData
 {
     [Header("이동속도")]

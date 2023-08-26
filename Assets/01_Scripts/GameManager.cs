@@ -4,10 +4,25 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.EventSystems;
 using Photon.Realtime;
+using System.IO;
+using System.Text;
 
-public class GameManager : MonoBehaviourPunCallbacks
+
+//Json 저장 내용 (이름/맵/토큰/끝냈는지)
+[System.Serializable]
+public class GameInfo
+{
+    public string name;
+    public int map;
+    public int token;
+    public bool missionClear;
+}
+
+public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    public GameInfo gameInfo;
 
     public int token;
     public int maxToken;
@@ -19,18 +34,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool Mission3 = false;
     public bool MissionClear = false;*/
 
-    //spawnPosGroup Transform
-    public Transform trSpawnPosGroup;
-
-    //Spans 위치를 담아놓을 변수
-    public Vector3[] spawPos;
-
-    //게임 시작할 때
-    public GameObject Timer;
-    public GameObject Rain;
-    public GameObject TokenUI;
-
-    public GameObject door;
+    public bool MissionClear = false;
 
     OpenDoor opendoor;
 
@@ -39,6 +43,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         if(instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         //그렇지 않으면
@@ -49,70 +54,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    //모든 Player들의 PhotonView를 가지는 List
-    //new 로 할당하지 않고 public 을 해놓으면 사용가능하지만 아님 사용되지 않음 
-    public List<PhotonView> listPlayer = new List<PhotonView>();
-
     private void Start()
     {
-        //RPC 호출 빈도
-        PhotonNetwork.SendRate = 30;
-
-        //OnPhotonSerializeView 호출 빈도
-        PhotonNetwork.SerializationRate = 30;
-
-        SetSpawnPos();
-
-        //내가 위치해야 하는 idx 구하자
-        int idx = PhotonNetwork.CurrentRoom.PlayerCount - 1;
-        //나의 Player 생성
-        //PhotonNetwork.Instantiate("Player", spawPos[idx], Quaternion.identity);
-        PhotonNetwork.Instantiate("Player", trSpawnPosGroup.position, Quaternion.identity);
-
-    }
-
-
-    //적을 기준으로 인원수만큼 계산해서 생성시킴
-    void SetSpawnPos()
-    {
-        //최대 인원 만큼 spawnPos의 공간을 할당
-        spawPos = new Vector3[PhotonNetwork.CurrentRoom.MaxPlayers];
-
-        //count 나중에 인원 수 가져올 에정
-        //간격 (angle) 
-        float angle = 360 / spawPos.Length;
-
-        for (int i = 0; i < spawPos.Length; i++)
-        {
-            trSpawnPosGroup.Rotate(0, angle, 0);
-
-            //이 위치를 기준으로 360 돌려서 생성
-            //360도로 들어온 수만큼 배치 될 수 있게
-            spawPos[i] = trSpawnPosGroup.position + trSpawnPosGroup.forward * 2; //거리
-        }
-    }
-
-    //참여한 Player의 PhotonView 추가
-    public void AddPlayer(PhotonView pv)
-    {
-        listPlayer.Add(pv);
-
-        //지금은 > 모든 플레이어가 참여했다면 Turn을 시작하자
-        if (listPlayer.Count == PhotonNetwork.CurrentRoom.MaxPlayers)
-        {
-            Debug.Log("다 들어왔습니다.");
-            
-            //시간, 비 내릴 수 있게 셋팅
-            Timer.SetActive(true);
-            Rain.SetActive(true);
-        }
-    }
-
-    //새로운 인원이 방에 들어왔을때 호출되는 함수 -> puncallback 상속받아야 함
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        base.OnPlayerEnteredRoom(newPlayer);
-        print(newPlayer.NickName + "님이 들어왔습니다!"); // UI로 구성하면됨
+        
     }
 
     //토큰 얻기
@@ -121,20 +65,34 @@ public class GameManager : MonoBehaviourPunCallbacks
         token += num;
 
         SoundManager.instance.PlaySFX(SoundManager.ESfx.SFX_TOKEN);
-        Animator anim = TokenUI.GetComponent<Animator>();
+        Animator anim = GameSetting.instance.TokenUI.GetComponent<Animator>();
+
         anim.SetTrigger("IsAction");
 
         Debug.Log($"토큰 찾음{token}");
 
         if (token == maxToken)
         {
-            //토큰 다 찾은 것 찾을 때마다 UI발생
             //Mission3= true;
             Debug.Log($"토큰 다 찾았다");
 
-            //토큰 다 찾으면 엔딩씬으로
-            PhotonNetwork.LoadLevel("EndingScene");
+            MissionClear = true;
+            //JsonSave();
+
+            SoundManager.instance.PlaySFX(SoundManager.ESfx.SFX_OPENDOOR);
+            opendoor = GameSetting.instance.door.GetComponent<OpenDoor>();
+            opendoor.isOpen = true;
+
+
+            StartCoroutine("OpenDoor");
         }
+    }
+
+    IEnumerator OpenDoor()
+    {
+        yield return new WaitForSeconds(3);
+        //토큰 다 찾으면 엔딩씬으로
+        PhotonNetwork.LoadLevel("EndingScene");
     }
 
     //키를 획득한 상태
@@ -154,20 +112,46 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void Update()
     {
 
-        //토큰 다 찾고 열쇠찾고 문 열리면
-        /*if(Mission1 && Mission3)
-        {
-            //문을 설정해 둠!
-            opendoor = door.GetComponent<OpenDoor>();
-            opendoor.isOpen = true;
+    }
 
-            MissionClear = true;
+    public void TokenReset()
+    {
+        token = 0;
+    }
 
-            if(Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                //문열림
-                PhotonNetwork.LoadLevel("EndingScene");
-            }
-        }*/
+    public void JsonSave()
+    {
+        gameInfo = new GameInfo();
+
+        //내 이름
+        gameInfo.name = PhotonNetwork.LocalPlayer.NickName;
+        gameInfo.map = 1;
+        gameInfo.token = this.token;
+        gameInfo.missionClear = MissionClear;
+
+        string jsonData = JsonUtility.ToJson(gameInfo, true);
+        Debug.Log(jsonData);
+
+        //파일 저장
+        FileStream file = new FileStream(Application.dataPath + "/"+ PhotonNetwork.LocalPlayer.NickName+".txt", FileMode.Create);
+        byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
+        file.Write(byteData, 0, byteData.Length);
+        file.Close();
+    }
+
+    public void JsonCall()
+    {
+        //파일 열기
+        FileStream file = new FileStream(Application.dataPath + "/" + PhotonNetwork.LocalPlayer.NickName + ".txt", FileMode.Open);
+        byte[] byteData = new byte[file.Length];
+        file.Read(byteData, 0, byteData.Length);
+        file.Close();
+
+        //정보 셋팅
+        string jsonData = Encoding.UTF8.GetString(byteData);
+
+        //다시 담아줘야 함
+        gameInfo = JsonUtility.FromJson<GameInfo>(jsonData);
+        Debug.Log(jsonData);
     }
 }
