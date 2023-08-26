@@ -121,7 +121,9 @@ public class PlayerPickable : MonoBehaviourPun
 
                 //오브젝트 자체에서 이동할 수 있게 (카메라 자식 위치 넘겨주기)
                 //객체마다 다른 카메라의 위치를 넘겨준다면?
-                objectdata.Grab(objectGrabPointTransform);
+                //objectdata.Grab(objectGrabPointTransform);
+                objectdata.Grab(TestGrabPoint);
+
                 // 키 자체에서 설정할 예정
                 // 잡았을때 bool 값이 true 라면 -> 키인 것임
                 // 그럼 게임 오브젝트에 키를 찾았다고 알려주고
@@ -219,6 +221,8 @@ public class PlayerPickable : MonoBehaviourPun
 
             //나일때만인데 왜 되는 거지?
             RayCheck();
+
+            GrabPos();
         }
     }
 
@@ -277,4 +281,17 @@ public class PlayerPickable : MonoBehaviourPun
     {
         GameManager.instance.Mission2 = true;
     }*/
+
+    void GrabPos()
+    {
+        if(Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange))
+        {
+            if (hit.collider.CompareTag("DragObj"))
+            {
+                //닿은 지점을 잡는 지점으로 놓기
+                TestGrabPoint = hit.transform;
+                Debug.Log($"TEST닿은지점 + {TestGrabPoint}");
+            }
+        }
+    }
 }

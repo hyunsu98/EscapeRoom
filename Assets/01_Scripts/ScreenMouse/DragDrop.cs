@@ -17,6 +17,7 @@ public class DragDrop : MonoBehaviour
         offset = transform.position - MouseWorldPosition();
         //물체의 콜라이더 비활성화 -> 잡고 있는 동안 다른 물체와 충돌하지 않도록 하기 위해
         transform.GetComponent<Collider>().enabled = false;
+        Debug.Log("마우스down");
     }
 
     //마우스 드래그 중
@@ -24,8 +25,10 @@ public class DragDrop : MonoBehaviour
     {
         //물체를 드래그하면서 이동
         transform.position = MouseWorldPosition() + offset;
+        Debug.Log("마우스Drag");
+
     }
-    
+
     //마우스 버튼 놓여졌을 때
     //카메라에서 마우스 위치까지 Raycast를 발사하여 Raycast가 충돌한 객체 정보를 확인
     private void OnMouseUp()
@@ -44,6 +47,7 @@ public class DragDrop : MonoBehaviour
             }
         }
         transform.GetComponent<Collider>().enabled = true;
+        Debug.Log("마우스Up");
     }
 
     //마우스 스크린 위치를 월드 위치로 변환하는 함수
