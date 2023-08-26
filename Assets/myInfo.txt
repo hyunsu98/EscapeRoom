@@ -1,0 +1,6 @@
+{
+    "name": "fee",
+    "map": 1,
+    "token": 1,
+    "missionClear": true
+}

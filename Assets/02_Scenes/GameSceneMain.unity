@@ -14413,7 +14413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4342165955414323418
 Transform:
   m_ObjectHideFlags: 0
@@ -15749,6 +15749,10 @@ PrefabInstance:
     - target: {fileID: 2210325383539071025, guid: 38350be02830a4ac4be81d68c399fac8, type: 3}
       propertyPath: m_Name
       value: FreeCabinet01_DoorLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093592694495899166, guid: 38350be02830a4ac4be81d68c399fac8, type: 3}
+      propertyPath: speed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38350be02830a4ac4be81d68c399fac8, type: 3}
@@ -17647,6 +17651,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2210325383539071025, guid: 38350be02830a4ac4be81d68c399fac8, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093592694495899166, guid: 38350be02830a4ac4be81d68c399fac8, type: 3}
+      propertyPath: speed
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -30504,15 +30512,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6461263257624621265, guid: cb94bac571d855a4bb2d7401d9ce6330, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.398
+      value: -0.19
       objectReference: {fileID: 0}
     - target: {fileID: 6461263257624621265, guid: cb94bac571d855a4bb2d7401d9ce6330, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.02
+      value: 0.418
       objectReference: {fileID: 0}
     - target: {fileID: 6461263257624621265, guid: cb94bac571d855a4bb2d7401d9ce6330, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.355
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 6461263257624621265, guid: cb94bac571d855a4bb2d7401d9ce6330, type: 3}
       propertyPath: m_LocalRotation.w

@@ -4,10 +4,25 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.EventSystems;
 using Photon.Realtime;
+using System.IO;
+using System.Text;
+
+
+//Json 저장 내용 (이름/맵/토큰/끝냈는지)
+[System.Serializable]
+public class GameInfo
+{
+    public string name;
+    public int map;
+    public int token;
+    public bool missionClear;
+}
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager instance;
+
+    public GameInfo gameInfo;
 
     public int token;
     public int maxToken;
@@ -55,6 +70,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+       
         //RPC 호출 빈도
         PhotonNetwork.SendRate = 30;
 
@@ -169,5 +185,52 @@ public class GameManager : MonoBehaviourPunCallbacks
                 PhotonNetwork.LoadLevel("EndingScene");
             }
         }*/
+
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            JsonSave();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            JsonCall();
+        }
+    }
+
+    void JsonSave()
+    {
+        gameInfo = new GameInfo();
+
+        //내 이름
+        gameInfo.name = PhotonNetwork.LocalPlayer.NickName;
+        gameInfo.map = 1;
+        gameInfo.token = this.token;
+        gameInfo.missionClear = true;
+
+        string jsonData = JsonUtility.ToJson(gameInfo, true);
+        Debug.Log(jsonData);
+
+        //파일 저장
+        FileStream file = new FileStream(Application.dataPath + "/myInfo.txt", FileMode.Create);
+        byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
+        file.Write(byteData, 0, byteData.Length);
+        file.Close();
+    }
+
+
+    void JsonCall()
+    {
+        //파일 열기
+        FileStream file = new FileStream(Application.dataPath + "/myInfo.txt", FileMode.Open);
+        byte[] byteData = new byte[file.Length];
+        file.Read(byteData, 0, byteData.Length);
+        file.Close();
+
+        //정보 셋팅
+        string jsonData = Encoding.UTF8.GetString(byteData);
+
+        //다시 담아줘야 함
+        gameInfo = JsonUtility.FromJson<GameInfo>(jsonData);
+        Debug.Log(jsonData);
     }
 }
