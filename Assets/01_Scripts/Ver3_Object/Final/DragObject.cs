@@ -122,8 +122,8 @@ public class DragObject : MonoBehaviourPun, IObjectData
             if (Physics.Linecast(savePos, Camera.main.transform.position, out RaycastHit hit, layerMask))
             {
                 //있을때
-                finalDistance = Mathf.Clamp(hit.distance * 2, 1, 10); ;
-                //finalDistance = hit.distance * 2;
+                //finalDistance = Mathf.Clamp(hit.distance * 2, 1, 10);
+                finalDistance = hit.distance * 2;
 
                 Debug.Log($"닿은물체 {hit.collider.name} 거리는 {hit.distance}");
             }
