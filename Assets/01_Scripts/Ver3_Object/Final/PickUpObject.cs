@@ -33,7 +33,7 @@ public class PickUpObject : MonoBehaviourPun, IObjectData
     //리지드 바디 필요
     Rigidbody rb;
 
-    public GameObject moveObject = null;
+    float finalDistance;
 
     public void Awake()
     {
@@ -113,7 +113,7 @@ public class PickUpObject : MonoBehaviourPun, IObjectData
     // 2. 카메라~objectGrabPointTransform.position와의 거리
     // 1과 2중 짧은 거리에 해당하는 //이동을
 
-    float finalDistance;
+   
 
     private void FixedUpdate()
     {
@@ -184,6 +184,8 @@ public class PickUpObject : MonoBehaviourPun, IObjectData
                 //finalDistance = Mathf.Clamp(hit.distance, 0, 10);
 
                 //finalDistance = Mathf.Clamp(hit.distance * 0.2f, 0, 5); ;
+
+                //finalDistance = Mathf.Clamp(hit.distance * 2, 1, 10);
                 finalDistance = hit.distance * 2;
 
                 Debug.Log($"닿은물체 {hit.collider.name} 거리는 {hit.distance}");

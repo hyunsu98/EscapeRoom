@@ -570,6 +570,7 @@ MonoBehaviour:
   - {fileID: 5666385887615515331}
   nickName: {fileID: 45161307602418127}
   myUI: {fileID: 3106778865572655854}
+  myModel: {fileID: 2172235078529083723}
   anim: {fileID: 2290535989218565568}
   cam: {fileID: 3780301071341898846}
   run: 0
@@ -1048,6 +1049,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -3420941610899207910, guid: b6f50cad21fa417448ae94505bc34957, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -2972324554277783046, guid: b6f50cad21fa417448ae94505bc34957, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1127,6 +1132,10 @@ PrefabInstance:
     - target: {fileID: 1664083765829960058, guid: b6f50cad21fa417448ae94505bc34957, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664083765829960058, guid: b6f50cad21fa417448ae94505bc34957, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1668005473308108988, guid: b6f50cad21fa417448ae94505bc34957, type: 3}
       propertyPath: m_Layer
@@ -1234,6 +1243,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6f50cad21fa417448ae94505bc34957, type: 3}
+--- !u!1 &2172235078529083723 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3420941610899207910, guid: b6f50cad21fa417448ae94505bc34957, type: 3}
+  m_PrefabInstance: {fileID: 5666385887309488209}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &2290535989218565568 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: b6f50cad21fa417448ae94505bc34957, type: 3}

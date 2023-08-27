@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviourPun//, IPunObservable
 
     //UI Canvas
     public GameObject myUI;
+    public GameObject myModel;
 
     //중력
     float gravit = -9.81f;
@@ -54,6 +55,7 @@ public class PlayerMove : MonoBehaviourPun//, IPunObservable
         {
             //UI 를 비활성화 하자
             myUI.SetActive(false);
+            myModel.SetActive(false);
         }
 
         else

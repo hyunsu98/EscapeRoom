@@ -28,6 +28,8 @@ public class DragObject : MonoBehaviourPun, IObjectData
     //리지드 바디 필요
     Rigidbody rb;
 
+    float finalDistance;
+
     public void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -99,17 +101,51 @@ public class DragObject : MonoBehaviourPun, IObjectData
         //이동할 위치가 있다면
         if (objectGrabPointTransform != null)
         {
-            //Lerp이동 [벽뚫기 반대로 적용]
-            // 1. 카메라~앞방향으로 Ray를 쏴서 부딪힌 지점과의 거리
-            // 2. 카메라~objectGrabPointTransform.position와의 거리
-            // 1과 2중 짧은 거리에 해당하는 //이동을
 
-            Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
+            /*Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
+            rb.MovePosition(newPosition);*/
+
+            //이동할 위치와 카메라의 거리 구하기
+            float distance = Vector3.Distance(objectGrabPointTransform.position, Camera.main.transform.position);
+
+            //처음 거리 저장 //objectGrabPointTransform;
+            Vector3 savePos = objectGrabPointTransform.position;
+
+            //이동할 위치에서 카메라의 방향으로 거리만큼만 레이쏘기
+            Debug.DrawRay(objectGrabPointTransform.position, Camera.main.transform.forward * -distance, Color.green);
+
+            //플레이어 레이어만 제외하고 충돌 체크
+            int layerMask = ((1 << LayerMask.NameToLayer("Player")) | (1 << LayerMask.NameToLayer("Pickable")));
+            layerMask = ~layerMask;
+
+            //플레이어 빼고 잡은 위치랑 카메라 사이의 닿은 물체가 있는지 확인
+            if (Physics.Linecast(savePos, Camera.main.transform.position, out RaycastHit hit, layerMask))
+            {
+                //있을때
+                finalDistance = Mathf.Clamp(hit.distance * 2, 1, 10); ;
+                //finalDistance = hit.distance * 2;
+
+                Debug.Log($"닿은물체 {hit.collider.name} 거리는 {hit.distance}");
+            }
+            else
+            {
+                //없을때
+                finalDistance = 0;
+                Debug.Log($"닿지 않아야함");
+            }
+
+            //마지막 위치는 = 오브젝트 위치에서부터 카메라 방향으로 최종거리만큼 이동한 위치를 최종 위치에 저장
+            //Vector3 finalPosition = objectGrabPointTransform.position + -Camera.main.transform.forward * finalDistance;
+            Vector3 finalPosition = savePos + -Camera.main.transform.forward * finalDistance;
+
+            Vector3 newPosition = Vector3.Lerp(transform.position, finalPosition, Time.deltaTime * lerpSpeed);
 
             // MovePosition은 리지드바디 보간(rigidbody interpolation)이 활성화 돼 있으면, 매 프레임 렌더링 사이에서도 자연스러운 이동을 가질 수 있음
             // 오류 생김) 값을 zero로 했을때 자꾸 움직임 
             rb.MovePosition(newPosition);
         }
+
+
 
         //잡으면 hiddenObject 적용하면 안됨.
         else
