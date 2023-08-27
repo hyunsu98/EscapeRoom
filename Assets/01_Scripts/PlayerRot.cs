@@ -48,7 +48,7 @@ public class PlayerRot : MonoBehaviourPun
         transform.localEulerAngles = new Vector3(0, rotX, 0);
 
         //x축 회전(상하 회전)값을 -90eh ~ 90도 사이로 제한하낟.
-        rotY = Mathf.Clamp(rotY, -90f, 90f);
+        rotY = Mathf.Clamp(rotY, -80f, 80f);
 
         //상하회전은 카메라를 회전시키자.
         // Camera.main.transform.localEulerAngles = new Vector3(-rotY, 0, 0);
