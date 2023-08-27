@@ -18,23 +18,51 @@ public class OpenDoor : MonoBehaviourPun
     //private Vector3 savePos;
     Quaternion targetRotation;
 
+    public bool key;
+    public bool finalKey;
+
     private void Update()
     {
         Debug.Log(isOpen);
 
-        if (isOpen)
+        if(key)
         {
-            //Y축 회전
-            Quaternion targetRotation = Quaternion.Euler(0, doorOpenAngle, 0);
+            if(GameManager.instance.missionTwo == true)
+            {
+                //Y축 회전
+                Quaternion targetRotation = Quaternion.Euler(0, doorOpenAngle, 0);
 
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, speed * Time.deltaTime);
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, speed * Time.deltaTime);
+            }
+        }
+
+        else if(finalKey)
+        {
+            if (GameManager.instance.missionThree == true)
+            {
+                //Y축 회전
+                Quaternion targetRotation = Quaternion.Euler(0, doorOpenAngle, 0);
+
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, speed * Time.deltaTime);
+            }
         }
 
         else
         {
-            Quaternion targetRotation2 = Quaternion.Euler(0, doorCloseAngle, 0);
+            if (isOpen)
+            {
+                //Y축 회전
+                Quaternion targetRotation = Quaternion.Euler(0, doorOpenAngle, 0);
 
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation2, speed * Time.deltaTime);
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, speed * Time.deltaTime);
+            }
+
+            else
+            {
+                Quaternion targetRotation2 = Quaternion.Euler(0, doorCloseAngle, 0);
+
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation2, speed * Time.deltaTime);
+            }
         }
     }
 

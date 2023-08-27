@@ -12,9 +12,9 @@ using UnityEngine;
 public class PickUpObject : MonoBehaviourPun, IObjectData
 {
     [Header("키오브젝트")]
+    public bool hintOne;
     public bool key;
-
-    public bool mission;
+    public bool finalKey;
 
     [Header("이동속도")]
     public float lerpSpeed = 10;
@@ -186,15 +186,16 @@ public class PickUpObject : MonoBehaviourPun, IObjectData
                 //finalDistance = Mathf.Clamp(hit.distance * 0.2f, 0, 5); ;
 
                 //finalDistance = Mathf.Clamp(hit.distance * 2, 1, 10);
-                finalDistance = hit.distance * 2;
+                finalDistance = Mathf.Clamp(hit.distance * 2, 1, 3);
+                //finalDistance = hit.distance * 2;
 
-                Debug.Log($"닿은물체 {hit.collider.name} 거리는 {hit.distance}");
+                //Debug.Log($"닿은물체 {hit.collider.name} 거리는 {hit.distance}");
             }
             else
             {
                 //없을때
                 finalDistance = 0;
-                Debug.Log($"닿지 않아야함");
+                //Debug.Log($"닿지 않아야함");
             }
 
             //마지막 위치는 = 오브젝트 위치에서부터 카메라 방향으로 최종거리만큼 이동한 위치를 최종 위치에 저장

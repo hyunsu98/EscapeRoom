@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6631538049818058189}
   - component: {fileID: 8926983221744544007}
   - component: {fileID: -5283724545873310959}
-  - component: {fileID: 1216061768}
   - component: {fileID: 1216061769}
   - component: {fileID: 1216061770}
+  - component: {fileID: 6650947355458228176}
   m_Layer: 0
   m_Name: FreeCabinet01_DoorRight
   m_TagString: Untagged
@@ -100,7 +100,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.49920905, y: 0.52621853, z: 0.06996923}
   m_Center: {x: 0.24960452, y: 0, z: 0.034984615}
---- !u!114 &1216061768
+--- !u!114 &1216061769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981704778235185362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a66edbe92b6e3449cc52c22a65636e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  doorOpenAngle: -90
+  doorCloseAngle: 0
+  speed: 3
+--- !u!114 &1216061770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981704778235185362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eaf3fdd33115c344be09a9ddc4563d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 8926983221744544007}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  num: 3
+--- !u!114 &6650947355458228176
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,35 +154,3 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1216061769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6981704778235185362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95a66edbe92b6e3449cc52c22a65636e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isOpen: 0
-  doorOpenAngle: -90
-  doorCloseAngle: 0
-  speed: 1
---- !u!114 &1216061770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6981704778235185362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eaf3fdd33115c344be09a9ddc4563d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers:
-  - {fileID: 8926983221744544007}
-  color: {r: 1, g: 1, b: 1, a: 1}
-  num: 0

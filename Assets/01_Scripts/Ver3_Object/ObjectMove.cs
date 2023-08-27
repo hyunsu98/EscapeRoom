@@ -68,7 +68,7 @@ public class ObjectMove : MonoBehaviourPun
 
             if(key)
             {
-                GameManager.instance.KeyEat(true);
+                //GameManager.instance.KeyEat(true);
                 Debug.Log("Å°¸¦ È¹µæ");
             }
         }

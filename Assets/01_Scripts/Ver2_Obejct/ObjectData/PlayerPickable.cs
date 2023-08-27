@@ -244,7 +244,7 @@ public class PlayerPickable : MonoBehaviourPun
             UIManager.instance.BaseUI();
 
             //?. null이 아닌지 여부 확인 / null이 아니라면 ToggleHighlight(false)로 실행(잡을 수 있는 상태)
-            hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
+            //hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
             hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(false);
         }
 
@@ -257,7 +257,7 @@ public class PlayerPickable : MonoBehaviourPun
         if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit,
             hitRange))
         {
-            hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
+            //hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
             hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(true);
 
             //태그를 통해

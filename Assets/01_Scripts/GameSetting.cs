@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GameSetting : MonoBehaviourPunCallbacks
 {
@@ -18,7 +19,9 @@ public class GameSetting : MonoBehaviourPunCallbacks
     //게임 시작할 때
     public GameObject Timer;
     public GameObject Rain;
+
     public GameObject TokenUI;
+    public GameObject MissionUI;
 
     public GameObject door;
 
@@ -117,9 +120,14 @@ public class GameSetting : MonoBehaviourPunCallbacks
         print(newPlayer.NickName + "님이 들어왔습니다!"); // UI로 구성하면됨
     }
 
-
-    private void Update()
+    public void MissionOne(string name)
     {
-       
+        //UI이 떠야 함
+        Animator anim = MissionUI.GetComponent<Animator>();
+        anim.SetTrigger("IsAction");
+
+        Text missionText = MissionUI.GetComponentInChildren<Text>();
+
+        missionText.text = name + " 님이";
     }
 }

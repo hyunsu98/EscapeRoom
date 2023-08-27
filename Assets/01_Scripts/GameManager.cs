@@ -29,14 +29,15 @@ public class GameManager : MonoBehaviour
 
     public bool isTimeOver;
 
-    /*public bool Mission1 = false;
-    public bool Mission2 = false;
-    public bool Mission3 = false;
-    public bool MissionClear = false;*/
+    public bool missionOne = false;
+    public bool missionTwo = false;
+    public bool missionThree = false;
 
     public bool MissionClear = false;
 
     OpenDoor opendoor;
+
+    public string photonName;
 
     private void Awake()
     {
@@ -52,11 +53,6 @@ public class GameManager : MonoBehaviour
             //나를 파괴하자 -> 새로만들어진애는 파괴 
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        
     }
 
     //토큰 얻기
@@ -75,16 +71,7 @@ public class GameManager : MonoBehaviour
         {
             //Mission3= true;
             Debug.Log($"토큰 다 찾았다");
-
-            MissionClear = true;
             //JsonSave();
-
-            SoundManager.instance.PlaySFX(SoundManager.ESfx.SFX_OPENDOOR);
-            opendoor = GameSetting.instance.door.GetComponent<OpenDoor>();
-            opendoor.isOpen = true;
-
-
-            StartCoroutine("OpenDoor");
         }
     }
 
@@ -95,28 +82,59 @@ public class GameManager : MonoBehaviour
         PhotonNetwork.LoadLevel("EndingScene");
     }
 
-    //키를 획득한 상태
-    //키가 어떤 객체와 닿으면 문 열릴 수 있게
-    //인벤토리로
-    public void KeyEat(bool isFindKey)
-    {
-        //Mission1 = isFindKey;
-    }
-
-    [PunRPC]
-    public void Mission1Chek(bool isOk)
-    {
-        //Mission1 = isOk;
-    }
-
-    private void Update()
-    {
-
-    }
-
     public void TokenReset()
     {
         token = 0;
+    }
+
+    public void MissionOne(string name)
+    {
+        if(missionOne == true)
+        {
+            return;
+        }
+
+        //한번만 실행되게
+        missionOne = true;
+
+        photonName = name;
+        SoundManager.instance.PlaySFX(SoundManager.ESfx.SFX_MissionClear);
+
+        GameSetting.instance.MissionOne(name);
+    }
+
+    public void MissionTwo(string name)
+    {
+        if (missionTwo == true)
+        {
+            return;
+        }
+
+        //한번만 실행되게
+        missionTwo = true;
+
+        photonName = name;
+        SoundManager.instance.PlaySFX(SoundManager.ESfx.SFX_MissionClear);
+
+        GameSetting.instance.MissionOne(name);
+    }
+
+    public void MissionThree(string name)
+    {
+        if (missionThree == true)
+        {
+            return;
+        }
+
+        //한번만 실행되게
+        missionThree = true;
+
+        MissionClear = true;
+        SoundManager.instance.PlaySFX(SoundManager.ESfx.SFX_OPENDOOR);
+        opendoor = GameSetting.instance.door.GetComponent<OpenDoor>();
+        opendoor.isOpen = true;
+
+        StartCoroutine("OpenDoor");
     }
 
     public void JsonSave()
