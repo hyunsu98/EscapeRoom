@@ -188,6 +188,7 @@ MonoBehaviour:
   key: 0
   mission: 0
   lerpSpeed: 10
+  moveObject: {fileID: 0}
 --- !u!1 &6281793169717259862
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +377,7 @@ MonoBehaviour:
   key: 0
   mission: 0
   lerpSpeed: 10
+  moveObject: {fileID: 0}
 --- !u!1 &6281986844817735280
 GameObject:
   m_ObjectHideFlags: 0
