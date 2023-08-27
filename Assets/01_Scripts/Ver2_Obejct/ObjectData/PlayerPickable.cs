@@ -119,10 +119,16 @@ public class PlayerPickable : MonoBehaviourPun
                 // 잡을 때 소유권을 넘겨준다. (그렇지 않으면 방장만 true로 되기 때문에 동기화 오류가 됨)
                 inHandItem = objectdata.PickUp(photonView.Owner);
 
+                //나랑 hit의 거리가 z 축으로 되야함
+                float distance = Vector3.Distance(objectGrabPointTransform.position, inHandItem.transform.position);
+                Debug.Log("거리는" + distance);
+                //자식을 넘겨주고
+
+                objectGrabPointTransform.position = hit.point;
+
                 //오브젝트 자체에서 이동할 수 있게 (카메라 자식 위치 넘겨주기)
                 //객체마다 다른 카메라의 위치를 넘겨준다면?
-                //objectdata.Grab(objectGrabPointTransform);
-                objectdata.Grab(TestGrabPoint);
+                objectdata.Grab(objectGrabPointTransform);
 
                 // 키 자체에서 설정할 예정
                 // 잡았을때 bool 값이 true 라면 -> 키인 것임
@@ -222,7 +228,7 @@ public class PlayerPickable : MonoBehaviourPun
             //나일때만인데 왜 되는 거지?
             RayCheck();
 
-            GrabPos();
+            //GrabPos();
         }
     }
 
@@ -271,26 +277,6 @@ public class PlayerPickable : MonoBehaviourPun
             {
                 UIManager.instance.ResetUI();
                 UIManager.instance.opneUI.SetActive(true);
-            }
-        }
-    }
-
-    //얘 설정 다시 해야 함
-    /*[PunRPC]
-    public void Check(bool isCk)
-    {
-        GameManager.instance.Mission2 = true;
-    }*/
-
-    void GrabPos()
-    {
-        if(Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange))
-        {
-            if (hit.collider.CompareTag("DragObj"))
-            {
-                //닿은 지점을 잡는 지점으로 놓기
-                TestGrabPoint = hit.transform;
-                Debug.Log($"TEST닿은지점 + {TestGrabPoint}");
             }
         }
     }
