@@ -330,6 +330,8 @@ public class PlayerPickable : MonoBehaviourPun
                 UIManager.instance.ResetUI();
                 UIManager.instance.opneUI.SetActive(true);
             }
+
+            //else if (hit.collider.C)
         }
     }
 }

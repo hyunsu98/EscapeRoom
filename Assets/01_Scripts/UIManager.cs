@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     public GameObject dragUI;
     public GameObject opneUI;
     public GameObject baseUI;
+    public GameObject tokenUI;
 
     //토큰 텍스트
     [SerializeField] Text tokenText;
@@ -41,6 +42,7 @@ public class UIManager : MonoBehaviour
         pickUpUI.SetActive(false);
         dragUI.SetActive(false);
         opneUI.SetActive(false);
+        tokenUI.SetActive(false);
     }
 
     //UI 기본 설정
@@ -50,5 +52,6 @@ public class UIManager : MonoBehaviour
         pickUpUI.SetActive(false);
         dragUI.SetActive(false);
         opneUI.SetActive(false);
+        tokenUI.SetActive(false);
     }
 }
