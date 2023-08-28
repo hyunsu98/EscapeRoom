@@ -38,6 +38,11 @@ public class PlayerPickable : MonoBehaviourPun
 
     private void KeyCheck()
     {
+        if(Input.GetMouseButtonDown(0))
+        {
+            Click();
+        }
+
         if (Input.GetMouseButton(0))
         {
             PickUp(true);
@@ -50,7 +55,7 @@ public class PlayerPickable : MonoBehaviourPun
 
         if (Input.GetMouseButtonDown(1))
         {
-            Use();
+            //Use();
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -189,85 +194,68 @@ public class PlayerPickable : MonoBehaviourPun
                 }
             }
 
-            //X축 이동 서랍
-            if (hit.collider.GetComponent<OpenDrawer>())
+
+        }
+    }
+
+    void Click()
+    {
+        //X축 이동 서랍
+        if (hit.collider.GetComponent<OpenDrawer>())
+        {
+            OpenDrawer openDrawer = hit.collider.GetComponent<OpenDrawer>();
+
+            if (openDrawer != null)
             {
-                OpenDrawer openDrawer = hit.collider.GetComponent<OpenDrawer>();
+                // ※ 열릴 때 소리 나게
 
-                if (openDrawer != null)
+                //openDrawer.isOpen = !openDrawer.isOpen;
+                //자신의 포톤뷰를 가져온다.
+                var pv = hit.collider.GetComponent<PhotonView>();
+
+                //포톤뷰가 있다면
+                if (pv != null)
                 {
-                    // ※ 열릴 때 소리 나게
-
-                    //openDrawer.isOpen = !openDrawer.isOpen;
-                    //자신의 포톤뷰를 가져온다.
-                    var pv = hit.collider.GetComponent<PhotonView>();
-
-                    //포톤뷰가 있다면
-                    if (pv != null)
-                    {
-                        //포톤뷰의 DoorAction을 실행시킨다.
-                        //매개변수 값이 들어가야 할 것임.
-                        pv.RPC("DoorAction", RpcTarget.All, 1);
-                    }
-                    else
-                    {
-                        print("포톤뷰가 없어요");
-                    }
+                    //포톤뷰의 DoorAction을 실행시킨다.
+                    //매개변수 값이 들어가야 할 것임.
+                    pv.RPC("DoorAction", RpcTarget.All, 1);
+                }
+                else
+                {
+                    print("포톤뷰가 없어요");
                 }
             }
+        }
 
-            //Y축 문 회전
-            //최종문 말고 
-            if (hit.collider.GetComponent<OpenDoor>())
+        //Y축 문 회전
+        //최종문 말고 
+        if (hit.collider.GetComponent<OpenDoor>())
+        {
+            OpenDoor openDoor = hit.collider.GetComponent<OpenDoor>();
+
+            if (openDoor != null)
             {
-                OpenDoor openDoor = hit.collider.GetComponent<OpenDoor>();
+                var pv = hit.collider.GetComponent<PhotonView>();
 
-                if (openDoor != null)
+                //포톤뷰가 있다면
+                if (pv != null)
                 {
-                    var pv = hit.collider.GetComponent<PhotonView>();
-
-                    //포톤뷰가 있다면
-                    if (pv != null)
-                    {
-                        //포톤뷰의 DoorAction을 실행시킨다.
-                        //매개변수 값이 들어가야 할 것임.
-                        pv.RPC("OpenDoorAction", RpcTarget.All, 1);
-                    }
-                    else
-                    {
-                        print("포톤뷰가 없어요");
-                    }
-
-                    /*//게임 오브젝트에서 미션이 풀렸으면 열릴 수 있게 할 것임.
-                    //문여는 곳이 닿았는데 내가 Key를 가지고 있고, 키를 들고 있다면 문 열리자
-                    //문여는 곳에 닿았음 내가 키가 있다면 
-                    if (GameManager.instance.Mission1 == true)
-                    {
-                        // ※ 잡을 때 소리 나게
-
-                        //문 열기
-                        openDoor.isOpen = !openDoor.isOpen;
-
-                        if (openDoor.isOpen == true)
-                        {
-                            //GameManager.instance.Mission2 = true;
-                            //photonView.RPC(nameof(Check), RpcTarget.All, 1);
-                        }
-                    }
-                    else
-                    {
-                        Debug.Log("미션1못품");
-                    }*/
+                    //포톤뷰의 DoorAction을 실행시킨다.
+                    //매개변수 값이 들어가야 할 것임.
+                    pv.RPC("OpenDoorAction", RpcTarget.All, 1);
+                }
+                else
+                {
+                    print("포톤뷰가 없어요");
                 }
             }
+        }
 
-            if (hit.collider.GetComponent<TokenObject>())
-            {
-                TokenObject token = hit.collider.GetComponent<TokenObject>();
+        if (hit.collider.GetComponent<TokenObject>())
+        {
+            TokenObject token = hit.collider.GetComponent<TokenObject>();
 
-                token.Sorce();
-            }
-
+            token.Sorce();
         }
     }
 
