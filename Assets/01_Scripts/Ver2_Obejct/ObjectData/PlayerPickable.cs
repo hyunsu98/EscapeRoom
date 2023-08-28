@@ -22,7 +22,6 @@ public class PlayerPickable : MonoBehaviourPun
 
     //처음 저장 포인트
     //최대 길이 // 최소길이
-    
 
     //닿은 물체 저장 (닿은 물체에 따라서 다르게 지정하면 -> 상호작용 가능) 책, 버튼, 힌트 등등
     private RaycastHit hit;
@@ -30,25 +29,23 @@ public class PlayerPickable : MonoBehaviourPun
     //상속받아서 쓸 수 있게 만들기
     //잡은 객체를 꺼야하기 때문에
     //ObjectMove pickableItem;
-    IObjectData objectdata;
+    //IObjectData objectdata;
+
+    PickUpObject pickUpObject;
+    DragObject dragObject;
+
+    bool iskeydrag;
 
     private void KeyCheck()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            print("누름");
-        }
-
         if (Input.GetMouseButton(0))
         {
-            //PickUp();
-            print("누르는 중");
+            PickUp(true);
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            Drop();
-            print("뗌");
+            Drop(true);
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -56,9 +53,14 @@ public class PlayerPickable : MonoBehaviourPun
             Use();
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            PickUp();
+            PickUp(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Drop(false);
         }
     }
 
@@ -79,25 +81,48 @@ public class PlayerPickable : MonoBehaviourPun
     }
 
     //놓기
-    private void Drop()
+    private void Drop(bool key)
     {
         // 잡고 있는 물체가 있다면
         if (inHandItem != null)
         {
             //둘 다 부모 설정을 안해줄 것임.
             //inHandItem.transform.SetParent(null); -> 부모를 나올 필요 없음.
-            inHandItem = null;
+  
 
-            objectdata.Drop();
+            if (key)
+            {
 
-            UIManager.instance.ResetUI();
+                if (dragObject != null)
+                {
+                    inHandItem = null;
+                    dragObject.Drop();
+
+                    UIManager.instance.ResetUI();
+                }
+
+            }
+
+            else
+            {
+                if (pickUpObject != null)
+                {
+                    inHandItem = null;
+                    pickUpObject.Drop();
+
+                    UIManager.instance.ResetUI();
+                }
+                   
+            }
+
+
             //objectdata = null;
         }
     }
 
     //잡았을때 내 위치의 정보 넘겨주고
     //이동할 수 있게
-    private void PickUp()
+    private void PickUp(bool key)
     {
         if (hit.collider != null)
         {
@@ -107,33 +132,61 @@ public class PlayerPickable : MonoBehaviourPun
         // 닿은 객체 있는데 잡고 있는 객체가 없다면
         if (hit.collider != null && inHandItem == null)
         {
-            objectdata = hit.collider.GetComponent<IObjectData>();
-
-            if (objectdata != null)
+            //drage
+            if (key)
             {
-                Debug.Log($"드래그 오브젝트 {hit.collider.name}");
+                dragObject = hit.collider.GetComponent<DragObject>();
 
-                // ※ 잡을 때 소리 나게
+                if (dragObject != null)
+                {
+                    Debug.Log($"드래그 오브젝트 {hit.collider.name}");
 
-                // 손에 든 객체를 설정 (포톤뷰의 주인을 보낸다)
-                // 잡을 때 소유권을 넘겨준다. (그렇지 않으면 방장만 true로 되기 때문에 동기화 오류가 됨)
-                inHandItem = objectdata.PickUp(photonView.Owner);
+                    // ※ 잡을 때 소리 나게
 
-                //나랑 hit의 거리가 z 축으로 되야함
-                float distance = Vector3.Distance(objectGrabPointTransform.position, inHandItem.transform.position);
-                Debug.Log("거리는" + distance);
-                //자식을 넘겨주고
+                    // 손에 든 객체를 설정 (포톤뷰의 주인을 보낸다)
+                    // 잡을 때 소유권을 넘겨준다. (그렇지 않으면 방장만 true로 되기 때문에 동기화 오류가 됨)
+                    inHandItem = dragObject.PickUp(photonView.Owner);
 
-                objectGrabPointTransform.position = hit.point;
+                    //나랑 hit의 거리가 z 축으로 되야함
+                    float distance = Vector3.Distance(objectGrabPointTransform.position, inHandItem.transform.position);
+                    Debug.Log("거리는" + distance);
+                    //자식을 넘겨주고
 
-                //오브젝트 자체에서 이동할 수 있게 (카메라 자식 위치 넘겨주기)
-                //객체마다 다른 카메라의 위치를 넘겨준다면?
-                objectdata.Grab(objectGrabPointTransform);
+                    objectGrabPointTransform.position = hit.point;
 
-                // 키 자체에서 설정할 예정
-                // 잡았을때 bool 값이 true 라면 -> 키인 것임
-                // 그럼 게임 오브젝트에 키를 찾았다고 알려주고
-                // 키 오브젝트가 다른 해당 오브젝트와 닿으면 문이 열리게 할 예정
+                    //오브젝트 자체에서 이동할 수 있게 (카메라 자식 위치 넘겨주기)
+                    //객체마다 다른 카메라의 위치를 넘겨준다면?
+                    dragObject.Grab(objectGrabPointTransform);
+                }
+
+            }
+
+            //pick
+            else
+            {
+                pickUpObject = hit.collider.GetComponent<PickUpObject>();
+
+                if (pickUpObject != null)
+                {
+                    Debug.Log($"드래그 오브젝트 {hit.collider.name}");
+
+                    // ※ 잡을 때 소리 나게
+
+                    // 손에 든 객체를 설정 (포톤뷰의 주인을 보낸다)
+                    // 잡을 때 소유권을 넘겨준다. (그렇지 않으면 방장만 true로 되기 때문에 동기화 오류가 됨)
+                    inHandItem = pickUpObject.PickUp(photonView.Owner);
+
+                    //나랑 hit의 거리가 z 축으로 되야함
+                    float distance = Vector3.Distance(objectGrabPointTransform.position, inHandItem.transform.position);
+                    Debug.Log("거리는" + distance);
+                    //자식을 넘겨주고
+
+                    objectGrabPointTransform.position = hit.point;
+
+                    //오브젝트 자체에서 이동할 수 있게 (카메라 자식 위치 넘겨주기)
+                    //객체마다 다른 카메라의 위치를 넘겨준다면?
+                    pickUpObject.Grab(objectGrabPointTransform);
+                }
             }
 
             //X축 이동 서랍
@@ -243,6 +296,11 @@ public class PlayerPickable : MonoBehaviourPun
             //기본 셋팅
             UIManager.instance.BaseUI();
 
+            Outline outLine = hit.collider.GetComponent<Outline>();
+            if (outLine != null)
+            {
+                outLine.OutlineWidth = 0;
+            }
             //?. null이 아닌지 여부 확인 / null이 아니라면 ToggleHighlight(false)로 실행(잡을 수 있는 상태)
             //hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
             hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(false);
@@ -259,6 +317,12 @@ public class PlayerPickable : MonoBehaviourPun
         {
             //hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
             hit.collider.GetComponent<OpenHighlight>()?.ToggleHighlight(true);
+
+            Outline outLine = hit.collider.GetComponent<Outline>();
+            if (outLine != null)
+            {
+                outLine.OutlineWidth = 6;
+            }
 
             //태그를 통해
             if (hit.collider.CompareTag("DragObj"))
