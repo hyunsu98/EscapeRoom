@@ -2905,6 +2905,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Token (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1035649459378902329, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+      propertyPath: m_TagString
+      value: Token
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
 --- !u!1 &794478661 stripped
@@ -2921,13 +2925,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 794478661}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf831d7fa96115a48b66e77d7aca606a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintOne: 0
-  key: 0
-  finalKey: 0
-  lerpSpeed: 10
+  outlineMode: 1
+  outlineColor: {r: 0.8544005, g: 1, b: 0.18431371, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &835867910
 GameObject:
   m_ObjectHideFlags: 0
@@ -3022,8 +3028,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Token (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1035649459378902329, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+      propertyPath: m_TagString
+      value: Token
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+--- !u!1 &848911971 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1035649459378902329, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+  m_PrefabInstance: {fileID: 848911970}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &848911972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848911971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0.8544005, g: 1, b: 0.18431371, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &865684283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7360,8 +7393,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Token (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1035649459378902329, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+      propertyPath: m_TagString
+      value: Token
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+--- !u!1 &1947662751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1035649459378902329, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+  m_PrefabInstance: {fileID: 1947662750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1947662752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947662751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0.8544005, g: 1, b: 0.18431371, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1954310275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7425,8 +7485,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Token (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1035649459378902329, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+      propertyPath: m_TagString
+      value: Token
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+--- !u!1 &1954310276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1035649459378902329, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+  m_PrefabInstance: {fileID: 1954310275}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1954310277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954310276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0.8544005, g: 1, b: 0.18431371, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1970935241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7582,6 +7669,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Token (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1035649459378902329, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+      propertyPath: m_TagString
+      value: Token
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
 --- !u!1 &2048459511 stripped
@@ -7598,13 +7689,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2048459511}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf831d7fa96115a48b66e77d7aca606a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintOne: 0
-  key: 0
-  finalKey: 0
-  lerpSpeed: 10
+  outlineMode: 1
+  outlineColor: {r: 0.8544005, g: 1, b: 0.18431371, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &2058539633
 GameObject:
   m_ObjectHideFlags: 0
@@ -8319,6 +8412,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Token (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1035649459378902329, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+      propertyPath: m_TagString
+      value: Token
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
 --- !u!1 &2107389986 stripped
@@ -8335,13 +8432,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2107389986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf831d7fa96115a48b66e77d7aca606a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintOne: 0
-  key: 0
-  finalKey: 0
-  lerpSpeed: 10
+  outlineMode: 1
+  outlineColor: {r: 0.8544005, g: 1, b: 0.18431371, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &2111739402
 GameObject:
   m_ObjectHideFlags: 0
@@ -9657,8 +9756,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Token
       objectReference: {fileID: 0}
+    - target: {fileID: 1035649459378902329, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+      propertyPath: m_TagString
+      value: Token
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+--- !u!1 &1035649460224601231 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1035649459378902329, guid: ef3634e36a909e041ac817a963a7ec68, type: 3}
+  m_PrefabInstance: {fileID: 1035649460224601230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1035649460224601232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035649460224601231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0.8544005, g: 1, b: 0.18431371, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!65 &1074537590981261670
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32712,6 +32838,10 @@ PrefabInstance:
     - target: {fileID: 1914858593473360428, guid: 8b3f48fd7bb978847a2f48d70351b50c, type: 3}
       propertyPath: m_Name
       value: SM_mug_03 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914858593473360428, guid: 8b3f48fd7bb978847a2f48d70351b50c, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6853595298495735276, guid: 8b3f48fd7bb978847a2f48d70351b50c, type: 3}
       propertyPath: sceneViewId

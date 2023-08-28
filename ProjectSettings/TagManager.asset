@@ -13,6 +13,7 @@ TagManager:
   - Door
   - PickUpObj
   - DragObj
+  - Token
   layers:
   - Default
   - TransparentFX

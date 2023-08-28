@@ -38,7 +38,7 @@ public class PlayerPickable : MonoBehaviourPun
 
     private void KeyCheck()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Click();
         }
@@ -88,15 +88,15 @@ public class PlayerPickable : MonoBehaviourPun
     //놓기
     private void Drop(bool key)
     {
+        //inHandItem.transform.SetParent(null); -> 부모를 나올 필요 없음.
+
         // 잡고 있는 물체가 있다면
         if (inHandItem != null)
         {
-            //둘 다 부모 설정을 안해줄 것임.
-            //inHandItem.transform.SetParent(null); -> 부모를 나올 필요 없음.
-  
-
             if (key)
             {
+
+                //둘 다 부모 설정을 안해줄 것임.
 
                 if (dragObject != null)
                 {
@@ -110,6 +110,7 @@ public class PlayerPickable : MonoBehaviourPun
 
             else
             {
+
                 if (pickUpObject != null)
                 {
                     inHandItem = null;
@@ -117,12 +118,10 @@ public class PlayerPickable : MonoBehaviourPun
 
                     UIManager.instance.ResetUI();
                 }
-                   
+
             }
-
-
-            //objectdata = null;
         }
+        //objectdata = null;
     }
 
     //잡았을때 내 위치의 정보 넘겨주고
@@ -331,6 +330,11 @@ public class PlayerPickable : MonoBehaviourPun
                 UIManager.instance.opneUI.SetActive(true);
             }
 
+            else if (hit.collider.CompareTag("Token"))
+            {
+                UIManager.instance.ResetUI();
+                UIManager.instance.tokenUI.SetActive(true);
+            }
             //else if (hit.collider.C)
         }
     }
