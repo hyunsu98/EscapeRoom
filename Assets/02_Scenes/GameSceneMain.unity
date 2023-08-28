@@ -2136,6 +2136,7 @@ MonoBehaviour:
   dragUI: {fileID: 745292399}
   opneUI: {fileID: 2071548932}
   baseUI: {fileID: 1269814604}
+  tokenUI: {fileID: 52945370}
   tokenText: {fileID: 128350651}
 --- !u!1 &582489389
 GameObject:
