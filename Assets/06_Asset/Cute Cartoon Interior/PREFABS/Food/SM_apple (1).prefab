@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 5936834765433341931}
   - component: {fileID: 1775500735}
   - component: {fileID: 1775500734}
-  - component: {fileID: 1775500736}
   - component: {fileID: 1775500739}
   - component: {fileID: 1775500740}
   - component: {fileID: 9187360719095322774}
+  - component: {fileID: 616527173}
   m_Layer: 9
   m_Name: SM_apple (1)
   m_TagString: DragObj
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 48ed0d04bf52d4045888af3cef25f577, type: 2}
+  - {fileID: 2100000, guid: c856162727dc18842bc191504f727456, type: 2}
   - {fileID: 2100000, guid: 59ec8c9691c904f468cc2e956168130d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -120,21 +120,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6461297695846733525, guid: f0984b60d0a4ffa45bad9cec68a176d8, type: 3}
---- !u!114 &1775500736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5288109641408423486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f65e387da490d2f4f8b1779241026712, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers:
-  - {fileID: 5936834765433341931}
-  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1775500739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,3 +172,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpSpeed: 10
+--- !u!114 &616527173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288109641408423486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

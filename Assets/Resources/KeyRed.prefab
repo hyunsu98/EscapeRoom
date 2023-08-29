@@ -15,18 +15,18 @@ GameObject:
   - component: {fileID: 3859896540110266706}
   - component: {fileID: 3828682778192337375}
   - component: {fileID: 3828682778192337372}
-  - component: {fileID: 7178602583911866232}
   - component: {fileID: 6902532617279486486}
   - component: {fileID: 4345213408496363989}
   - component: {fileID: 7719900361330028530}
   - component: {fileID: 7666796354864415481}
+  - component: {fileID: 1013870558}
   m_Layer: 9
   m_Name: KeyRed
   m_TagString: PickUpObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3793988889941214986
 Transform:
   m_ObjectHideFlags: 0
@@ -36,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 3796865506417849918}
   m_LocalRotation: {x: 0, y: 0.76604444, z: 0, w: 0.64278764}
   m_LocalPosition: {x: 0, y: 0.1387, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -234,21 +234,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8544368, y: 0.07709142, z: 0.29510805}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7178602583911866232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3796865506417849918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f65e387da490d2f4f8b1779241026712, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers:
-  - {fileID: 3810902651970363386}
-  color: {r: 1, g: 0.98093975, b: 0.30566037, a: 1}
 --- !u!114 &6902532617279486486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,10 +285,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf831d7fa96115a48b66e77d7aca606a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
-  key2: 0
-  finalKey: 1
   hintOne: 0
+  key: 0
+  finalKey: 1
   lerpSpeed: 10
 --- !u!114 &7666796354864415481
 MonoBehaviour:
@@ -321,3 +305,21 @@ MonoBehaviour:
   - {fileID: 3810902651970363386}
   color: {r: 1, g: 0.8445684, b: 0.09811318, a: 1}
   num: 0
+--- !u!114 &1013870558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3796865506417849918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0.8544005, g: 1, b: 0.18431371, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

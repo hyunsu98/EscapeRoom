@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 8790729312267137785}
   - component: {fileID: 8790729312267137782}
   - component: {fileID: 8790729312267137783}
-  - component: {fileID: 8790729312267137784}
   - component: {fileID: 5691757457438933618}
+  - component: {fileID: 8790729311043170105}
   m_Layer: 9
   m_Name: SM_brush_painting_02
   m_TagString: PickUpObj
@@ -104,7 +104,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &8790729312267137785
 BoxCollider:
@@ -158,21 +158,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &8790729312267137784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4340232582369772575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f65e387da490d2f4f8b1779241026712, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers:
-  - {fileID: 2826966414833067466}
-  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &5691757457438933618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +170,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf831d7fa96115a48b66e77d7aca606a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hintOne: 1
   key: 0
-  hintOne: 0
+  finalKey: 0
   lerpSpeed: 10
+--- !u!114 &8790729311043170105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4340232582369772575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce028c73f3c7b94da02de3faa06d8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 2826966414833067466}
+  color: {r: 0.6219355, g: 1, b: 0.22075468, a: 1}
+  num: 0

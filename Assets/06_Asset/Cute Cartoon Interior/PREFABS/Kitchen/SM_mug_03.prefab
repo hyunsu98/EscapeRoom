@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 113168122906334201}
   - component: {fileID: 101230115265670382}
   - component: {fileID: 7589459659808162989}
-  - component: {fileID: 2953296792468304420}
   - component: {fileID: 7464272675151346816}
   - component: {fileID: 6853595298495735276}
   - component: {fileID: 8167159763298151113}
-  m_Layer: 0
+  - component: {fileID: 8790729312022804067}
+  m_Layer: 9
   m_Name: SM_mug_03
   m_TagString: PickUpObj
   m_Icon: {fileID: 0}
@@ -119,21 +119,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2953296792468304420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914858593473360428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f65e387da490d2f4f8b1779241026712, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers:
-  - {fileID: 113168122906334201}
-  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &7464272675151346816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,8 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf831d7fa96115a48b66e77d7aca606a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hintOne: 0
   key: 0
-  mission: 0
+  finalKey: 0
   lerpSpeed: 10
 --- !u!114 &6853595298495735276
 MonoBehaviour:
@@ -165,7 +151,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 8167159763298151113}
@@ -188,3 +174,21 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &8790729312022804067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914858593473360428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

@@ -99,12 +99,7 @@ public class Outline : MonoBehaviour {
     needsUpdate = true;
   }
 
-    private void Start()
-    {
-        outlineWidth = 0;
-    }
-
-    void OnEnable() {
+  void OnEnable() {
     foreach (var renderer in renderers) {
 
       // Append outline shaders

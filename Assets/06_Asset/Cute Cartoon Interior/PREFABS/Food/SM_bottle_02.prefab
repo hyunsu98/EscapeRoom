@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 444693457}
   - component: {fileID: 444693452}
   - component: {fileID: 444693453}
-  - component: {fileID: 444693454}
   - component: {fileID: 444693455}
   - component: {fileID: 5411869056357623097}
+  - component: {fileID: 444693451}
   m_Layer: 9
   m_Name: SM_bottle_02
   m_TagString: PickUpObj
@@ -160,21 +160,6 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!114 &444693454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970986253575333152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f65e387da490d2f4f8b1779241026712, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers:
-  - {fileID: 1619429626605110517}
-  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &444693455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,5 +187,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf831d7fa96115a48b66e77d7aca606a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hintOne: 0
   key: 0
+  finalKey: 0
   lerpSpeed: 10
+--- !u!114 &444693451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970986253575333152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
