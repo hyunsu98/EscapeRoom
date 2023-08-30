@@ -33,6 +33,18 @@ public class GamePlay : MonoBehaviourPun
         PhotonNetwork.LoadLevel("GameSceneMain");
     }
 
+    public void MainSceneChange2()
+    {
+        SoundManager.instance.PlaySFX(SoundManager.ESfx.SFX_BUTTON);
+        photonView.RPC("MoveMainScene2", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void MoveMainScene2()
+    {
+        PhotonNetwork.LoadLevel("GameSceneMain_SSB2");
+    }
+
     //·ë ¼ÂÆÃ
     private void Update()
     {

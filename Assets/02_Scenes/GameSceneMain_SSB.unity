@@ -11248,6 +11248,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729311229435794, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
+      propertyPath: sceneViewId
+      value: 29
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
 --- !u!4 &8271582132895555508 stripped
@@ -12790,6 +12794,10 @@ PrefabInstance:
     - target: {fileID: 3315444951851329789, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729311229435794, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
+      propertyPath: sceneViewId
+      value: 28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
@@ -15337,6 +15345,10 @@ PrefabInstance:
     - target: {fileID: 4221607175233171893, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729310375038785, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
+      propertyPath: sceneViewId
+      value: 27
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
@@ -20010,6 +20022,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729310375038785, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
+      propertyPath: sceneViewId
+      value: 26
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
 --- !u!4 &8271582134582656461 stripped
@@ -21782,6 +21798,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729310375038785, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
+      propertyPath: sceneViewId
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
 --- !u!4 &8790729310375038779 stripped
@@ -22142,6 +22162,10 @@ PrefabInstance:
     - target: {fileID: 5351314707803213584, guid: a6f818f33c3463545a37dbfb17653fbb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729310507706443, guid: a6f818f33c3463545a37dbfb17653fbb, type: 3}
+      propertyPath: sceneViewId
+      value: 24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6f818f33c3463545a37dbfb17653fbb, type: 3}
@@ -22615,6 +22639,10 @@ PrefabInstance:
     - target: {fileID: 8121578526990621874, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
       propertyPath: m_Name
       value: SM_spoon (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729310688251595, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
+      propertyPath: sceneViewId
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 8934706320503145992, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
       propertyPath: m_RootOrder
@@ -23917,6 +23945,10 @@ PrefabInstance:
     - target: {fileID: 3315444951851329789, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729311229435794, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
+      propertyPath: sceneViewId
+      value: 22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
@@ -26804,6 +26836,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_guitar
       objectReference: {fileID: 0}
+    - target: {fileID: 3637930337565515428, guid: d47f5160d7496c6498ecab446a589dea, type: 3}
+      propertyPath: sceneViewId
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47f5160d7496c6498ecab446a589dea, type: 3}
 --- !u!4 &8790729312212099427 stripped
@@ -26839,6 +26875,10 @@ PrefabInstance:
     - target: {fileID: 8121578526990621874, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
       propertyPath: m_Name
       value: SM_spoon (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729310688251595, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
+      propertyPath: sceneViewId
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8934706320503145992, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
       propertyPath: m_RootOrder
