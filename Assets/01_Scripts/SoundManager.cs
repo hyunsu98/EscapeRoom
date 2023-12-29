@@ -28,6 +28,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource audioBgm;
     [SerializeField] AudioSource audioSfx;
 
+    //사운드매니저
     private void Awake()
     {
         if (instance == null)
@@ -44,7 +45,6 @@ public class SoundManager : MonoBehaviour
     public void PlayBGM(EBgm bgmIdx)
     {
         audioBgm.clip = bgms[(int)bgmIdx];
-
         audioBgm.Play();
     }
 
