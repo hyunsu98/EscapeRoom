@@ -1272,6 +1272,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729311229435794, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
+      propertyPath: sceneViewId
+      value: 77
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
 --- !u!4 &237279408 stripped
@@ -3513,6 +3517,7 @@ MonoBehaviour:
   dragUI: {fileID: 112987451}
   opneUI: {fileID: 623490505}
   baseUI: {fileID: 1269814604}
+  tokenUI: {fileID: 0}
   tokenText: {fileID: 128350651}
 --- !u!1 &586682618
 GameObject:
@@ -4608,6 +4613,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_spoon (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729310688251595, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
+      propertyPath: sceneViewId
+      value: 76
+      objectReference: {fileID: 0}
     - target: {fileID: 8934706320503145992, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
       propertyPath: m_RootOrder
       value: 59
@@ -5303,6 +5312,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729310507706443, guid: a6f818f33c3463545a37dbfb17653fbb, type: 3}
+      propertyPath: sceneViewId
+      value: 75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6f818f33c3463545a37dbfb17653fbb, type: 3}
 --- !u!4 &993554204 stripped
@@ -5476,7 +5489,11 @@ MonoBehaviour:
   token: 0
   maxToken: 5
   isTimeOver: 0
+  missionOne: 0
+  missionTwo: 0
+  missionThree: 0
   MissionClear: 0
+  photonName: 
 --- !u!1 &1017904950
 GameObject:
   m_ObjectHideFlags: 0
@@ -6477,6 +6494,10 @@ PrefabInstance:
     - target: {fileID: 3088224547740964254, guid: d47f5160d7496c6498ecab446a589dea, type: 3}
       propertyPath: m_Name
       value: SM_guitar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637930337565515428, guid: d47f5160d7496c6498ecab446a589dea, type: 3}
+      propertyPath: sceneViewId
+      value: 74
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47f5160d7496c6498ecab446a589dea, type: 3}
@@ -10560,10 +10581,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a66edbe92b6e3449cc52c22a65636e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOpen: 0
   doorOpenAngle: 0
   doorCloseAngle: -90
   speed: 1
+  isOpen: 0
+  key: 0
+  finalKey: 0
 --- !u!114 &1746359159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12249,10 +12272,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a66edbe92b6e3449cc52c22a65636e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOpen: 0
   doorOpenAngle: 280
   doorCloseAngle: 180
   speed: 1
+  isOpen: 0
+  key: 0
+  finalKey: 0
 --- !u!65 &1944058787
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13157,6 +13182,7 @@ MonoBehaviour:
   isOpen: 0
   endPos: {x: 0, y: 0, z: 0}
   speed: 0
+  savePos: {x: 0, y: 0, z: 0}
 --- !u!1 &2060738903
 GameObject:
   m_ObjectHideFlags: 0
@@ -16837,6 +16863,7 @@ MonoBehaviour:
   isOpen: 0
   endPos: {x: -0.00373, y: 0, z: 0.007637413}
   speed: 2
+  savePos: {x: 0, y: 0, z: 0}
 --- !u!114 &8109254618932930085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17665,6 +17692,10 @@ PrefabInstance:
     - target: {fileID: 3315444951851329789, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729311229435794, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
+      propertyPath: sceneViewId
+      value: 73
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
@@ -19207,6 +19238,10 @@ PrefabInstance:
     - target: {fileID: 3315444951851329789, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729311229435794, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
+      propertyPath: sceneViewId
+      value: 72
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
@@ -21754,6 +21789,10 @@ PrefabInstance:
     - target: {fileID: 4221607175233171893, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729310375038785, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
+      propertyPath: sceneViewId
+      value: 71
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
@@ -26427,6 +26466,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729310375038785, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
+      propertyPath: sceneViewId
+      value: 70
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
 --- !u!4 &8271582134582656461 stripped
@@ -28086,6 +28129,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8790729310375038785, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
+      propertyPath: sceneViewId
+      value: 69
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f00b8aa67e270647a9e205d5dbcc421, type: 3}
 --- !u!4 &8790729310375038779 stripped
@@ -28451,6 +28498,10 @@ PrefabInstance:
     - target: {fileID: 5351314707803213584, guid: a6f818f33c3463545a37dbfb17653fbb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729310507706443, guid: a6f818f33c3463545a37dbfb17653fbb, type: 3}
+      propertyPath: sceneViewId
+      value: 68
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6f818f33c3463545a37dbfb17653fbb, type: 3}
@@ -28908,6 +28959,10 @@ PrefabInstance:
     - target: {fileID: 8121578526990621874, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
       propertyPath: m_Name
       value: SM_spoon (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729310688251595, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
+      propertyPath: sceneViewId
+      value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 8934706320503145992, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
       propertyPath: m_RootOrder
@@ -30473,6 +30528,10 @@ PrefabInstance:
     - target: {fileID: 3315444951851329789, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729311229435794, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
+      propertyPath: sceneViewId
+      value: 66
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f7a6eb075d3c64ebac57316bab2920, type: 3}
@@ -33543,6 +33602,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_guitar
       objectReference: {fileID: 0}
+    - target: {fileID: 3637930337565515428, guid: d47f5160d7496c6498ecab446a589dea, type: 3}
+      propertyPath: sceneViewId
+      value: 65
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47f5160d7496c6498ecab446a589dea, type: 3}
 --- !u!4 &8790729312212099427 stripped
@@ -33560,6 +33623,10 @@ PrefabInstance:
     - target: {fileID: 8121578526990621874, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
       propertyPath: m_Name
       value: SM_spoon (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790729310688251595, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
+      propertyPath: sceneViewId
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 8934706320503145992, guid: 0df66ef958e61fa4ea056eafc39c904c, type: 3}
       propertyPath: m_RootOrder
@@ -39527,6 +39594,7 @@ MonoBehaviour:
   isOpen: 0
   endPos: {x: 0.00115, y: 0, z: 0}
   speed: 2
+  savePos: {x: 0, y: 0, z: 0}
 --- !u!65 &9072737376687767846
 BoxCollider:
   m_ObjectHideFlags: 0

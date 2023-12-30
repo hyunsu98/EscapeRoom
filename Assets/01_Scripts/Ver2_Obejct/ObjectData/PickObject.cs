@@ -26,19 +26,12 @@ public class PickObject : MonoBehaviourPun
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        //내가 만든 Player 가 아닐때 -> 필요 없음!
-        /*if (photonView.IsMine == false)
-        {
-            //PlayerFire 컴포넌트를 비활성화
-            this.enabled = false;
-        }*/
     }
+
     private void Update()
     {
         if (photonView.IsMine)
         {
-            
             //힘 가하는 게 다 다르기 때문에 내가 true가 되면 상대한테도 알려줘야함.
 
             // Rigidbody의 현재 속도를 계산합니다.
@@ -48,7 +41,6 @@ public class PickObject : MonoBehaviourPun
             if (currentSpeed > speedThreshold)
             {
                 Debug.Log("속도가 일정 속도를 넘었습니다!");
-                // 여기에 원하는 처리를 추가하세요.
 
                 // 바닥에 닿았는지 여부를 체크합니다.
                 //GetComponent<Collider>().bounds.extents.y -> 콜라이더의 높이의 절반을 나타냄, 바닥으로부터 캐릭터 중심까지의 거리를 구할때 사용
@@ -56,7 +48,6 @@ public class PickObject : MonoBehaviourPun
 
                 if (isGrounded)
                 {
-
                     if (isKey)
                     {
                         PhotonNetwork.Instantiate("BottleKey", transform.position, transform.rotation);
@@ -85,38 +76,5 @@ public class PickObject : MonoBehaviourPun
         Destroy(this.gameObject);
         Debug.Log("모두 삭제");
     }
-
-    /*[PunRPC]
-    void BreakBottle(Vector3 breakPos, Quaternion breakRot, int check)
-    {
-        //나 삭제
-        if (check == 1)
-        {
-            //포톤으로 생성되야할듯
-            //PhotonNetwork.Instantiate("BottleKey", transform.position, Quaternion.identity);
-            GameObject bottle = Instantiate(bottleKey);
-            bottle.transform.position = breakPos;
-            bottle.transform.rotation = breakRot;
-            Debug.Log("키삭제");
-        }
-
-        else if (check == 2)
-        {
-            GameObject bottle = Instantiate(bottleToken);
-            bottle.transform.position = breakPos;
-            bottle.transform.rotation = breakRot;
-            Debug.Log("토큰");
-        }
-
-        else if(check == 3)
-        {
-            GameObject bottle = Instantiate(bottleCracked);
-            bottle.transform.position = breakPos;
-            bottle.transform.rotation = breakRot;
-            Debug.Log("구냥");
-        }
-
-        Destroy(this.gameObject);
-    }*/
 }
 

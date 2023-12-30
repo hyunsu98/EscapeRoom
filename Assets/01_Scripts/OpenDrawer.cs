@@ -13,7 +13,7 @@ public class OpenDrawer : MonoBehaviourPun
     //이동 속도
     [SerializeField] private float speed;
 
-    private Vector3 savePos;
+    [SerializeField] Vector3 savePos;
 
     private void Awake()
     {
