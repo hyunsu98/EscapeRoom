@@ -6,7 +6,6 @@ using Photon.Realtime;
 
 //드래그 가능한 오브젝트
 //거리 계산 후 놓을 수 있음
-//인벤토리 저장은 할 수 없음
 //서랍이동은 가능
 [RequireComponent(typeof(Rigidbody))]
 public class DragObject : MonoBehaviourPun, IObjectData
@@ -19,6 +18,7 @@ public class DragObject : MonoBehaviourPun, IObjectData
     private GameObject contactPlatform;
     private Vector3 platformPosition;
     private Vector3 distance;
+
     //서랍 안인지 밖인지
     bool ishiddenObject = false;
 
@@ -33,23 +33,6 @@ public class DragObject : MonoBehaviourPun, IObjectData
     public void Awake()
     {
         rb = GetComponent<Rigidbody>();
-    }
-
-    //RPC로 내가 A객체를 잡았을 때 모든 사람한테 A객체 중력 보내기
-    [PunRPC]
-    public void OnOff(bool on)
-    {
-        if (rb != null)
-        {
-            rb.isKinematic = on;
-        }
-    }
-
-    [PunRPC]
-    //상대 유저한테도 나갔다고 알려줘야 함.
-    public void OnExit(bool exit)
-    {
-        ishiddenObject = exit;
     }
 
     #region 플레이어에서 나를 잡았을 때 나 넘기기 (포톤 소유권은 받기)
@@ -67,6 +50,7 @@ public class DragObject : MonoBehaviourPun, IObjectData
             //중력 제어 모든 사람에게 알려줘야 함.
             photonView.RPC(nameof(OnOff), RpcTarget.All, true);
         }
+
         //내 정보 넘겨주기
         return this.gameObject;
     }
@@ -75,9 +59,6 @@ public class DragObject : MonoBehaviourPun, IObjectData
     #region 잡기 / 놓기 했을 때 설정 값
     public void Grab(Transform objectGrabPointTransform)
     {
-        //서랍장 따라다니기 꺼주기
-        //ishiddenObject = false;
-        
         //객체 잡기 지점을 저장
         this.objectGrabPointTransform = objectGrabPointTransform;
     }
@@ -94,17 +75,23 @@ public class DragObject : MonoBehaviourPun, IObjectData
     }
     #endregion
 
+
+    //RPC로 내가 A객체를 잡았을 때 모든 사람한테 A객체 중력 보내기
+    [PunRPC]
+    public void OnOff(bool on)
+    {
+        if (rb != null)
+        {
+            rb.isKinematic = on;
+        }
+    }
+
     #region 이동 방법
-    //리지드 바디 이동
     private void FixedUpdate()
     {
         //이동할 위치가 있다면
         if (objectGrabPointTransform != null)
         {
-
-            /*Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
-            rb.MovePosition(newPosition);*/
-
             //이동할 위치와 카메라의 거리 구하기
             float distance = Vector3.Distance(objectGrabPointTransform.position, Camera.main.transform.position);
 
@@ -114,7 +101,7 @@ public class DragObject : MonoBehaviourPun, IObjectData
             //이동할 위치에서 카메라의 방향으로 거리만큼만 레이쏘기
             Debug.DrawRay(objectGrabPointTransform.position, Camera.main.transform.forward * -distance, Color.green);
 
-            //플레이어 레이어만 제외하고 충돌 체크
+            //플레이어 잡을 수 있는 레이어만 제외하고 충돌 체크
             int layerMask = ((1 << LayerMask.NameToLayer("Player")) | (1 << LayerMask.NameToLayer("Pickable")));
             layerMask = ~layerMask;
 
@@ -123,19 +110,14 @@ public class DragObject : MonoBehaviourPun, IObjectData
             {
                 //있을때
                 finalDistance = Mathf.Clamp(hit.distance * 2, 1, 5);
-                //finalDistance = hit.distance * 2;
-
-                //Debug.Log($"닿은물체 {hit.collider.name} 거리는 {hit.distance}");
             }
             else
             {
                 //없을때
                 finalDistance = 0;
-                //Debug.Log($"닿지 않아야함");
             }
 
             //마지막 위치는 = 오브젝트 위치에서부터 카메라 방향으로 최종거리만큼 이동한 위치를 최종 위치에 저장
-            //Vector3 finalPosition = objectGrabPointTransform.position + -Camera.main.transform.forward * finalDistance;
             Vector3 finalPosition = savePos + -Camera.main.transform.forward * finalDistance;
 
             Vector3 newPosition = Vector3.Lerp(transform.position, finalPosition, Time.deltaTime * lerpSpeed);
@@ -144,8 +126,6 @@ public class DragObject : MonoBehaviourPun, IObjectData
             // 오류 생김) 값을 zero로 했을때 자꾸 움직임 
             rb.MovePosition(newPosition);
         }
-
-
 
         //잡으면 hiddenObject 적용하면 안됨.
         else
@@ -169,7 +149,6 @@ public class DragObject : MonoBehaviourPun, IObjectData
             if (photonView != null)
             {
                 //중력 제어 모든 사람에게 알려줘야 함.
-
                 Debug.Log("중력제거");
                 photonView.RPC(nameof(OnOff), RpcTarget.All, true);
             }
@@ -191,9 +170,13 @@ public class DragObject : MonoBehaviourPun, IObjectData
     private void OnTriggerExit(Collider other)
     {
         photonView.RPC(nameof(OnExit), RpcTarget.All, false);
-        //ishiddenObject = false;
     }
 
-
+    [PunRPC]
+    //상대 유저한테도 나갔다고 알려줘야 함.
+    public void OnExit(bool exit)
+    {
+        ishiddenObject = exit;
+    }
     #endregion 
 }

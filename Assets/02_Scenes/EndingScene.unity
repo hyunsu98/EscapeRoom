@@ -786,7 +786,6 @@ MonoBehaviour:
   hitRange: 3
   inHandItem: {fileID: 0}
   objectGrabPointTransform: {fileID: 981985096}
-  picUpslot: {fileID: 0}
 --- !u!114 &321155334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7524,7 +7523,6 @@ MonoBehaviour:
   hitRange: 3
   inHandItem: {fileID: 0}
   objectGrabPointTransform: {fileID: 4053749375607481998}
-  picUpslot: {fileID: 0}
 --- !u!4 &4053749375607481998
 Transform:
   m_ObjectHideFlags: 0

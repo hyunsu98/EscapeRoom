@@ -5,27 +5,22 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviourPun
 {
-    public bool isOpen;
 
-    [SerializeField] public float doorOpenAngle = 90f;
+    [SerializeField] private float doorOpenAngle = 90f;
     
-    [SerializeField] public float doorCloseAngle = 0f;
+    [SerializeField] private float doorCloseAngle = 0f;
 
     //이동 속도
     [SerializeField] private float speed;
 
-    //저장 위치
-    //private Vector3 savePos;
-    Quaternion targetRotation;
-
+    public bool isOpen;
     public bool key;
     public bool finalKey;
 
     private void Update()
     {
-        Debug.Log(isOpen);
-
-        if(key)
+        //미션을 위한 문 열기
+        if(key) //1단계 문
         {
             if(GameManager.instance.missionTwo == true)
             {
@@ -36,7 +31,7 @@ public class OpenDoor : MonoBehaviourPun
             }
         }
 
-        else if(finalKey)
+        else if(finalKey) //2단계 문
         {
             if (GameManager.instance.missionThree == true)
             {
@@ -47,6 +42,7 @@ public class OpenDoor : MonoBehaviourPun
             }
         }
 
+        //일반 문
         else
         {
             if (isOpen)
@@ -72,27 +68,4 @@ public class OpenDoor : MonoBehaviourPun
     {
         isOpen = !isOpen;
     }
-
-    /*public void OpenDoorChek(bool val)
-    {
-        Debug.Log(isOpen);
-        // 켜지기
-        if (val)
-        {
-            Debug.Log("열림");
-            //Y축 회전
-            Quaternion targetRotation = Quaternion.Euler(0, doorOpenAngle, 0);
-
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, speed * Time.deltaTime);
-        }
-
-        //꺼지기
-        else
-        {
-            Debug.Log("닫힘");
-            Quaternion targetRotation2 = Quaternion.Euler(0, doorCloseAngle, 0);
-
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation2, speed * Time.deltaTime);
-        }
-    }*/
 }
